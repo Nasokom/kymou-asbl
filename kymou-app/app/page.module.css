@@ -1,0 +1,64 @@
+.main {
+  display: flex;
+  overflow: scroll;
+}
+
+.imgBox{
+min-width: 100vw;
+min-height: 100dvh;
+position: relative;
+
+}
+
+.lottie{
+  border-radius: 20px;
+}
+
+
+
+.helperBox{
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  position: absolute;
+  padding: 30px;
+  color: white;
+ 
+}
+
+
+.helper{
+  border: 3px solid white;
+  background-color: rgba(0, 0, 0, 0.724);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  min-height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.helper button{
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.007);
+  color: white;
+  border-radius: 50%;
+  font-size: 30px;
+  border: 3px solid white;
+}
+
+
+@media (min-width:800px) {
+  .imgBox{
+    width: 400px;
+    height: 800px;
+    position: relative;
+    }
+    
+}
