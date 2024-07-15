@@ -1,22 +1,30 @@
 .main {
   display: flex;
-  overflow: scroll;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgContainer{
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
 }
 
 .imgBox{
-min-width: 100vw;
-min-height: 100dvh;
-position: relative;
-
+  width: 100vw;
+  height: 100dvh;
+  position: relative;
+  transition: 0.3s;
 }
+
 
 .lottie{
   border-radius: 20px;
 }
 
 
-
 .helperBox{
+  justify-self: flex-start;
   width: 100vw;
   height: 100dvh;
   display: flex;
@@ -53,12 +61,57 @@ position: relative;
   border: 3px solid white;
 }
 
+.arrow{
+  display: none;
+}
 
-@media (min-width:800px) {
-  .imgBox{
-    width: 400px;
-    height: 800px;
-    position: relative;
+.helpText::after{
+  content: 'Scroll pour parcourir la plaquette'
+}
+
+@media (min-width:500px) {
+
+  .helpText::after{
+    content: 'Utilise les fleches pour parcourir la plaquette'
+  }
+
+  .helperBox{
+    width: 500px;
+    height:600px;
+
+  }
+
+    .arrow{
+      display:flex;
+      font-size: 50px;
+      margin: 50px;
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+      border: 2px solid #E6CF96;
+      background-color:  #e6cf964f;
+      color:  #BAD388;
     }
-    
+
+    .arrow:active{
+      scale: 1.2;
+    }
+
+    .imgContainer{
+      width: 430px;
+      height: 710px;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      border-radius: 20px;
+    }
+
+    .imgBox{
+      height: 100%;
+    }
 }
