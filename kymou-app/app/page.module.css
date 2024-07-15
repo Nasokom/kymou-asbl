@@ -82,9 +82,13 @@
     content: 'Utilise les fleches pour parcourir la plaquette'
   }
 
+  .helper{
+    height: 100%;
+  }
+
   .helperBox{
     width: 500px;
-    height:600px;
+    height:100%
 
   }
 
