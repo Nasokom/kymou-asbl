@@ -28,13 +28,13 @@ const About = async () => {
             <Image src={imgLoader} width={300} height={300} className='bg-black rounded-full'/>
         </div>
 
-        <p className='text-2xl'>{text2}</p>
+        <p className='text-3xl font-bold text-red-700 text-center'>{text2}</p>
 
-        <div className='text-3xl p-10 bg-2 rounded-full pointer'>
+        <div className='text-3xl p-10 bg-2 rounded-full pointer mt-20'>
             <Link className='font-display text-white' href='mailto:kymouASBL@gmail.com'>kymouASBL@gmail.com</Link>
         </div>
 
-        <p className='text-8xl text-red-700 font-display'>Nous Soutenir</p>
+        <p className=' text-8xl text-red-700 font-display'>Nous Soutenir</p>
 
         <div className='rounded-lg border-[15px] text-4xl border-red-700 p-10 flex flex-col jusify-center items-center'>
             <p>IBAN LU40 0099 7800 0052 1914 </p>
