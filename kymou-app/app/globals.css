@@ -1,9 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
-  font-family: dyna;
+  /* font-family: dyna; */
 }
 
 html,
@@ -17,6 +20,14 @@ body {
   font-family: "dyna";
   src: url('.././public/DynaPuff.ttf');
   font-display: swap;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Plakkaat';
+    font-display: swap;
+    src: url('.././public/Plakkaat.ttf');
+  }
 }
 
 h1{
