@@ -15,7 +15,7 @@ const  Hero = async () => {
     const logoLoader = datas.logo ? urlFor(datas.logo)?.url() : '/img/LogoKymou.svg'
 
   return (
-    <div className='h-[100dvh] w-full flex relative'>
+    <div className='h-[100vh] w-full flex relative'>
         <Image src={bgLoader} style={{objectFit:'cover', zIndex:0}} fill priority />
 
         <div className='z-10 flex flex-col items-center justify-between w-full h-full p-10'>

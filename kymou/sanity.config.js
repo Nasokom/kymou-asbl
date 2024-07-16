@@ -40,7 +40,7 @@ export default defineConfig({
           .items([
 
             // Our singleton type has a list item with a custom child
-            singletonListItem(S, "settings", "Settings"),
+            ///* singletonListItem(S, "settings", "Settings"), */
             singletonListItem(S, "intro", "intro"),
             singletonListItem(S, "project", "project"),
             singletonListItem(S, "about", "about"),
