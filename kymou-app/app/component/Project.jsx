@@ -24,7 +24,7 @@ const Project = async () => {
              
              projects.map((project,i)=>{
                 return (
-                    <div className='flex flex-col w-[31%] min-w-[300px]'>
+                    <div className='flex flex-col w-[31%] min-w-[300px]' key={i+project._id}>
                         <h2 className='font-display text-2xl'>{project.title}</h2>
                         {/* <p className='text-xl pt-4'>{project.text}</p> */}
                         <div className='flex flex-col gap-4'>
