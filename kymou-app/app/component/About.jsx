@@ -25,7 +25,7 @@ const About = async () => {
 
             <p className='w-[40%] min-w-[300px] text-2xl'>{text1}</p>
 
-            <Image src={imgLoader} width={300} height={300} className='bg-black rounded-full'/>
+            <Image src={imgLoader} width={300} height={300} className='bg-black'/>
         </div>
 
         <p className='text-3xl font-bold text-red-700 text-center'>{text2}</p>
