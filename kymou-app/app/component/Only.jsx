@@ -1,10 +1,14 @@
 'use client'
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import styles from "@/app/page.module.css"
 import Image from 'next/image'
-import Lottie from "lottie-react";
+/* import Lottie from "lottie-react"; */
 import animeLottie from "./anime.json";
 import zoom from "./zoom.json";
+
+import dynamic from 'next/dynamic';
+
+const Lottie = dynamic(() => import('lottie-react'), { ssr: false });
 
 const Only = () => {
 
@@ -34,10 +38,6 @@ const Only = () => {
       ]
     
 
-      useEffect(()=>{
-
-
-      },[])
 
       function changePosition(direction){
 
@@ -91,12 +91,16 @@ const Only = () => {
     </div>}
 
     <div className={styles.imgContainer}>
+
       {images.map((img,i)=>{
 
         return(
-          <div className={styles.imgBox} 
+          <div 
+          className={styles.imgBox} 
           style={{minWidth:`${img.size*100}%`, transform : `translateX(-${current*430}px)`}} 
-          key={i}>
+          key={i}
+          >
+
           <Image
             fill
             src={img.src}

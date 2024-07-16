@@ -1,13 +1,10 @@
 
-import Only from "./component/Only";
+import Only from "@/app/component/Only";
 
 export default function Home() {
-
-
-
   return (
-   <div>
+   <>
     <Only/>
-   </div>
+   </>
   );
 }
