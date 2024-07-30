@@ -20,3 +20,16 @@ export async function getProject(){
     const datas = await client.fetch(`*[_type == "project"][0]`)
     return datas
 }
+
+
+export async function getLqip(){
+    noStore()
+    const datas = await client.fetch(`*[_type == "sanity.imageAsset"
+ ]{
+   _id,
+   metadata{
+   lqip
+ }
+ }`)
+        return datas
+}

@@ -93,7 +93,7 @@ export default defineConfig({
                   .documentId("about")
               ), */
             // Regular document types
-            //S.documentTypeListItem("blogPost").title("Blog Posts"),
+            S.documentTypeListItem("projectv2").title("ProjectV1"),
           ]),
     }),
     visionTool(),

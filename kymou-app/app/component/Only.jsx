@@ -14,7 +14,6 @@ const Only = () => {
 
     const [show1,setShow1] = useState(true)
     const [show,setShow] = useState(true)
-
     const [current,setCurrent] = useState(0)
 
     const images =[
@@ -34,7 +33,6 @@ const Only = () => {
           src:'/face61.png',
           size:1,
         }
-    
       ]
     
 
@@ -53,9 +51,6 @@ const Only = () => {
 
   return (
     <main className={styles.main}>
-      
-
-
       <button 
         onClick={()=>changePosition('-')} 
         style={{opacity:current>0?'1':'0.2'}}
@@ -100,7 +95,7 @@ const Only = () => {
           style={{minWidth:`${img.size*100}%`, transform : `translateX(-${current*430}px)`}} 
           key={i}
           >
-
+            
           <Image
             fill
             src={img.src}
