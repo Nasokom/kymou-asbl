@@ -3,6 +3,7 @@ import Image from 'next/image'
 import {urlFor} from '@/app/utils/sanity/sanity'
 import {getProject, getLqip} from '@/app/utils/actions'
 import Title from './ux/Title';
+import GalleryImg from './GalleryImg';
 
 const Project = async () => {
 
@@ -70,7 +71,7 @@ const Project = async () => {
         <div className='flex flex-wrap justify-start p-2 sm:p-4 items-start gap-4 bg-2 w-full min-h-[50vh] rounded-lg relative'>
 
             <div className='flex flex-wrap justify-center w-full p-2 sm:p-4 items-center gap-2 sm:gap-4 w-full min-h-[50vh] rounded-lg bg-white '>
-                {
+                {/* {
                     datas.gallery &&
                     
                     datas.gallery.map((image,i)=>{
@@ -90,7 +91,8 @@ const Project = async () => {
                         )
                     })
                 
-                }
+                } */}
+                <GalleryImg lqips={lqips} datas={datas.gallery} />
             </div>
         </div>
 
