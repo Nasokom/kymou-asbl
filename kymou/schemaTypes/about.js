@@ -15,14 +15,21 @@ export default defineType({
       }),
 
     defineField({
-      name: 'text',
+      name: 'text1',
       title: 'intro',
-      type: 'content'
+      type: 'text'
     }),
     defineField({
         name: 'image',
         title: 'Photo Kymou',
         type: 'image'
+      }),
+
+
+      defineField({
+        name: 'text2',
+        title: 'texte 2',
+        type: 'text'
       }),
   ],
 })
