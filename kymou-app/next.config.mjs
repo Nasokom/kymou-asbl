@@ -2,7 +2,15 @@
 const nextConfig = {
         images: {
             domains: ['cdn.sanity.io'],
-            remotePatterns : ['cdn.sanity.io0']
+            // remotePatterns : [
+            //     { 
+            //     protocol: 'https',
+            //     hostname: 'cdn.sanity.io',
+            //     port: '',
+            //     pathname: '/',
+            //     search: '',
+            // }
+            // ]
         }
 };
 

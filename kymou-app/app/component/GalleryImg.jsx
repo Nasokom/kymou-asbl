@@ -17,32 +17,38 @@ const GalleryImg = ({datas,lqips}) => {
 }
 
     const [selectImg,setSelectedImg] = useState(null)
-
+    const newimg = datas.map(d => {
+      return {
+        ...d,
+        src:  urlFor(d.image).url(),
+        lqip: matchLqip(d.image.asset._ref) 
+      }  
+    })
+    console.log(newimg)
   return (
     <>
 
-  {
-    selectImg && <ImageModal datas={datas} selectImg={selectImg} setSelectedImg={setSelectedImg}></ImageModal>}
 
    {datas &&
-   datas.map((image,i)=>{
+   newimg.map((data,i)=>{
 
-                        const lqip = matchLqip(image.asset._ref) 
-                        const loader = urlFor(image).url()
                         return(
                         <Image 
-                        onClick={()=>setSelectedImg({url:loader})}
-                        src={loader}
+                        onClick={()=>setSelectedImg({...data,index:i})}
+                        //onClick={()=>setSelectedImg(image)}
+                        src={data.src}
                         width={300}
-                        placeholder={lqip}
+                        placeholder={data.lqip}
                         height={300}
                         style={{objectFit:'cover'}}
-                        className={'relative rounded-lg w-[48.5%] sm:w-[32%] h-[25.1vw]'}
-                        key={i+image.asset._ref}/>
+                        className={'cursor-pointer relative rounded-lg w-[48.5%] sm:w-[32%] h-[25.1vw]'}
+                        key={i}/>
                         
                         )
                     })
       }
+
+{selectImg && <ImageModal datas={newimg} selectedImg={selectImg} setSelectedImg={setSelectedImg}></ImageModal>}
 
     </>
   )
