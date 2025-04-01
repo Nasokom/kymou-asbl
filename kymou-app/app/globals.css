@@ -16,22 +16,28 @@ body {
   scroll-behavior: smooth;
 }
 .zigzag {
-  --s: 100px; /* control the size */
+  --s: 100px;
   --c1: #eceddc;
   --c2: #c3c5a9;
-  /* --c2: #000000; */
   
   --_g: var(--c1) 90deg, #ff000000 90.5deg;
-/* Second gradient with different angle */
   
   background:
    conic-gradient(from -45deg, var(--_g)),
    conic-gradient(from 135deg, var(--_g)) calc(var(--s)/2) 0,
  
-   var(--c2); /* Background color */
+   var(--c2);
   
   background-size: var(--s) var(--s);
+  transition: 2s;
 }
+
+/* .zigzag:hover{
+  background-position-y: 50%;
+  background-position-x: 50%;
+  transition: 2s;
+} */
+
 
 
 @font-face {
@@ -234,3 +240,25 @@ animation-delay: 5s;
     background-size: 100%;
 }
 }
+
+
+
+
+/* 
+.qAnim2{
+  --delay: calc(1s * var(--index));
+  animation: fadeIn var(--delay) forwards;
+}
+.qAnim2:nth-child(1) { --index: 1; }
+.qAnim2:nth-child(2) { --index: 2; }
+.qAnim2:nth-child(3) { --index: 3; }
+
+@keyframes fadeIn{
+  0%{
+    translate: 0 100px;
+  }
+
+  100%{
+    translate: 0 0px;
+  }
+} */

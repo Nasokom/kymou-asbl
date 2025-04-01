@@ -1,21 +1,38 @@
-import React from 'react'
-import Hero from '@/app/component/Home/Hero'
-import Project from '@/app/component/Project'
-import About from '@/app/component/About'
 
-const  page = async () => {
+import Only from "@/app/component/Only";
+import dynamic from "next/dynamic"
+import AxesHome from "../component/Home/AxesHome";
+import Hero2 from "../component/Home/Hero2";
+import { Suspense } from "react";
+import Image from "next/image";
+import { getAbout, getAxes, getHomeHeader } from "../utils/actions";
+import About from "../component/Home/About";
+import { urlFor } from "../utils/sanity/sanity";
 
 
+export default async function Home() {
+
+  const headerData = await getHomeHeader()
+  const axesData = await getAxes()
+  const aboutData = await getAbout()
+  const loader = urlFor(aboutData.image).url()
   return (
-    <div className='h-[100dvh] w-[100vw] flex flex-col gap-4' >
-        <Hero></Hero>
+    <div className='min-h-[100dvh] w-[100vw] flex flex-col gap-4' >
+      <Suspense fallback={<p>loading</p>}>
+        <Hero2  datas={headerData}/>
+        <About data={aboutData}/>
+        <AxesHome datas={axesData}/>
 
-        <div className= 'w-full flex flex-col gap-4 sm:p-10 p-2'> 
-            <Project/>
-            <About/>
+        <p className="text-4xl text-center w-full">Carte du burkina faso</p>
+        <div className="w-full h-[100vh] flex items-center justify-center relative">
+          <Image
+            src={loader}
+            style={{objectFit:'contain'}}
+            fill
+
+          />
         </div>
+      </Suspense>
     </div>
-  )
+  );
 }
-
-export default page

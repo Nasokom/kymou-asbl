@@ -9,7 +9,7 @@ const Navbar = () => {
 
     const links = [{name:'home',path:'/'},{name:'project',path:"/project"},{name:"gallery",path:'/gallery'},{name:'contact',path:'/contact'}]
   return (
-    <div className='fixed w-full z-[100] top-0 left-0 p-4 flex justify-between'>
+    <div className='fixed w-full z-[100] bg-[white] top-0 left-0 p-4 flex justify-between'>
 
       <div className='flex gap-2'>
           <Link href={'/h1'} className='font-display justify-center gap-2 items-center flex text-2xl'>

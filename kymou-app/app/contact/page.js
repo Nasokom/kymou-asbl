@@ -7,7 +7,7 @@ const page = async () => {
 
     const data = await getContact()
   return (
-    <div className='h-[100dvh] w-[100vw] items-center justify-center flex flex-col gap-4'>
+    <div className='h-[100dvh] w-[100vw] items-center justify-center flex flex-col gap-4 zigzag'>
 
 
         <Link href={'mailto:'+data.email}>{data.email}</Link>

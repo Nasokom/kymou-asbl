@@ -71,13 +71,11 @@ const AxesHome = ({ datas }) => {
 
   return (
     <div className="flex justify-center flex-col items-center gap-4 w-full p-10">
-      <SmallTitle>{"02/ Ce que nous faisons"}</SmallTitle>
+      <SmallTitle>{"Ce que nous faisons"}</SmallTitle>
       <CustomPortableText
         value={datas.intro}
-        className={"md:text-7xl sm:text-5xl sm:leading-[1.5em] md:leading-[1.5em] "}
+        className={"pl-[2em] md:text-4xl sm:text-4xl sm:leading-[1.5em] md:leading-[1.5em] "}
       />
-
-      <SmallTitle>{"03/ Nos domaines d'action"}</SmallTitle>
 
       <div className="flex lg:flex-wrap w-full lg:flex-row flex-col justify-center items-center">
          {datas.axes.map((axe, i) => (
