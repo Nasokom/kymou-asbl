@@ -71,6 +71,7 @@ export async function getProjects(){
                     _id,
                     "header": *[_type=='gallery' && references(^._id)]{image},
                     slug,
+                    hero,
                     pitch${resolveImg},
                     problem${resolveImg},
                     action${resolveImg},

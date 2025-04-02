@@ -33,6 +33,12 @@ export default defineType({
         type: 'reference',
           to: [{type: 'gallery'}]
       }),
+
+      defineField({
+        name: 'hero',
+        title:'Image header',
+        type: 'image',
+      }),
   
       defineField({
         name: 'pitch',
@@ -53,12 +59,18 @@ export default defineType({
         name: 'result',
         type:'textImg'
       }),
+      defineField({
+        name: 'gallery',
+        type:'array',
+        of:[{type: 'image'}]
+
+      }),
 
       defineField({
         name: 'image',
         type:'array',
         of:[{type: 'reference',
-          to: [{type: 'gallery'}]}]
+          to: [{type: 'gallery',}]}]
       })
   ],
 })

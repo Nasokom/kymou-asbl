@@ -11,12 +11,10 @@ export default defineType({
       title: 'texte',
       type: 'content',
     }),
-
-     defineField({
-         name: 'inPhoto',
-         title:'Photo liee au texte',
-         type: 'reference',
-           to: [{type: 'gallery'}]
-         }),
+    defineField({
+      name:"image",
+      title:"photo liee au texte",
+      type:"image",
+    })
   ],
 })

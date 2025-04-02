@@ -9,7 +9,9 @@ export default async function Page({params}){
     const { _id } = await params
 
     const project = await getSingleProject(_id)
-    const loader =  urlFor(project.header[0].image).blur(50).url()
+    //const loader =  urlFor(project.header[0].image).blur(50).url()
+    const loader = urlFor(project.hero).url()
+
     const loader2 = (ref)=>{
       const x = resolveInnerImgREF(ref)
         return x
