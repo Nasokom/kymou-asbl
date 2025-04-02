@@ -5,7 +5,7 @@ import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import {colorInput} from '@sanity/color-input'
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
-
+import {media,mediaAssetSource} from 'sanity-plugin-media'
 
 // Define the actions that should be available for singleton documents
 const singletonActions = new Set(["publish", "discardChanges", "restore"])
@@ -31,11 +31,24 @@ export default defineConfig({
 
   projectId: '6ahsdz3c',
   dataset: 'production',
+  useCdn: true, 
+  preview:false,
 
   
 
   //plugins: [structureTool(), visionTool()],
-  plugins: [
+  plugins: [media({
+    creditLine: {
+      enabled: true,
+      // boolean - enables an optional "Credit Line" field in the plugin.
+      // Used to store credits e.g. photographer, licence information
+      excludeSources: ['unsplash'],
+      // string | string[] - when used with 3rd party asset sources, you may
+      // wish to prevent users overwriting the creditLine based on the `source.name`
+    },
+    maximumUploadSize: 10000000
+    // number - maximum file size (in bytes) that can be uploaded through the plugin interface
+  }),
     colorInput(),
     deskTool({
       structure: (S,context) =>
@@ -105,6 +118,14 @@ export default defineConfig({
     }),
     visionTool(),
   ],
+  form: {
+    // Don't use this plugin when selecting files only (but allow all other enabled asset sources)
+    file: {
+      assetSources: previousAssetSources => {
+        return previousAssetSources.filter(assetSource => assetSource !== mediaAssetSource)
+      }
+    }
+  },
 
   schema: {
     types: schemaTypes,
