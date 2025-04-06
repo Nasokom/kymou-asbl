@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { getProjects } from "../utils/actions"
-import ProjectCard from "../../components/project/ProjectCard"
+import ProjectCard from "../../components/Project/ProjectCard"
 import { Suspense } from "react"
 export default async function Page(){
 

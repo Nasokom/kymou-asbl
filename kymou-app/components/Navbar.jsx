@@ -39,7 +39,7 @@ const Navbar = () => {
     initial={{ y: 0 }}
     animate={{ y: showNavbar ? 0 : -100 }}
     transition={{ duration: 0.3, ease: "easeInOut" }}
-    className="fixed top-0 left-0 w-full flex p-2 items-center justify-between bg-[#ffffffc8] shadow-md z-50">
+    className="fixed top-0 left-0 w-full flex p-2 items-center justify-between z-50">
 
       <div className='flex gap-2'>
           <Link href={'/h1'} className='font-display justify-center gap-2 items-center flex text-2xl'>
@@ -51,9 +51,9 @@ const Navbar = () => {
             </Link>
       </div>
 
-        <div className='flex gap-4'>
+        <div className='flex gap-4 bg-white shadow-md p-4 rounded-xl '>
         {links.map((link,i)=>{
-            return <Link key={i} href={link.path} className={usePathname()==link.path ? " underline font-black" : ""}>{link.name}</Link>
+            return <Link key={i} href={link.path} className={usePathname()==link.path ? " underline font-black " : ""}>{link.name}</Link>
         })}
         </div>
 

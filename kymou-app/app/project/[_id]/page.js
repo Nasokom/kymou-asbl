@@ -29,7 +29,7 @@ export default async function Page({params}){
       </div>
 
 
-        <div className='project-section gap-10 flex flex-col p-10 '>
+        <div className='project-section gap-10 flex flex-col p-10 max-w-[1000px]'>
 
             { project.pitch && 
             <>
