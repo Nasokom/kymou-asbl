@@ -1,29 +1,39 @@
 import React from 'react'
 import { getContact } from '../utils/actions'
 import Link from 'next/link'
-import CustomPortableText from '../component/CustomPortableText'
+import CustomPortableText from '../../components/CustomPortableText'
 
 const page = async () => {
 
     const data = await getContact()
   return (
-    <div className='h-[100dvh] w-[100vw] items-center justify-center flex flex-col gap-4 zigzag'>
+    <div className='h-[100dvh] w-[100vw] pt-24 pb-12 items-left justify-center flex flex-col gap-4 p-8'>
 
 
-        <Link href={'mailto:'+data.email}>{data.email}</Link>
+
+
+        {data.text && <CustomPortableText value={data.text}/>}
+
+          <div className='mt-4'>
+            <p className='font-rec1 text-2xl'>{data.contact.title}</p>
+            <Link className='underline' href={'mailto:'+data.email}>{data.contact.email}</Link>
+          </div>
+
+      <div className='w-full flex flex-col items-center justify-center gap-4'>
+        <p className='font-rec1 text-4xl'>{data.catch}</p>
         
-        <h2 className='text-4xl'>{data.asbl.title}</h2>
-        <div>
-            <p>{data.asbl.name}</p>
+        
+        <div className='zigzagsm p-4 rounded-xl'>
 
-           {data.asbl.soutien && <p>{data.asbl.soutien}</p>}
+          <div className='flex flex-col p-4 gap-2 bg-[#ffff] rounded-xl text-2xl'>
+            <p>{data.asbl.name}</p>
 
             <p>{data.asbl.bic}</p>
 
             <p>{data.asbl.iban}</p>
+          </div>
         </div>
-
-        {data.text && <CustomPortableText value={data.text}/>}
+      </div>
     </div>
   )
 }

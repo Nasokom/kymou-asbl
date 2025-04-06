@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import { PortableText } from "next-sanity";
 import Link from "next/link";
 import Image from "next/image";
-import { resolveInnerImgREF } from "../utils/actions";
-import { urlFor } from "../utils/sanity/sanity";
+import { resolveInnerImgREF } from "../app/utils/actions";
+import { urlFor } from "../app/utils/sanity/sanity";
 
 export default async function CustomPortableText({
   className,
@@ -36,7 +36,17 @@ export default async function CustomPortableText({
     block: {
       h5: ({ children }) => {
         return (
-          <h5 className="mb-2 text-sm font-semibold">{children}</h5>
+          <h5 className="mb-2 text-sm font-rec1">{children}</h5>
+        );
+      },
+      h1: ({ children }) => {
+        return (
+          <h5 className="mb-2 text-7xl font-rec1 w-full mb-12">{children}</h5>
+        );
+      },
+      h4: ({ children }) => {
+        return (
+          <h5 className="mb-8 mt-8 text-4xl font-rec1 ">{children}</h5>
         );
       },
     },

@@ -58,6 +58,7 @@ export default defineConfig({
 
             // Our singleton type has a list item with a custom child
             ///* singletonListItem(S, "settings", "Settings"), */
+            singletonListItem(S,'homePage2','homeTest'),
             singletonListItem(S,'homePage','home'),
             singletonListItem(S, "project", "project old"),
             singletonListItem(S, "contact", "contact"),

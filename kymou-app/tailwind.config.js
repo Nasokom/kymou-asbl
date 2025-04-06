@@ -8,7 +8,11 @@ module.exports = {
     ],
   theme: {
     fontFamily: {
-
+    '1':['Recoleta'],
+    'rec':['RecoletaReg'],
+    'rec1':['RecoletaBlack'],
+    'rec2':['RecoletaBold'],
+    'dyna':['dyna'],
       'display': ['Plakkaat'],
     },
     extend: {

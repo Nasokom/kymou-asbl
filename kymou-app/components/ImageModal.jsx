@@ -27,7 +27,6 @@ const ImageModal = ({selectedImg,setSelectedImg, datas}) => {
       setSelectedImg({...datas[i],index:i})
     }
   }
-
     const [loader,setLoader] = useState('')
              useEffect(()=>{
               console.log(selectedImg)

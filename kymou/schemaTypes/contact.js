@@ -12,12 +12,34 @@ export default defineType({
         initialValue:'Contact Page',
         hidden:true
       }),
+      defineField({
+        name: 'text',
+        title: 'Texte',
+      type:'content'
+      }),
 
     defineField({
       name: 'email',
       title: 'Email',
       type: 'string',
     }),
+
+    defineField({
+      name: 'contact',
+      title: 'Email',
+      type: 'object',
+      fields:[
+        {name:'title',type:'string',type:'string'},
+        {name:'email',type:'string',title:'email'},
+      ]
+    }),
+
+    defineField({
+      name:'catch',
+      type:'string',
+      title:'Catch phrase iban'
+    }),
+
     defineField({
       name: 'asbl',
       title: 'Detail ASBL',
@@ -25,18 +47,8 @@ export default defineType({
       fields:[
         {
             type:'string',
-            title:'Titre',
-            name:'title'
-        },
-        {
-            type:'string',
             title:'nom',
             name:'name'
-        },
-        {
-            type:'string',
-            title:'Soutien',
-            name:'soutien'
         },
         {
             type:'string',
@@ -51,11 +63,7 @@ export default defineType({
       ]
     }),
 
-    defineField({
-      name: 'text',
-      title: 'text',
-    type:'content'
-    }),
+  
 
   ],
 })

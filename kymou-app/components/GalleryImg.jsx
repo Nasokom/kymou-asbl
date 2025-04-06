@@ -17,6 +17,7 @@ const GalleryImg = ({datas,lqips}) => {
 }
 
     const [selectImg,setSelectedImg] = useState(null)
+    
     const newimg = datas.map(d => {
       return {
         ...d,

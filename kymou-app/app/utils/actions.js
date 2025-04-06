@@ -3,6 +3,13 @@
 import { client } from "./sanity/sanity"
 import { unstable_noStore as noStore } from 'next/cache';
 
+
+export async function getHome(){
+    noStore()
+    const datas = await client.fetch('*[_type == "homePage2"][0]')
+    console.log(datas)
+    return datas
+}
 export async function getIntro(){
     noStore()
     const datas = await client.fetch(`*[_type == "intro"][0]`)
@@ -37,6 +44,7 @@ export async function getAbout(){
 export async function getProject(){
     noStore()
     const datas = await client.fetch(`*[_type == "project"][0]`)
+
     return datas
 }
 
@@ -47,13 +55,17 @@ export async function getProjects(){
         _id,
         "header": *[_type=='gallery' && references(^._id)]{image},
         slug,
+        hero,
         pitch,
         problem,
         action,
         result,
+        gallery,
         image}
         `)
-        console.log(datas)
+        console.log('#############')
+        console.log(datas[0])
+        console.log('#############')
         return datas
     }
     
@@ -70,17 +82,27 @@ export async function getProjects(){
                     {title,
                     _id,
                     "header": *[_type=='gallery' && references(^._id)]{image},
+                    hero,
                     slug,
                     hero,
-                    pitch${resolveImg},
-                    problem${resolveImg},
-                    action${resolveImg},
-                    result${resolveImg},
+                    pitch,
+                    problem,
+                    action,
+                    result,
+                    gallery,
                     image}`)
-                    console.log(datas)
+                    //result${resolveImg}
+
     return datas
 }
 
+
+// *[
+//     references("image-07f4d7d7d158f55403883b9fee07da8e17f52639-1920x1088-jpg")
+//     && 
+//     _type == 'projectv2'
+//   ][0]{slug, title}
+  
 export async function resolveInnerImgREF(_ref){
     noStore()
     const img = await client.fetch(`*[_type=='gallery' && _id == "${_ref}"][0]`)
@@ -89,14 +111,25 @@ export async function resolveInnerImgREF(_ref){
 
 export async function getGallery(){
     noStore()
-    const datas = await client.fetch(`*[_type == "gallery" && show == true]|order(orderRank)
-          {  title,
-            "url": *[_type=='projectv2' && references(^._id)][0]{slug},
-            image,
-            orderRank,
-        }`)
-    const backup= await client.fetch(`*[_type == "project"][0]{gallery}`)
-    console.log(datas[0])
+    const datas = await client.fetch(`*[
+  _type == 'sanity.imageAsset'
+  && opt.media.tags != null
+]{
+  url,
+  title,
+  description,
+       'lqip':metadata.lqip,
+    'dimensions':metadata.dimensions,
+  altText,
+  _rev,
+   "reference" : *[
+    references(^._id)
+    && 
+    _type == 'projectv2'
+  ][0]{slug, title}
+    
+}`)
+
     return datas
 }
 export async function getLqip(){

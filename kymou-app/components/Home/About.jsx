@@ -8,7 +8,7 @@ const About = ({data}) => {
         <SmallTitle>{"Qui Somme nous"}</SmallTitle>
         <CustomPortableText 
         value={data.text}
-        className={"pl-[2em] md:text-4xl sm:text-4xl sm:leading-[1.5em] md:leading-[1.5em] "}
+        className={"font-rec pl-[2em] md:text-4xl sm:text-4xl sm:leading-[1.5em] md:leading-[1.5em] "}
         />
     </div>
   )

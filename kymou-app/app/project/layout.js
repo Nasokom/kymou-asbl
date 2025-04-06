@@ -1,10 +1,10 @@
 import React from 'react'
-import Title from '../component/ux/Title'
-
+import Title from '../../components/ux/Title'
+import TitleProject from '@/components/Project/Title'
 const layout = ({children}) => {
   return (
-    <div className='min-h-[100dvh] w-[100vw] flex flex-col gap-4 mt-8 p-4 items-center'>
-        <Title classN={''}>Nos Projets</Title>
+    <div className='relative w-[100vw] flex flex-col gap-4 mt-24 pt-24 p-4 items-center'>
+        <TitleProject/>
         {children}
     </div>
   )

@@ -1,12 +1,12 @@
 
-import Only from "@/app/component/Only";
+import Only from "@/components/Only";
 import dynamic from "next/dynamic"
-import AxesHome from "../component/Home/AxesHome";
-import Hero2 from "../component/Home/Hero2";
+import AxesHome from "../../components/Home/AxesHome";
+import Hero2 from "../../components/Home/Hero2";
 import { Suspense } from "react";
 import Image from "next/image";
 import { getAbout, getAxes, getHomeHeader } from "../utils/actions";
-import About from "../component/Home/About";
+import About from "../../components/Home/About";
 import { urlFor } from "../utils/sanity/sanity";
 
 

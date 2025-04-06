@@ -13,5 +13,6 @@ import header from './home/header'
 import axes from './home/axes'
 import contact from './contact'
 import customMedia from './customMedia'
-export const schemaTypes = [customMedia,contact,axes,header,homePage,textImg,gallery,content,projectObject, about, project, blockContent,txtImg, projectV2]
+import home2 from './home2'
+export const schemaTypes = [home2,customMedia,contact,axes,header,homePage,textImg,gallery,content,projectObject, about, project, blockContent,txtImg, projectV2]
 

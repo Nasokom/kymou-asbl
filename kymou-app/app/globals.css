@@ -17,7 +17,7 @@ body {
 }
 .zigzag {
   --s: 100px;
-  --c1: #eceddc;
+  --c1: #000000;
   --c2: #c3c5a9;
   
   --_g: var(--c1) 90deg, #ff000000 90.5deg;
@@ -32,11 +32,27 @@ body {
   transition: 2s;
 }
 
-/* .zigzag:hover{
+.zigzagsm{
+  --s: 30px;
+  --c1: #000000;
+  --c2: #c3c5a9;
+  
+  --_g: var(--c1) 90deg, #ff000000 90.5deg;
+  
+  background:
+   conic-gradient(from -45deg, var(--_g)),
+   conic-gradient(from 135deg, var(--_g)) calc(var(--s)/2) 0,
+ 
+   var(--c2);
+  
+  background-size: var(--s) var(--s);
+  transition: 2s;
+}
+.zigzagsm:hover{
   background-position-y: 50%;
   background-position-x: 50%;
-  transition: 2s;
-} */
+  transition: 1s;
+}
 
 
 
@@ -54,6 +70,44 @@ body {
   }
 }
 
+
+@layer base {
+  @font-face {
+    font-family: 'Recoleta';
+    font-display: swap;
+    src: url('../public/fonts/Recoleta-Regular.otf')
+  }
+}
+
+/* Recoleta */
+
+@layer base {
+  @font-face {
+    font-family: 'RecoletaBlack';
+    font-display: swap;
+    src: url('../public/fonts/Recoleta/Recoleta\ Black.otf')
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: 'RecoletaReg';
+    font-display: swap;
+    src: url('../public/fonts/Recoleta/Recoleta\ Regular.otf')
+  }
+}
+
+
+@layer base {
+  @font-face {
+    font-family: 'RecoletaBold';
+    font-display: swap;
+    src: url('../public/fonts/Recoleta/Recoleta\ Bold.otf')
+  }
+}
+
+
+
 h1{
   font-size: 40px;
 }
@@ -65,14 +119,7 @@ h1{
 }
 
 /* Assurons-nous que nous ciblons les images dans tous les composants CustomPortableText */
-.alt{
-  display: flex;
-  flex-direction: row;
-}
 
-.alt:nth-child(odd){
-  flex-direction: row-reverse;
-}
 
 /* .containerBla {
   display: flex;
@@ -169,6 +216,16 @@ animation: quoteAnim 1s ease-in-out 2s forwards;
   opacity: 0;
 }
 
+
+.animeBg1{
+  mask-image: linear-gradient(rgb(0 0 0 / 100%), transparent);
+  animation: animebg 1.5s ease-in-out forwards;
+  /* animation-delay: 1s; */
+  clip-path: inset(28% 25% 90% 25% round 10px);
+  border-radius: 20px;
+}
+
+
 .bgHeader{
 }
 @keyframes circle {
@@ -181,14 +238,18 @@ animation: quoteAnim 1s ease-in-out 2s forwards;
   100% { clip-path: circle(100%);
     opacity: 1; }
 }
+
 @keyframes animebg {
-  0% {
-    clip-path: inset(50% 50% 50% 50%);
+
+
+  40% {
+    clip-path: inset(28% 25% 25% 25% round 10px);
   }
 
 
   100% {
-    clip-path: inset(-100% -100% -100% -100%); /* Back to normal size */
+    clip-path: inset(0% 0% 0% 0%); /* Back to normal size */
+    opacity: 1;
   }
 }
 
@@ -262,3 +323,45 @@ animation-delay: 5s;
     translate: 0 0px;
   }
 } */
+
+
+/* Project page additional css */
+.project-section > h3:nth-of-type(even) {
+  text-align: right;
+}
+
+.project-section .alt:nth-of-type(even) img {
+  float: right;
+}
+
+.project-section .alt:nth-of-type(odd) img {
+  float: left;
+}
+
+/* .alt{
+  display: flex;
+  flex-direction: row;
+}
+
+.alt:nth-child(odd){
+  flex-direction: row-reverse;
+} */
+
+
+@keyframes translateUp {
+    from{
+      translate: 0 0% ;
+    }
+    to{
+      translate: 0 -100% ;
+    }
+}
+
+@keyframes appearDown {
+  from{
+    translate: 0 100% ;
+  }
+  to{
+    translate: 0 0% ;
+  }
+}

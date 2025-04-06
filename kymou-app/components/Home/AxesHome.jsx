@@ -73,8 +73,8 @@ const AxesHome = ({ datas }) => {
     <div className="flex justify-center flex-col items-center gap-4 w-full p-10">
       <SmallTitle>{"Ce que nous faisons"}</SmallTitle>
       <CustomPortableText
-        value={datas.intro}
-        className={"pl-[2em] md:text-4xl sm:text-4xl sm:leading-[1.5em] md:leading-[1.5em] "}
+        value={datas.text}
+        className={"pl-[2em] font-rec  md:text-4xl sm:text-4xl sm:leading-[1.5em] md:leading-[1.5em] "}
       />
 
       <div className="flex lg:flex-wrap w-full lg:flex-row flex-col justify-center items-center">
@@ -82,14 +82,14 @@ const AxesHome = ({ datas }) => {
           <div key={i} className="group lg:w-[50%] w-[100%] cursor-pointer mt-8 flex justify-center items-center">
           <div
             key={i}
-            className="item zigzag  h-[300px] w-[300px] relative rounded-full flex items-center justify-center"
+            className="item zigzag  h-[300px] w-[300px] relative rounded flex items-center justify-center"
             >
-            <p className="font-display text-white lg:text-4xl sm:text-4xl">{axe.title}</p>
+            <p className="font-rec1 text-white lg:text-4xl sm:text-4xl">{axe.title}</p>
 
-            <div className="circ lg:group-hover:scale-100 lg:duration-500 bg-[#eceddc] absolute w-[98%] h-[98%] rounded-full flex items-center justify-center scale-0" />
+            <div className="circ lg:group-hover:scale-100 lg:duration-500 bg-[#eceddc] absolute w-[98%] h-[98%] rounded flex items-center justify-center scale-0" />
 
             <div className="absolute gText opacity-0 lg:group-hover:opacity-100 transition-opacity lg:duration-500">
-              <CustomPortableText className="p-12 text-center text-xl text-black z-10 transition-opacity" value={axe.text} />
+              <CustomPortableText className="p-12 text-center font-rec text-xl text-black z-10 transition-opacity" value={axe.text} />
             </div>
 
             
