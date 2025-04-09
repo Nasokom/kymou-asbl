@@ -16,12 +16,5 @@ export default defineType({
       title:"photo liee au texte",
       type:"image",
     }),
-
-    defineField({
-      name:"inPhoto",
-      title:"photo liee au texte",
-      type:"reference",
-      to: [{type: 'gallery',}]
-    })
   ],
 })

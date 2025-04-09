@@ -7,7 +7,7 @@ const page = async () => {
 
     const data = await getContact()
   return (
-    <div className='h-[100dvh] w-[100vw] pt-24 pb-12 items-left justify-center flex flex-col gap-4 p-8'>
+    <div className='min-h-[100dvh] w-[100vw] pt-24 pb-12 items-left justify-center flex flex-col gap-4 p-8'>
 
 
 
@@ -23,7 +23,7 @@ const page = async () => {
         <p className='font-rec1 text-4xl'>{data.catch}</p>
         
         
-        <div className='zigzagsm p-4 rounded-xl'>
+        <div className='zigzagsm p-4 rounded-xl relative'>
 
           <div className='flex flex-col p-4 gap-2 bg-[#ffff] rounded-xl text-2xl'>
             <p>{data.asbl.name}</p>

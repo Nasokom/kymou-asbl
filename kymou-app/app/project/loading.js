@@ -2,7 +2,7 @@
 
 const loading = () => {
   return (
-    <div>loading</div>
+    <div className="w-full h-full min-h-[50vh] zigzag">loading</div>
   )
 }
 

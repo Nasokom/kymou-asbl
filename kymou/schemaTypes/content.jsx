@@ -14,6 +14,7 @@ export default defineType({
         {title: 'title', value: 'h1'},
         {title: 'subTitle', value: 'h4'},
       ],
+
       lists: [
         //  {title: 'Bullet', value: 'bullet'}
         ],
@@ -82,11 +83,5 @@ export default defineType({
       //   ]
       // }
     }),
-    // defineArrayMember({
-    //   name: 'inPhoto',
-    //   title:'Photo liee au texte',
-    //   type: 'reference',
-    //     to: [{type: 'gallery'}]
-    //   }),
 ]
   })

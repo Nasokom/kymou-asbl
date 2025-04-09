@@ -1,18 +1,10 @@
 import blockContent from './blockContent'
 //import settings from './settings'
-import projectObject from './projectObject'
-import project from './project'
-import about from './about'
-import txtImg from './txtImg'
 import projectV2 from './projectV2'
 import content from './content'
-import gallery from './gallery'
 import textImg from './textImg'
-import homePage from './home'
-import header from './home/header'
-import axes from './home/axes'
 import contact from './contact'
 import customMedia from './customMedia'
 import home2 from './home2'
-export const schemaTypes = [home2,customMedia,contact,axes,header,homePage,textImg,gallery,content,projectObject, about, project, blockContent,txtImg, projectV2]
+export const schemaTypes = [home2,customMedia,contact,textImg,content, blockContent, projectV2]
 

@@ -2,7 +2,7 @@
 import Only from "@/components/Only";
 import dynamic from "next/dynamic"
 import AxesHome from "../components/Home/AxesHome";
-import Hero2 from "../components/Home/Hero2";
+import Hero from "../components/Home/Hero";
 import { Suspense } from "react";
 import Image from "next/image";
 import {getHome} from "./utils/actions";
@@ -17,7 +17,7 @@ export default async function Home() {
   return (
     <div className='min-h-[100vh] w-[100vw] flex flex-col gap-4' >
       <Suspense fallback={<p>loading</p>}>
-        <Hero2  datas={datas.header}/>
+        <Hero  datas={datas.header}/>
         <About data={datas.about}/>
         <AxesHome datas={datas.goal}/>
 

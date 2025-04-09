@@ -1,4 +1,4 @@
-  import React from 'react'
+import React from 'react'
 import Image from 'next/image'
 import { urlFor } from '@/app/utils/sanity/sanity';
 import { getIntro,getLqip,getHome} from '@/app/utils/actions'
@@ -9,13 +9,9 @@ const  Hero = async ({datas}) => {
 
     const lqips = await getLqip();
 
-
     const matchLqip = (ref) => {
-
         const match = lqips.find((elt) => elt._id == ref)
-
         return match ? match.metadata.lqip : null
-
     }
 
     //const logoLqip = matchLqip(datas.logo.asset._ref)
@@ -24,34 +20,38 @@ const  Hero = async ({datas}) => {
     const bgLoader = datas.image ? urlFor(datas.image).url() : "/dummy.jpg"
 
   return (
-    <div className='min-h-[100vh] h-[100vh] w-full flex relative' style={{minHeight:"100vh"}}>
+    <div className='min-h-[100vh] items-center justify-around h-[100vh] w-full flex-col flex relative' style={{minHeight:"100vh"}}>
 
-      <div className='loader w-[100vw] h-[100vh] flex items-center justify-center absolute'>
-          <Image
-          src={'/LogoKymou.svg'}
-          width={400}
-          height={400}
-          style={{objectFit:'contain'}}
-          />
-      </div>
+      <div className='absolute bottom-0 w-[90%] h-[90%]'>
 
-      <div className='w-full h-full bg-white absolute animeBg' >
-        <Image
-         src={bgLoader} 
-          blurDataURL={bgLqip} 
-          placeholder="blur"
-          style={{objectFit:'cover', zIndex:0,}} quality={100} fill priority={true}
-          className='bgheader' />
+      <Image 
+        fill 
+        src={bgLoader}
+        blurDataURL={bgLqip} 
+        placeholder="blur"
+        style={{objectFit:'cover', zIndex:0,transition:'10s'}} 
+        quality={100}
+        priority={true}
+        className='animeBg1'
+        />
         </div>
 
-                <LineWrapper>
-                  <CustomPortableText className='text-4xl text-current font-bold' value={datas.quote.text}></CustomPortableText>
-                </LineWrapper>
-        <div className='quoteAnim z-10 flex items-center justify-center w-full h-full p-6 sm:p-10'>
-               <div className='w-full absolute bottom-20 p-8'>
-                  <p className='text-xl mt-4 w-full text-right'>{datas.quote.credit}</p>
+            <div className='overflow-hidden pb-2'>
+              <h1 className='text-9xl font-rec2 flex items-center animate-[appearDown_0.3s_ease-out_forwards]'>
+                Kym
+                <Image src={"/LogoKymou.svg"} width={75} height={75}/>
+                u  
+                <span className='text-xl ml-4'>asbl</span>
+                </h1>
+            </div>
+      <div className='overflow-hidden'>
+        <div className='font-rec flex flex-col items-center justify-center w-full p-6 sm:p-10 z-100'>
+                <CustomPortableText className='text-5xl text-current font-bold z-[10]' value={datas.quote.text}></CustomPortableText>   
+               <div className='w-full overflow-hidden'>
+                  <p className='text-xl mt-4 w-full text-right translate-y-[100%] animate-[translateUp_0.5s_ease-out_0.5s_forwards]'>{datas.quote.credit}</p>
                 </div>
         </div>
+      </div>
 
     </div>
   )

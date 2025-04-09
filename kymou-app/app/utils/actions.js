@@ -50,22 +50,12 @@ export async function getProject(){
 
 export async function getProjects(){
     noStore()
-    const datas = await client.fetch(`*[_type == "projectv2"]
+    const datas = await client.fetch(`*[_type == "projectv2"]|order(orderRank)
         {title,
         _id,
-        "header": *[_type=='gallery' && references(^._id)]{image},
         slug,
-        hero,
-        pitch,
-        problem,
-        action,
-        result,
-        gallery,
-        image}
+        hero}
         `)
-        console.log('#############')
-        console.log(datas[0])
-        console.log('#############')
         return datas
     }
     
@@ -81,7 +71,6 @@ export async function getProjects(){
                 const datas = await client.fetch(`*[_type == "projectv2" && slug.current == '${id}'][0]
                     {title,
                     _id,
-                    "header": *[_type=='gallery' && references(^._id)]{image},
                     hero,
                     slug,
                     hero,
@@ -89,9 +78,19 @@ export async function getProjects(){
                     problem,
                     action,
                     result,
-                    gallery,
-                    image}`)
+                  'gallery':gallery[].asset->{
+  originalFilename,
+  url,
+  title,
+  description,
+       'lqip':metadata.lqip,
+    'dimensions':metadata.dimensions,
+  altText,
+  _rev,
+}}`)
                     //result${resolveImg}
+
+                
 
     return datas
 }
@@ -114,7 +113,7 @@ export async function getGallery(){
     const datas = await client.fetch(`*[
   _type == 'sanity.imageAsset'
   && opt.media.tags != null
-]{
+]{originalFilename,
   url,
   title,
   description,

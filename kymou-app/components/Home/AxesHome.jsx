@@ -12,7 +12,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const AxesHome = ({ datas }) => {
   const containerRef = useRef(null);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const [windowWidth, setWindowWidth] = useState(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -30,7 +30,7 @@ const AxesHome = ({ datas }) => {
 
   useGSAP(() => {
 
-    if (windowWidth <= 800) {
+    if (windowWidth && windowWidth <= 800) {
     const items = gsap.utils.toArray(".item");
   
     items.forEach((section, i) => {

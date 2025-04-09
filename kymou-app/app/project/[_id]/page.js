@@ -4,14 +4,19 @@ import Link from "next/link"
 import Image from "next/image"
 import { urlFor } from "@/app/utils/sanity/sanity"
 import RichTextImg from "@/components/RichTextImg"
+import { notFound } from 'next/navigation'
+import Gallery from "@/components/gallery/GalleryImg"
 
 export default async function Page({params}){
     const { _id } = await params
 
     const project = await getSingleProject(_id)
+    if(!project){
+      notFound()
+    }
     //const loader =  urlFor(project.header[0].image).blur(50).url()
     const loader = project.hero ? urlFor(project.hero).url() : '/'
-
+    console.log(urlFor(project.hero))
     const loader2 = (ref)=>{
       const x = resolveInnerImgREF(ref)
         return x
@@ -64,27 +69,11 @@ export default async function Page({params}){
 
            {project.gallery &&
            
-          <div className="w-full">
+          <div className="w-full p-10">
 
              <h3 className="font-rec1 text-8xl border-b-4 border-[black] text-center mb-8">Gallerie</h3>
 
-             <div className="flex w-full flex-wrap justify-around">
-
-                {project.gallery.map((img,i)=>{
-
-                  const loader = urlFor(img).url()
-                  return(
-                    <Image
-                    key={i}
-                    src={loader}
-                    style={{objectFit:'cover'}}
-                    width={300}
-                    height={300}
-                    />
-                  )
-                })}
-
-             </div>
+             <Gallery images={project.gallery} marge={false}/>
           </div>
            
            

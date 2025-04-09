@@ -45,15 +45,24 @@ const Navbar = () => {
           <Link href={'/h1'} className='font-display justify-center gap-2 items-center flex text-2xl'>
           <Image 
             //blurDataURL={datas.logo.asset.metadata.lqip}
-            src={'/logoKymou.svg'} 
+            src={'/LogoKymou.svg'} 
             height={50} width={50} 
             />
             </Link>
       </div>
 
-        <div className='flex gap-4 bg-white shadow-md p-4 rounded-xl '>
+        <div className='flex gap-4 bg-white font-rec1 uppercase shadow-md p-2 rounded-xl '>
         {links.map((link,i)=>{
-            return <Link key={i} href={link.path} className={usePathname()==link.path ? " underline font-black " : ""}>{link.name}</Link>
+            return <Link key={i} href={link.path} 
+            className={`
+              ${usePathname()== link.path ? "zigzagsm text-white " : "hover:outline"}
+              p-2 rounded
+              transition
+              text-sm
+            `}
+            >
+              {link.name}
+            </Link>
         })}
         </div>
 

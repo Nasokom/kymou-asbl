@@ -18,11 +18,6 @@ export default defineType({
       type:'content'
       }),
 
-    defineField({
-      name: 'email',
-      title: 'Email',
-      type: 'string',
-    }),
 
     defineField({
       name: 'contact',

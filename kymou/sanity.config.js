@@ -6,6 +6,9 @@ import {schemaTypes} from './schemaTypes'
 import {colorInput} from '@sanity/color-input'
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 import {media,mediaAssetSource} from 'sanity-plugin-media'
+import { IoHomeOutline, IoAlbumsOutline  } from "react-icons/io5";
+
+import { FaHeart , FaHome, FaAddressBook} from "react-icons/fa";
 
 // Define the actions that should be available for singleton documents
 const singletonActions = new Set(["publish", "discardChanges", "restore"])
@@ -53,15 +56,15 @@ export default defineConfig({
     deskTool({
       structure: (S,context) =>
         S.list()
-          .title("Content")
+          .title("Contenu de Kymou")
           .items([
 
             // Our singleton type has a list item with a custom child
             ///* singletonListItem(S, "settings", "Settings"), */
-            singletonListItem(S,'homePage2','homeTest'),
-            singletonListItem(S,'homePage','home'),
-            singletonListItem(S, "project", "project old"),
-            singletonListItem(S, "contact", "contact"),
+            singletonListItem(S,'homePage2','Home Page ').icon(FaHome),
+            orderableDocumentListDeskItem({type: 'projectv2', S,context,icon:FaHeart}),
+           // S.documentTypeListItem("projectv2").title("Liste des projets").icon(FaHeart),
+            singletonListItem(S, "contact", "Contact Page").icon(FaAddressBook),
 
             
            /*  S.listItem()
@@ -111,10 +114,8 @@ export default defineConfig({
                   .schemaType("about")
                   .documentId("about")
               ), */
-              //orderableDocumentListDeskItem({type: 'gallery', S,context}),
+           
             // Regular document types
-            S.documentTypeListItem("projectv2").title("Project list"),
-            S.documentTypeListItem("gallery").title("Gallery photos"),
           ]),
     }),
     visionTool(),

@@ -4,11 +4,18 @@ import { useEffect, useRef, useState } from 'react';
 import {motion} from 'framer-motion'
 import ModalImg from './ModalImg';
 
-const Gallery = ({ images }) => {
+const Gallery = ({ images,marge=true}) => {
   const containerRef = useRef(null);
   const [positions, setPositions] = useState([]);
 
     const [selectedImg,setSelectedImg] = useState(null);
+    const [toggle,setToggle] = useState(false)
+  const [containerh,setContainerH] = useState(0);
+
+  function callModal(i){
+    setToggle(!toggle)
+    setSelectedImg(i)
+  }
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -21,6 +28,14 @@ const Gallery = ({ images }) => {
     const columnOffsets = [0, 0, 0, 0];  // Track the current 'top' value for each column
 
     const baseWidth = (container.clientWidth -margin * (imagesPerColumn-1) )/imagesPerColumn
+
+    for(let i = 0 ; i < images.length ; i += 4){
+      if(images[i].dimensions){
+        const imgHeigth = Math.round(baseWidth / Math.round(images[i].dimensions.aspectRatio))
+        setContainerH( (prev) => prev+= imgHeigth)
+      }
+    }
+
 
     images.forEach((img, index) => {
       let placed = false;
@@ -53,10 +68,13 @@ const Gallery = ({ images }) => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full min-h-[200vh] mt-[100vh] cursor-pointer"  // Container allows scrolling
+      className={`relative w-full
+      ${marge ? 'mt-[100vh]' : ''} cursor-pointer`}
+      style={{height: containerh+'px'}} // Container allows scrolling
     >
       {positions.map((img, index) => (
           <motion.div 
+            key={index}
             className='rounded-xl absolute'
             style={{top: img.top,
                 left: img.left}}
@@ -65,10 +83,9 @@ const Gallery = ({ images }) => {
              //animate={{ opacity: 1, scale: 1 ,y:"0%"}}
              viewport={{ once: true, amount:0.1}}
              transition={{ duration: 0.5, ease: "easeOut",delay:index > 5 ? 0 : '0.'+index*2}}
-             onClick={()=>setSelectedImg(index)}
+             onClick={()=>callModal(index)}
             > 
              <Image
-               key={index}
                src={img.url}
                className="rounded"
                placeholder="blur"
@@ -86,7 +103,7 @@ const Gallery = ({ images }) => {
       ))}
 
 
-    {selectedImg && <ModalImg datas={images} selectedImg={selectedImg} setSelectedImg={setSelectedImg}/>}
+    {toggle && <ModalImg datas={images} setToggle={setToggle} selectedImg={selectedImg} setSelectedImg={setSelectedImg}/>}
     </div>
   );
 };

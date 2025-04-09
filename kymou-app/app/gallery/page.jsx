@@ -14,7 +14,7 @@ export default async function Page(){
   
 
   return (
-    <div className='min-h-[100dvh] w-[100vw] flex flex-col gap-4 mt-[50px] items-center pt-0 p-2'>
+    <div className='min-h-[100dvh] w-[100vw] relative flex flex-col gap-4 mt-[50px] items-center pt-0 p-2'>
       <h1 className={'font-rec2 text-9xl fixed'}>Gallerie</h1>
 
       <p className={'font-rec2 fixed top-[50vh] w-full text-center text-6xl'}>Scroll pour decouvrir la gallerie</p>

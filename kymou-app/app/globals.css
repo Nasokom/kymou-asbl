@@ -23,8 +23,8 @@ body {
   --_g: var(--c1) 90deg, #ff000000 90.5deg;
   
   background:
-   conic-gradient(from -45deg, var(--_g)),
-   conic-gradient(from 135deg, var(--_g)) calc(var(--s)/2) 0,
+   conic-gradient(from -45.5deg, var(--_g)),
+   conic-gradient(from 135.5deg, var(--_g)) calc(var(--s)/2) 0,
  
    var(--c2);
   
@@ -32,6 +32,12 @@ body {
   transition: 2s;
 }
 
+.outline{
+  outline: #000000;
+  outline-width: 2px;
+  outline-style: auto;
+  outline-offset: 2px;
+}
 .zigzagsm{
   --s: 30px;
   --c1: #000000;
@@ -40,13 +46,13 @@ body {
   --_g: var(--c1) 90deg, #ff000000 90.5deg;
   
   background:
-   conic-gradient(from -45deg, var(--_g)),
-   conic-gradient(from 135deg, var(--_g)) calc(var(--s)/2) 0,
+   conic-gradient(from -45.5deg, var(--_g)),
+   conic-gradient(from 135.5deg, var(--_g)) calc(var(--s)/2) 0,
  
    var(--c2);
   
   background-size: var(--s) var(--s);
-  transition: 2s;
+  transition: 0.3s;
 }
 .zigzagsm:hover{
   background-position-y: 50%;

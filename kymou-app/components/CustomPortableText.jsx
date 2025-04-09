@@ -7,7 +7,7 @@ import Image from "next/image";
 import { resolveInnerImgREF } from "../app/utils/actions";
 import { urlFor } from "../app/utils/sanity/sanity";
 
-export default async function CustomPortableText({
+export default function CustomPortableText({
   className,
   value,
 }) {

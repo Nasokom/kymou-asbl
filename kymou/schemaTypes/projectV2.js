@@ -1,11 +1,13 @@
 import {defineField, defineType} from 'sanity'
+import {orderRankField, orderRankOrdering} from '@sanity/orderable-document-list'
 
 export default defineType({
   name: 'projectv2',
   title: 'projectsV4',
   type: 'document',
+  orderings: [orderRankOrdering],
   fields: [
-
+    orderRankField({ type: "orderRank" }),
     defineField({
         name: 'title',
         title: 'title',
@@ -25,13 +27,6 @@ export default defineType({
                                .replace(/\s+/g, '-')
                                .slice(0, 200)
         }
-      }),
-
-      defineField({
-        name: 'header',
-        title:'Image maitre',
-        type: 'reference',
-          to: [{type: 'gallery'}]
       }),
 
       defineField({
@@ -66,11 +61,5 @@ export default defineType({
 
       }),
 
-      defineField({
-        name: 'image',
-        type:'array',
-        of:[{type: 'reference',
-          to: [{type: 'gallery',}]}]
-      })
   ],
 })
