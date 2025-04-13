@@ -23,13 +23,14 @@ const Gallery = ({ images,marge=true}) => {
     const container = containerRef.current;
     const margin = 20;  // Gap between images
     //const baseWidth = 300;  // Fixed base width for all images
-    const imagesPerColumn = 4;  // Number of images per column (adjust as necessary)
+    const imagesPerColumn = document.documentElement.clientWidth < 800 ? 2  : 4;  // Number of images per column (adjust as necessary)
+
     const placedImages = [];
     const columnOffsets = [0, 0, 0, 0];  // Track the current 'top' value for each column
 
     const baseWidth = (container.clientWidth -margin * (imagesPerColumn-1) )/imagesPerColumn
 
-    for(let i = 0 ; i < images.length ; i += 4){
+    for(let i = 0 ; i < images.length ; i += imagesPerColumn){
       if(images[i].dimensions){
         const imgHeigth = Math.round(baseWidth / Math.round(images[i].dimensions.aspectRatio))
         setContainerH( (prev) => prev+= imgHeigth)

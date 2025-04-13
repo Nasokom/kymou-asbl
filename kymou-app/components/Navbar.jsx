@@ -47,7 +47,7 @@ const Navbar = () => {
             //blurDataURL={datas.logo.asset.metadata.lqip}
             src={'/kymouLogo.svg'} 
             height={50} width={50} 
-            className="zigzagsm p-1 border-[--color2] rounded-full"
+            className="bg-[--color1] p-1  border-2 border-[--color2] rounded-full"
             />
             </Link>
       </div>

@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 const TitleProject = () => {
 
   return (
-    <Link  href={'/project'} className={`group z-100 w-full font-rec1 bg-[--color1] h-[25vh] ${usePathname()=='/project' ? 'fixed' :'absolute'} bg-[#ffffff4df]  border-b-4 border-[black] justify-between p-0 text-[5vw] top-0 overflow-hidden`}>
+    <Link  href={'/project'} className={`group z-[48] w-full font-rec1 bg-[--color1] h-[25vh] ${usePathname()=='/project' ? 'fixed' :'absolute'} bg-[#ffffff4df]  border-b-4 border-[black] justify-between p-0 text-[5vw] top-0 overflow-hidden`}>
            
           {/* <p className='absolute bottom-0 p-0 leading-none'>NOS PROJETS</p>  */}
         <div className={`h-[5.5vw] overflow-hidden absolute bottom-0 z-[1000]`}>

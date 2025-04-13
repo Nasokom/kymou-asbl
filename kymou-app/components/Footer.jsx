@@ -9,7 +9,7 @@ const Footer = () => {
     const links = [{name:'home',path:'/'},{name:'project',path:"/project"},{name:"gallery",path:'/gallery'},{name:'contact',path:'/contact'}]
 
   return (
-    <div className='w-[95vw] mt-20 p-20 p-[6vw] pb-0 bottom-0 relative zigzag flex rounded-t-[50px]'>
+    <div className='w-[95vw] mt-20 p-20 p-[6vw] pb-0 bottom-0 relative absolute zigzag flex rounded-t-[50px]'>
         <div className='w-full bg-[--color1] relative rounded-t-[50px] p-8 pb-0'>
 
 
