@@ -45,8 +45,8 @@ const  Hero = async ({datas}) => {
                 </h1>
             </div>
       <div className='overflow-hidden'>
-        <div className='font-rec flex flex-col items-center justify-center w-full p-6 sm:p-10 z-100'>
-                <CustomPortableText className='lg:text-5xl md:text-xl sm:text-5xl text-current font-bold z-[10]' value={datas.quote.text}></CustomPortableText>   
+        <div className='font-rec flex flex-col items-center w-[90vw] p-4 justify-center p-6 sm:p-10 z-100'>
+                <CustomPortableText className='text-center lg:text-5xl md:text-xl sm:text-5xl text-current font-bold z-[10]' value={datas.quote.text}></CustomPortableText>   
 
                <div className='w-full overflow-hidden'>
                   <p className='text-xl mt-4 w-full text-right translate-y-[100%] animate-[translateUp_0.5s_ease-out_0.5s_forwards]'>{datas.quote.credit}</p>

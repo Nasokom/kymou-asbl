@@ -5,7 +5,7 @@ const page = () => {
   return (
     <div className='w-full h-[100vh] flex items-center justify-center'>
      <div className="w-full h-[100vh] flex items-center justify-center">
-            <Image height={300} width={300} src={'/LogoKymou.svg'} className='animate-bounce'/>
+            <Image height={300} width={300} src={'/kymouLogo.svg'} className='animate-bounce'/>
         </div>
     </div>  
   )

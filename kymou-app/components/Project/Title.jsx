@@ -15,7 +15,7 @@ const TitleProject = () => {
                 <p className={`${usePathname()=='/project' ? '' : "scale-x-[0.25] translate-x-[-37.3%]"} duration-300 ease-out h-5vw leading-none`}>
                     NOS PROJETS
                 </p>
-                <p href={'/project'} className={`${usePathname()=='/project' ? 'scale-x-[1] translate-x-0' :'scale-x-[0.25] translate-x-[-37.3%]'} duration-300 z-[103] leading-none group-hover:text-[--color2] `}>RETOUR</p>
+                <p href={'/project'} className={`${usePathname()=='/project' ? 'scale-x-[1] translate-x-0' :'scale-x-[0.25] translate-x-[-37.3%]'} duration-300 z-[1000] leading-none hover:text-[--color2]`}>RETOUR</p>
               </div>
         </div>
     </Link>
