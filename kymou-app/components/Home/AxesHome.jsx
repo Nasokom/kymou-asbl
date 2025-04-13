@@ -44,7 +44,7 @@ const AxesHome = ({ datas }) => {
           trigger: section,
           start: "45% 50%", // When the top of the section reaches 80% of the viewport height
           end: "65% 30%", // When the bottom of the section reaches 20% of the viewport height
-          markers: true, // Debugging - remove for production
+          //markers: true, // Debugging - remove for production
           toggleActions: "play reverse play reverse", // Play on entry, reverse on exit
           scrub: false, // No scrub, not tied to scroll position
         },
@@ -86,7 +86,7 @@ const AxesHome = ({ datas }) => {
             >
             <p className="font-rec1 text-white lg:text-4xl sm:text-4xl">{axe.title}</p>
 
-            <div className="circ lg:group-hover:scale-100 lg:duration-500 bg-[#eceddc] absolute w-[98%] h-[98%] rounded flex items-center justify-center scale-0" />
+            <div className="circ lg:group-hover:scale-100 lg:duration-500 bg-[--color1] absolute w-[98%] h-[98%] rounded flex items-center justify-center scale-0" />
 
             <div className="absolute gText opacity-0 lg:group-hover:opacity-100 transition-opacity lg:duration-500">
               <CustomPortableText className="p-12 text-center font-rec text-xl text-black z-10 transition-opacity" value={axe.text} />

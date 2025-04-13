@@ -39,14 +39,15 @@ const  Hero = async ({datas}) => {
             <div className='overflow-hidden pb-2'>
               <h1 className='text-9xl font-rec2 flex items-center animate-[appearDown_0.3s_ease-out_forwards]'>
                 Kym
-                <Image src={"/LogoKymou.svg"} width={75} height={75}/>
+                <Image src={"/kymouLogo.svg"} width={75} height={75} className='rounded-full logoSvg bg-[--color1] border-4 border-[--color2] p-1' />
                 u  
                 <span className='text-xl ml-4'>asbl</span>
                 </h1>
             </div>
       <div className='overflow-hidden'>
         <div className='font-rec flex flex-col items-center justify-center w-full p-6 sm:p-10 z-100'>
-                <CustomPortableText className='text-5xl text-current font-bold z-[10]' value={datas.quote.text}></CustomPortableText>   
+                <CustomPortableText className='lg:text-5xl md:text-xl sm:text-5xl text-current font-bold z-[10]' value={datas.quote.text}></CustomPortableText>   
+
                <div className='w-full overflow-hidden'>
                   <p className='text-xl mt-4 w-full text-right translate-y-[100%] animate-[translateUp_0.5s_ease-out_0.5s_forwards]'>{datas.quote.credit}</p>
                 </div>

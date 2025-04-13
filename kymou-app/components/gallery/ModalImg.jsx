@@ -32,8 +32,31 @@ const ModalImg = ({selectedImg,setSelectedImg, datas,setToggle}) => {
             }
   }
 
+
+
     useEffect(()=>{
       document.documentElement.style.overflow = "hidden";
+
+      document.addEventListener(
+        "keydown",
+        (event) => {
+          const keyName = event.key;
+      
+          if (keyName === "ArrowRight") {
+            // do not alert when only Control key is pressed.
+            changeimg('+')
+            return;
+          }
+          if (keyName === "ArrowLeft") {
+            // do not alert when only Control key is pressed.
+            changeimg('-')
+            return;
+          }
+      
+        },
+        false,
+      );
+      
       return () => {
         document.documentElement.style.overflow = "";
       };
@@ -84,9 +107,9 @@ const ModalImg = ({selectedImg,setSelectedImg, datas,setToggle}) => {
                       {
                         datas[selectedImg].reference && 
                         <div className='flex flex-col gap-2'>
-                        <p className='text-[orange] font-rec'>Decouvrir le projet en lien avec cette photo</p>
+                        <p className='text-[--color2] font-rec'>Decouvrir le projet en lien avec cette photo</p>
                         <Link className={'cursor-pointer border-2  zigzagsm rounded-xl text-center'} href={'/project/'+datas[selectedImg].reference.slug.current}>
-                        <p className='bg-[#ffffff] rounded-xl p-2 text-2xl opacity-[0.8] text-black'>
+                        <p className=' rounded-xl p-2 text-2xl text-white font-rec1'>
                         {datas[selectedImg].reference.title}
                         </p> 
                         </Link>

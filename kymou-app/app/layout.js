@@ -12,8 +12,8 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" className="bg-[#eceddc] ">
-      <body className={`${inter.className} w-[100dvw] h-full flex flex-col relative items-center `}>
+    <html lang="en" className="bg-[--color1] ">
+      <body className={`${inter.className} w-[100dvw] min-h-[100vh] h-full flex flex-col relative items-center `}>
         <Navbar/>
         <Suspense fallback={<p>loading</p>}>
           {children}

@@ -3,7 +3,7 @@ import Title from '../../components/ux/Title'
 import TitleProject from '@/components/Project/Title'
 const layout = ({children}) => {
   return (
-    <div className='relative w-[100vw] overflow-x-hidden flex flex-col gap-4 mt-24 pt-24 p-4 items-center'>
+    <div className='relative w-[100vw] pt-[25vh] overflow-x-hidden flex flex-col gap-4 p-4 items-center'>
         <TitleProject/>
         {children}
     </div>

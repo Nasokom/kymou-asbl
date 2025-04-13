@@ -11,6 +11,7 @@ export default async function Page({params}){
     const { _id } = await params
 
     const project = await getSingleProject(_id)
+
     if(!project){
       notFound()
     }
@@ -23,12 +24,12 @@ export default async function Page({params}){
     }
     
   return (
-    <div className='min-h-[100dvh] w-[100vw] flex flex-col mt-2 items-center pt-0'>
+    <div className='min-h-[100dvh] w-[100vw] pt-2 flex flex-col items-center'>
 
-          <div className="flex absolute top-0 font-rec1 ml-[25%] w-full z-100 pr-2 h-24 items-center gap-4 overflow-hidden">
-            <h2 className="text-8xl top-0 translate-y-[100%] uppercase animate-[translateUp_0.3s_ease-out_1.2s_forwards] absolute top-0 ">{project.title}</h2>
-            <p className="text-8xl opactiy-0"></p>
+          <div className="flex absolute h-[25vh]  p-0 text-[5vw] top-0 font-rec1 w-full  overflow-hidden border-b-4 border-[black]">
+            <p className="w-full leading-none absolute bottom-0 h-[5.5vw] p-0 text-center uppercase translate-y-[100%] animate-[translateUp_0.3s_ease-out_1.2s_forwards]">{project.title}</p>
           </div>
+
       <div className="flex relative w-[70vw] rounded min-h-[100vh] overflow-hidden animate-[appearDown_1s_forwards]">
           <Image fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded"/>
       </div>

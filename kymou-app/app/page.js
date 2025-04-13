@@ -16,7 +16,9 @@ export default async function Home() {
   
   return (
     <div className='min-h-[100vh] w-[100vw] flex flex-col gap-4' >
-      <Suspense fallback={<p>loading</p>}>
+      <Suspense fallback={<div className="z-full h-full items-center justify-center">
+          <Image height={300} width={300} src={'/LogoKymou.svg'}/>
+      </div>}>
         <Hero  datas={datas.header}/>
         <About data={datas.about}/>
         <AxesHome datas={datas.goal}/>

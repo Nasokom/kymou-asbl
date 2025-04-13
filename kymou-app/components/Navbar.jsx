@@ -45,8 +45,9 @@ const Navbar = () => {
           <Link href={'/h1'} className='font-display justify-center gap-2 items-center flex text-2xl'>
           <Image 
             //blurDataURL={datas.logo.asset.metadata.lqip}
-            src={'/LogoKymou.svg'} 
+            src={'/kymouLogo.svg'} 
             height={50} width={50} 
+            className="zigzagsm p-1 border-[--color2] rounded-full"
             />
             </Link>
       </div>
@@ -55,7 +56,7 @@ const Navbar = () => {
         {links.map((link,i)=>{
             return <Link key={i} href={link.path} 
             className={`
-              ${usePathname()== link.path ? "zigzagsm text-white " : "hover:outline"}
+              ${usePathname()== link.path ? "zigzagsm text-white " : "hover:outline hover:text-[--color2]"}
               p-2 rounded
               transition
               text-sm
