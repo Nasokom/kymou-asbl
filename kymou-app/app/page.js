@@ -13,7 +13,7 @@ import { urlFor } from "./utils/sanity/sanity";
 export default async function Home() {
   const datas = await getHome()
   const loader = urlFor(datas.footer.image).url()
-  
+  //comment 4 launch
   return (
     <div className='min-h-[100vh] w-[100vw] flex flex-col gap-4' >
       <Suspense fallback={<div className="z-full h-full items-center justify-center">
