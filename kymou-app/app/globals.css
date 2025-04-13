@@ -385,3 +385,25 @@ animation-delay: 5s;
 .logoSvg g{
   fill:#3F784C
 }
+
+.projectCard{
+  width: 30vw;
+  height: 30vw;
+}
+
+.projectCard2{
+  width: 50vw;
+  height: 50vw;
+}
+
+.projectCard .imgWrapper{
+
+}
+
+@media (max-width : 800px){
+  .projectCard,.projectCard2{
+    width: 90vw;
+    height: 90vw;
+  }
+
+}

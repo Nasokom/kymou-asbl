@@ -71,7 +71,7 @@ const Gallery = ({ images,marge=true}) => {
       ref={containerRef}
       className={`relative w-full
       ${marge ? 'mt-[100vh]' : ''} cursor-pointer`}
-      style={{height: containerh+'px'}} // Container allows scrolling
+      style={{height: `${containerh}px`}} // Container allows scrolling
     >
       {positions.map((img, index) => (
           <motion.div 

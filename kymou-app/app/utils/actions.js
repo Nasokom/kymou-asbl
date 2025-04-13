@@ -58,6 +58,15 @@ export async function getProjects(){
         `)
         return datas
     }
+
+    export async function getProjectsPath(){
+        noStore()
+        const datas = await client.fetch(`*[_type == "projectv2"]|order(orderRank)
+            {
+            title,
+            }
+            `)
+    }
     
     export async function getSingleProject(id){
         console.log(id)

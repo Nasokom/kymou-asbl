@@ -63,7 +63,7 @@ const ModalImg = ({selectedImg,setSelectedImg, datas,setToggle}) => {
     },[selectedImg])
 
   return (
-    <div className='fixed w-[100vw] flex h-[100vh] left-0 flex items-center justify-center border-solid border-2 z-[1002] top-0 l-0 backdrop-blur-xl ' style={{backdropFilter:'blur(15px)'}} >
+    <div className='fixed w-[100vw] flex h-[100vh] left-0 flex items-center justify-center border-solid border-2 z-[1002] top-0 l-0 backdrop-blur-xl' style={{backdropFilter:'blur(15px)',background:'#f5e9d180'}} >
         <div className=' p-4 rounded-lg'>
 
             <div className='w-[90vw] z-1 h-[90vh] relative overflow-hidden flex justify-center items-center cursor-default'>

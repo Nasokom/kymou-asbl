@@ -1,20 +1,26 @@
 import CustomPortableText from "@/components/CustomPortableText"
-import { getSingleProject,resolveInnerImgREF } from "@/app/utils/actions"
+import { getSingleProject,resolveInnerImgREF, getProjects } from "@/app/utils/actions"
 import Link from "next/link"
 import Image from "next/image"
 import { urlFor } from "@/app/utils/sanity/sanity"
 import RichTextImg from "@/components/RichTextImg"
 import { notFound } from 'next/navigation'
 import Gallery from "@/components/gallery/GalleryImg"
+import ProjectCard from "@/components/Project/ProjectCard"
 
-export default async function Page({params}){
+export default async function Page({params,list}){
     const { _id } = await params
 
     const project = await getSingleProject(_id)
+    const allPAth = await getProjects();
+    const currentIndex = allPAth.findIndex((elt) => elt._id == project._id)
+    const nextProject = allPAth[currentIndex+1] ? allPAth[currentIndex+1] : allPAth[0]
 
+    const nextLoader  = urlFor(nextProject.hero).url()
     if(!project){
       notFound()
     }
+
     //const loader =  urlFor(project.header[0].image).blur(50).url()
     const loader = project.hero ? urlFor(project.hero).url() : '/'
     console.log(urlFor(project.hero))
@@ -26,7 +32,7 @@ export default async function Page({params}){
   return (
     <div className='min-h-[100dvh] w-[100vw] pt-2 flex flex-col items-center'>
 
-          <div className="flex absolute h-[25vh]  p-0 text-[5vw] top-0 font-rec1 w-full  overflow-hidden border-b-4 border-[black]">
+          <div className="flex absolute h-[25vh] z-[49] p-0 text-[5vw] top-0 font-rec1 w-full  overflow-hidden border-b-4 border-[black]">
             <p className="w-full leading-none absolute bottom-0 h-[5.5vw] p-0 text-center uppercase translate-y-[100%] animate-[translateUp_0.3s_ease-out_1.2s_forwards]">{project.title}</p>
           </div>
 
@@ -75,10 +81,33 @@ export default async function Page({params}){
              <h3 className="font-rec1 text-8xl border-b-4 border-[black] text-center mb-8">Gallerie</h3>
 
              <Gallery images={project.gallery} marge={false}/>
+
+            
           </div>
-           
-           
            }
+             <div className="mt-24 flex justify-center gap-4 w-full">
+             <Link className='border-2 border-black p-4 transition rounded-lg hover:bg-white' href={`/project/`+nextProject.slug.current}> {nextProject.title}</Link>
+             <Link href={'/project'} className='border-2 border-black p-4 transition rounded-lg hover:bg-white'>Retourner a la liste des projets</Link>
+             </div>
+
+          <div className="mt-24 flex justify-center gap-4 w-full" >   
+            <div className="flex flex-col gap-4 items-center">
+                <p className="font-rec1 text-2xl underline">Retour a la liste des projets</p>
+                <Link href={'/project'} className='border-2 border-black p-4 transition rounded-lg hover:bg-white'>Tous les projets</Link>
+              </div>
+              
+              <div className="flex flex-col gap-4 items-center">
+                <p className="font-rec1 text-2xl underline">Decouvrir le projet suivant</p>
+                <Link className='border-2 border-black p-4 transition rounded-lg hover:bg-white' href={`/project/`+nextProject.slug.current}> {nextProject.title}</Link>
+                <Image width={200} height={200} src={nextLoader}/>
+              </div>
+          </div>
+
+          <div className="w-full flex flex-col items-center justify-cemter">
+          <p className="font-rec1 text-5xl underline pb-8">Decouvrir le projet suivant</p>
+          {nextProject && <ProjectCard project={nextProject} index={0} isUnique={true}/>}
+          </div>
+
     </div>
   )
 }
