@@ -10,10 +10,10 @@ const ProjectCard = ({project,index, isUnique=false}) => {
   const loader = project.hero ? urlFor(project.hero).url() : "/"
 
   return (
-      <Link className={'hover:scale-110 transition duration-700 z-[-1]'} href={`/project/${project.slug.current}`}>
+      <Link className={'hover:scale-110 relative transition duration-700 '} href={`/project/${project.slug.current}`}>
 
     <motion.div 
-    className={`${isUnique ? 'projectCard2' : "projectCard"} flex flex-col opacity-[0] gap-2 zigzag rounded-xl items-center z-0 justify-between p-4 `}
+    className={`${isUnique ? 'projectCard2' : "projectCard"} flex flex-col opacity-[0] gap-2 zigzag rounded-xl items-center justify-between p-4 `}
     initial={{opacity:0,y: "40%"}}
     whileInView={{ opacity:1 ,y:"0%"}}
     //animate={{ opacity: 1, scale: 1 ,y:"0%"}}

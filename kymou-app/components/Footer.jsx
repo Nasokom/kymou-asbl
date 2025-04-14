@@ -37,10 +37,10 @@ const Footer = () => {
                         </ul>
                     </div>
 
-                    <div className=''>
+                    {/* <div className=''>
                     <p className='font-rec1 text-4xl'>Contactez nous</p>
                       <Link className='font-rec underline text-2xl' href={'mailto:kymouasbl.gmail.com'}>kymouASBL@gmail.com</Link>
-                    </div>
+                    </div> */}
 
                 <p className='font-rec1 text-[8vw] text-center leading-none flex'>KYM 
                     <span className='relative w-[8vw] h-[8vw] hover:animate-spin'>

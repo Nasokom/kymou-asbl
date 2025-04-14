@@ -11,7 +11,7 @@ const project = await getProjects()
 
     return(
         
-            <div className="w-full flex gap-10 justify-around z-0 pt-8 pb-32 items-center flex-wrap ">
+            <div className="w-full flex overflow-hidden z-0 gap-10 justify-around z-0 pt-8 pb-32 items-center flex-wrap ">
 
                     {project.map((p,i) =>{
                         

@@ -17,6 +17,7 @@ const Gallery = ({ images,marge=true}) => {
     setSelectedImg(i)
   }
 
+  const testRef = useRef()
   useEffect(() => {
     if (!containerRef.current) return;
 
@@ -37,31 +38,35 @@ const Gallery = ({ images,marge=true}) => {
       }
     }
 
-
+    
+    
     images.forEach((img, index) => {
       let placed = false;
-
+      
       // Get the aspect ratio from img.dimensions
       const aspectRatio = img.dimensions?.aspectRatio;
       if (!aspectRatio) return;  // Skip if no aspect ratio is provided
-
+      
       // Calculate the height based on the aspect ratio and the base width
       const width = baseWidth;
       const height = Math.round(baseWidth / aspectRatio);  // Calculate height from aspect ratio
-
+      
       // Determine which column this image will be placed in
       const col = index % imagesPerColumn;
-
+      
       // Calculate the 'top' position of the image based on the column's previous height
       const top = columnOffsets[col];
-
+      
       // Update the 'top' value for this column (so the next image in the same column is placed below)
       columnOffsets[col] = top + height + margin;
-
+      
       const left = col * (width + margin);  // Position images horizontally based on column
-
+      
       placedImages.push({ ...img, top, left, width, height });
     });
+    const containerHeight = columnOffsets.toSorted((a, b) => b - a)
+
+      setContainerH(containerHeight[0])
 
     setPositions(placedImages);
   }, [images]);

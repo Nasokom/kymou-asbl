@@ -32,8 +32,8 @@ export default async function Page({params,list}){
   return (
     <div className='min-h-[100dvh] w-[100vw] pt-2 flex flex-col items-center'>
 
-          <div className="flex absolute h-[25vh] z-[49] p-0 text-[5vw] top-0 font-rec1 w-full  overflow-hidden border-b-4 border-[black]">
-            <p className="w-full leading-none absolute bottom-0 h-[5.5vw] p-0 text-center uppercase translate-y-[100%] animate-[translateUp_0.3s_ease-out_1.2s_forwards]">{project.title}</p>
+          <div className="flex absolute h-[25vh] z-[3] items-end p-0 text-[5vw] top-0 font-rec1 overflow-hidden border-b-4 border-[black]">
+            <p className="w-full leading-none bottom-0 h-[5.5vw] p-0 text-center uppercase translate-y-[100%] animate-[translateUp_0.3s_ease-out_1.2s_forwards]">{project.title}</p>
           </div>
 
       <div className="flex relative w-[70vw] rounded min-h-[100vh] overflow-hidden animate-[appearDown_1s_forwards]">
@@ -41,7 +41,7 @@ export default async function Page({params,list}){
       </div>
 
 
-        <div className='project-section gap-10 flex flex-col p-10 max-w-[1000px]'>
+        <div className='project-section gap-10 flex flex-col p-10 sm:p-0 max-w-[1000px]'>
 
             { project.pitch && 
             <>
@@ -72,11 +72,9 @@ export default async function Page({params,list}){
             </>
             }
 
-           </div>
-
            {project.gallery &&
            
-          <div className="w-full p-10">
+          <div className="w-full">
 
              <h3 className="font-rec1 text-8xl border-b-4 border-[black] text-center mb-8">Gallerie</h3>
 
@@ -85,12 +83,9 @@ export default async function Page({params,list}){
             
           </div>
            }
-             <div className="mt-24 flex justify-center gap-4 w-full">
-             <Link className='border-2 border-black p-4 transition rounded-lg hover:bg-white' href={`/project/`+nextProject.slug.current}> {nextProject.title}</Link>
-             <Link href={'/project'} className='border-2 border-black p-4 transition rounded-lg hover:bg-white'>Retourner a la liste des projets</Link>
-             </div>
+        
 
-          <div className="mt-24 flex justify-center gap-4 w-full" >   
+          <div className="mt-2 flex justify-center gap-4 w-full" >   
             <div className="flex flex-col gap-4 items-center">
                 <p className="font-rec1 text-2xl underline">Retour a la liste des projets</p>
                 <Link href={'/project'} className='border-2 border-black p-4 transition rounded-lg hover:bg-white'>Tous les projets</Link>
@@ -99,14 +94,11 @@ export default async function Page({params,list}){
               <div className="flex flex-col gap-4 items-center">
                 <p className="font-rec1 text-2xl underline">Decouvrir le projet suivant</p>
                 <Link className='border-2 border-black p-4 transition rounded-lg hover:bg-white' href={`/project/`+nextProject.slug.current}> {nextProject.title}</Link>
-                <Image width={200} height={200} src={nextLoader}/>
               </div>
           </div>
+           </div>
 
-          <div className="w-full flex flex-col items-center justify-cemter">
-          <p className="font-rec1 text-5xl underline pb-8">Decouvrir le projet suivant</p>
-          {nextProject && <ProjectCard project={nextProject} index={0} isUnique={true}/>}
-          </div>
+
 
     </div>
   )
