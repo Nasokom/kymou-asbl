@@ -1,12 +1,11 @@
 import ButtonGroup from '@/components/ux/ButtonGroup'
-import Link from 'next/link'
  
 export default function NotFound() {
 
 
   const links = [
-    {url:'/',title:'Retourner a la liste de projet'},
-    {url:'/project',title:'Retoruner a la page Home'},
+    {url:'/project',title:'Retourner a la liste de projet'},
+    {url:'/',title:'Retoruner a la page Home'},
   ]
   return (
     <div className='flex flex-col mt-4 w-full items-center min-h-[50vh]'>
