@@ -56,7 +56,7 @@ const Navbar = () => {
         {links.map((link,i)=>{
             return <Link key={i} href={link.path} 
             className={`
-              ${usePathname()== link.path ? "zigzagsm text-white " : "hover:outline hover:text-[--color2]"}
+              ${usePathname()== link.path ? "zigzagsm text-white " : "hover:outline hover:text-[--color2] hover:scale-110 "}
               p-2 rounded
               transition
               text-sm

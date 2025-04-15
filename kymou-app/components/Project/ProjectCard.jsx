@@ -14,12 +14,15 @@ const ProjectCard = ({project,index, isUnique=false}) => {
 
     <motion.div 
     className={`${isUnique ? 'projectCard2' : "projectCard"} flex flex-col opacity-[0] gap-2 zigzag rounded-xl items-center justify-between p-4 `}
-    initial={{opacity:0,y: "40%"}}
-    whileInView={{ opacity:1 ,y:"0%"}}
-    //animate={{ opacity: 1, scale: 1 ,y:"0%"}}
-    viewport={{ once: true }}
-    transition={{ duration: 0.3,
+    initial={{opacity:0,y: "40%"
+
     }}
+    whileInView={{ opacity:1 ,y:"0%"
+      
+    }}
+    //animate={{ opacity: 1, scale: 1 ,y:"0%"}}
+    viewport={{ once: true}}
+    //transition={{ duration: 0.3,}}
     >
         <div className='relative w-full h-full imgWrapper overflow-hidden'>  
         <Image fill src={loader} style={{objectFit:'cover'}}

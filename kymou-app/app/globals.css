@@ -338,11 +338,23 @@ animation-delay: 5s;
   }
 } */
 
-
 /* Project page additional css */
 .project-section > h3:nth-of-type(even) {
   text-align: right;
 }
+
+.project-section > span:nth-of-type(even) {
+  right: 0;
+}
+
+.project-section > h3:nth-of-type(odd) {
+  text-align: left;
+}
+
+.project-section > span:nth-of-type(odd) {
+  left:0
+}
+
 
 .project-section .alt:nth-of-type(even) img {
   float: right;
@@ -399,6 +411,14 @@ animation-delay: 5s;
 
 }
 
+.sub{
+font-size: clamp(30px,5vw,70px)
+}
+
+.bigSub{
+  font-size: clamp(40px,7vw,110px)
+}
+
 @media (max-width : 800px){
   .projectCard,.projectCard2{
     width: 90vw;
@@ -406,3 +426,4 @@ animation-delay: 5s;
   }
 
 }
+

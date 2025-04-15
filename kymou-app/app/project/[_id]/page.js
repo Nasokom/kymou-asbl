@@ -7,19 +7,21 @@ import RichTextImg from "@/components/RichTextImg"
 import { notFound } from 'next/navigation'
 import Gallery from "@/components/gallery/GalleryImg"
 import ProjectCard from "@/components/Project/ProjectCard"
+import ButtonGroup from "@/components/ux/ButtonGroup"
+import TitleEffect from "@/components/ux/TitleEffect"
 
 export default async function Page({params,list}){
     const { _id } = await params
 
     const project = await getSingleProject(_id)
     const allPAth = await getProjects();
+    if(!project){
+      notFound()
+    }
     const currentIndex = allPAth.findIndex((elt) => elt._id == project._id)
     const nextProject = allPAth[currentIndex+1] ? allPAth[currentIndex+1] : allPAth[0]
 
     const nextLoader  = urlFor(nextProject.hero).url()
-    if(!project){
-      notFound()
-    }
 
     //const loader =  urlFor(project.header[0].image).blur(50).url()
     const loader = project.hero ? urlFor(project.hero).url() : '/'
@@ -41,18 +43,18 @@ export default async function Page({params,list}){
       </div>
 
 
-        <div className='project-section gap-10 flex flex-col p-10 sm:p-0 max-w-[1000px]'>
+        <div className='project-section gap-10 flex flex-col p-10 sm:p-0 max-w-[1000px] mt-12'>
 
             { project.pitch && 
             <>
-            <h3 className="font-rec1 text-6xl border-b-4 border-[black]">Intro</h3>
+            <TitleEffect>Intro</TitleEffect>
             <RichTextImg data={project.pitch}/>
             </>
             }
 
             { project.problem && 
             <>
-            <h3 className="font-rec1 text-6xl border-b-4 border-[black]">Probleme</h3>
+            <TitleEffect>Probleme</TitleEffect>
             <RichTextImg data={project.problem}/>
             </>
             }
@@ -60,45 +62,35 @@ export default async function Page({params,list}){
 
             { project.action && 
             <>
-            <h3 className="font-rec1 text-6xl border-b-4 border-[black]">Action</h3>
+            <TitleEffect>Action</TitleEffect>
             <RichTextImg data={project.action}/>
             </>
             }
 
             { project.result && 
             <>
-            <h3 className="font-rec1 text-6xl border-b-4 border-[black]">Resultat</h3>
+            <TitleEffect>Resultat</TitleEffect>
             <RichTextImg data={project.result}/>
             </>
             }
 
-           {project.gallery &&
-           
-          <div className="w-full">
-
-             <h3 className="font-rec1 text-8xl border-b-4 border-[black] text-center mb-8">Gallerie</h3>
-
-             <Gallery images={project.gallery} marge={false}/>
-
-            
-          </div>
-           }
-        
-
-          <div className="mt-2 flex justify-center gap-4 w-full" >   
-            <div className="flex flex-col gap-4 items-center">
-                <p className="font-rec1 text-2xl underline">Retour a la liste des projets</p>
-                <Link href={'/project'} className='border-2 border-black p-4 transition rounded-lg hover:bg-white'>Tous les projets</Link>
-              </div>
-              
-              <div className="flex flex-col gap-4 items-center">
-                <p className="font-rec1 text-2xl underline">Decouvrir le projet suivant</p>
-                <Link className='border-2 border-black p-4 transition rounded-lg hover:bg-white' href={`/project/`+nextProject.slug.current}> {nextProject.title}</Link>
-              </div>
-          </div>
+     
            </div>
 
+           {project.gallery &&
+           
+           <div className="w-full flex flex-col  gap-8 p-8">
+ 
+              <TitleEffect big={true}>Gallerie</TitleEffect>
+ 
+              <Gallery images={project.gallery} marge={false}/>
+ 
+             
+           </div>
+            }
 
+            <ButtonGroup links={[{url:'/project',title:'Tous les projets'},{url:`/project/`+nextProject.slug.current,title:'Projet suivant'}]}/>
+         
 
     </div>
   )
