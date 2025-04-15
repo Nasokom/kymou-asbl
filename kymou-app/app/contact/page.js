@@ -13,11 +13,11 @@ const page = async () => {
 
 
 
-        {data.text && <CustomPortableText value={data.text}/>}
+        {data.text && <CustomPortableText  className={'text-2xl'}value={data.text}/>}
 
           <div className='mt-4'>
             <p className='font-rec1 text-2xl'>{data.contact.title}</p>
-            <Link className='underline' href={'mailto:'+data.email}>{data.contact.email}</Link>
+            <Link className='underline text-2xl hover:text-[--color2]' href={'mailto:'+data.email}>{data.contact.email}</Link>
           </div>
 
       <div className='w-full flex flex-col items-center justify-center gap-4'>

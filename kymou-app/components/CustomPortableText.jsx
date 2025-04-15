@@ -50,6 +50,9 @@ export default function CustomPortableText({
           <h5 className="mb-8 mt-8 text-4xl font-rec1 ">{children}</h5>
         );
       },
+      p:({children})=>{
+        return (<p className="text-7xl">{children}</p>)
+      }
     },
     decorators: {
       highlight: ({ children, value }) => {

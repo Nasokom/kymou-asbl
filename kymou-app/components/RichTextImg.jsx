@@ -25,7 +25,7 @@ const RichTextImg = ({data}) => {
         {data.image?(
           <Image key={data.image.asset._ref}className="textimg rounded p-4 overflow-hidden cursor-pointer border-[transparent] transition hover:rounded-lg" style={{objectFit:"cover"}} src={loader} width={400} height={400} />
         ) :''}
-        <CustomPortableText className='text-xl pt-6' value={data.text}/>
+        <CustomPortableText className='text-2xl pt-6' value={data.text}/>
         
     </div>
         {toggle && <ModalImg datas={[{url:loader}]} setToggle={setToggle} toggle={toggle} selectedImg={0} setSelectedImg={setToggle}/>}
