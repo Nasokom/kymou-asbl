@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { resolveInnerImgREF } from "../app/utils/actions";
 import { urlFor } from "../app/utils/sanity/sanity";
+import TitleEffect from "./ux/TitleEffect";
 
 export default function CustomPortableText({
   className,

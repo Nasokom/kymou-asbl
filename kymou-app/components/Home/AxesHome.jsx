@@ -72,7 +72,7 @@ const AxesHome = ({ datas }) => {
 
   return (
     <div className="flex justify-center flex-col items-center gap-4 w-full p-10">
-      <TitleEffect>{"Ce que nous faisons"}</TitleEffect>
+      <TitleEffect>{datas.title}</TitleEffect>
       <CustomPortableText
         value={datas.text}
         className={"pl-[2em] font-rec  md:text-4xl sm:text-4xl sm:leading-[1.5em] md:leading-[1.5em] "}

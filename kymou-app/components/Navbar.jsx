@@ -10,29 +10,29 @@ const Navbar = () => {
   const [lastScrollY, setLastScrollY] = useState(0);
   const links = [{name:'home',path:'/'},{name:'projets',path:"/project"},{name:"galerie",path:'/gallery'},{name:'contact',path:'/contact'}]
 
-  const controlNavbar = () => {
-    if (typeof window !== "undefined") {
-      const currentScrollY = window.scrollY;
+  // const controlNavbar = () => {
+  //   if (typeof window !== "undefined") {
+  //     const currentScrollY = window.scrollY;
 
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setShowNavbar(false); // scrolling down
-      } else {
-        setShowNavbar(true); // scrolling up
-      }
+  //     if (currentScrollY > lastScrollY && currentScrollY > 50) {
+  //       setShowNavbar(false); // scrolling down
+  //     } else {
+  //       setShowNavbar(true); // scrolling up
+  //     }
 
-      setLastScrollY(currentScrollY);
-    }
-  };
+  //     setLastScrollY(currentScrollY);
+  //   }
+  // };
 
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      window.addEventListener("scroll", controlNavbar);
+  // useEffect(() => {
+  //   if (typeof window !== "undefined") {
+  //     window.addEventListener("scroll", controlNavbar);
 
-      return () => {
-        window.removeEventListener("scroll", controlNavbar);
-      };
-    }
-  }, [lastScrollY]);
+  //     return () => {
+  //       window.removeEventListener("scroll", controlNavbar);
+  //     };
+  //   }
+  // }, [lastScrollY]);
 
   return (
     <motion.div 

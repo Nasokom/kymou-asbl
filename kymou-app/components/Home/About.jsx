@@ -7,7 +7,7 @@ const About = ({data}) => {
   return (
     <div className='flex justify-center flex-col items-center gap-8 w-full p-10'>
       <TitleEffect>
-          Qui Somme nous
+          {data.title}
       </TitleEffect>
         <CustomPortableText 
         value={data.text}

@@ -7,7 +7,8 @@ const page = async () => {
 
     const data = await getContact()
   return (
-    <div className='min-h-[100dvh] w-[100vw] pt-24 pb-12 items-left justify-center flex flex-col gap-4 p-8'>
+    <div className='min-h-[100dvh] w-[100vw] max-w-[1200px] pt-24 pb-12 items-left justify-center flex flex-col gap-4 p-8'>
+
 
 
 
