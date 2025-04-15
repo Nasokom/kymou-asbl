@@ -8,7 +8,7 @@ import Image from "next/image";
 const Navbar = () => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const links = [{name:'home',path:'/'},{name:'project',path:"/project"},{name:"gallery",path:'/gallery'},{name:'contact',path:'/contact'}]
+  const links = [{name:'home',path:'/'},{name:'projets',path:"/project"},{name:"galerie",path:'/gallery'},{name:'contact',path:'/contact'}]
 
   const controlNavbar = () => {
     if (typeof window !== "undefined") {

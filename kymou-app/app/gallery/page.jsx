@@ -18,14 +18,14 @@ export default async function Page(){
         <h1 className={'font-rec2 text-9xl fixed overflow-hidden pb-2'}>
           
           <div className='animate-[appearDown_0.3s_ease-out_forwards]'>
-            Gallerie
+            Galerie
           </div>
 
         </h1>
 
       <h2 className={'font-rec2 fixed top-[50vh] w-full leading-none text-center text-6xl overflow-hidden '}>
         <div className='translate-y-[100%] animate-[translateUp_0.5s_ease-out_0.3s_forwards]'>
-            Scroll pour decouvrir la gallerie
+            Scroll pour decouvrir la galerie
         </div>
         </h2>
 

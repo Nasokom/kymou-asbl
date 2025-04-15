@@ -81,7 +81,7 @@ export default async function Page({params,list}){
            
            <div className="w-full flex flex-col  gap-8 p-8">
  
-              <TitleEffect big={true}>Gallerie</TitleEffect>
+              <TitleEffect big={true}>Galerie</TitleEffect>
  
               <Gallery images={project.gallery} marge={false}/>
  
