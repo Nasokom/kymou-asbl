@@ -9,6 +9,26 @@ import {getHome} from "./utils/actions";
 import About from "../components/Home/About";
 import { urlFor } from "./utils/sanity/sanity";
 import TitleEffect from "@/components/ux/TitleEffect";
+
+
+
+export const metadata = {
+  generator: 'Next.js',
+  applicationName: 'Kymou asbl',
+  referrer: 'origin-when-cross-origin',
+  keywords: ['Next.js', 'React', ''],
+  authors: [ { name: 'Katherine Kombia', url: 'https://nextjs.org' }],
+  creator: 'Katherine Kombia',
+  publisher: 'Katherine Kombia',
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+}
+
+
+
 export default async function Home() {
   const datas = await getHome()
   const loader = urlFor(datas.footer.image).url()
