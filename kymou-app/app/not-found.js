@@ -4,12 +4,11 @@ import Link from 'next/link'
 export default function NotFound() {
 
   const links = [
-    {url:'/',title:'Retourner a la page home'},
+    {url:'/home',title:'Retourner a la page home'},
     {url:'/project',title:'Decouvrir nos projets'},
     {url:'/gallery',title:'Decouvrir la gallerie'}
 
   ]
-
 
 
   return (

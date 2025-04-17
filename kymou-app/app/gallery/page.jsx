@@ -7,6 +7,12 @@ import { urlFor } from '../utils/sanity/sanity'
 import PhotoCard from '@/components/gallery/PhotoCard'
 import Gallery from '@/components/gallery/GalleryImg'
 
+export const metadata = {
+  title: 'Gallery',
+  description: "Decouvrir l'assoctiation kymou-asbl en image",
+}
+
+
 export default async function Page(){
 
   const lqips = await getLqip()

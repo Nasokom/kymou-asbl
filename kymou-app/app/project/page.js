@@ -3,6 +3,14 @@ import { getProjects } from "../utils/actions"
 import ProjectCard from "../../components/Project/ProjectCard"
 import { Suspense } from "react"
 import SuspenseWithDelay from "@/components/ux/SuspenseWithDelay"
+
+
+export const metadata = {
+    title: 'Nos projets',
+    description: 'Decouvrez les projets de Kymou',
+  }
+
+
 export default async function Page(){
 
 const project = await getProjects()

@@ -52,6 +52,7 @@ export default defineConfig({
     maximumUploadSize: 10000000
     // number - maximum file size (in bytes) that can be uploaded through the plugin interface
   }),
+  
     colorInput(),
     deskTool({
       structure: (S,context) =>

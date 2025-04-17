@@ -83,7 +83,7 @@ const AxesHome = ({ datas }) => {
           <div key={i} className="group lg:w-[50%] w-[100%] cursor-pointer mt-8 flex justify-center items-center">
           <div
             key={i}
-            className="item zigzag  h-[300px] w-[300px] relative rounded flex items-center justify-center"
+            className="item zigzag  h-[300px] w-[400px] relative rounded flex items-center justify-center"
             >
             <p className="font-rec1 text-white lg:text-4xl sm:text-4xl">{axe.title}</p>
 
