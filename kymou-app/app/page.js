@@ -9,15 +9,15 @@ import {getHome} from "./utils/actions";
 import About from "../components/Home/About";
 import { urlFor } from "./utils/sanity/sanity";
 import TitleEffect from "@/components/ux/TitleEffect";
-
+import Head from "next/head";
 
 
 export const metadata = {
-  generator: 'Next.js',
+  //generator: 'Next.js',
   applicationName: 'Kymou asbl',
   referrer: 'origin-when-cross-origin',
   keywords: ['Next.js', 'React', ''],
-  authors: [ { name: 'Katherine Kombia', url: 'https://nextjs.org' }],
+  authors: [ { name: 'Katherine Kombia' }],
   creator: 'Katherine Kombia',
   publisher: 'Katherine Kombia',
   formatDetection: {
@@ -34,6 +34,12 @@ export default async function Home() {
   const loader = urlFor(datas.footer.image).url()
   //comment 4 launch
   return (
+
+    <>
+        <Head>
+      <meta name="google-site-verification" content="4VHbOuvyxkMPrmqoVd5xPWHVRe_y6d0khtbrCcdiCTY" />
+      <meta name="generator" content="4VHbOuvyxkMPrmqoVd5xPWHVRe_y6d0khtbrCcdiCTY" />
+      </Head>
     <div className='min-h-[100vh] w-[100vw] flex flex-col gap-4' >
 
         <Hero  datas={datas.header}/>
@@ -52,5 +58,6 @@ export default async function Home() {
           </div>
         </div>
     </div>
+</>
   );
 }
