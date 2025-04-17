@@ -4,6 +4,7 @@ import Navbar from "../components/Navbar";
 import { Suspense } from "react";
 import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
+import Head from "next/head";
 
 export const metadata = {
   title: "Kymou asbl",
@@ -25,6 +26,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className="bg-[--color1] ">
+      <Head>
+      <meta name="google-site-verification" content="4VHbOuvyxkMPrmqoVd5xPWHVRe_y6d0khtbrCcdiCTY" />
+      </Head>
       <body className={`${inter.className} w-[100dvw] min-h-[100vh] h-full flex flex-col relative items-center `}>
         <Navbar/>
         <Suspense fallback={<p>loading</p>}>
