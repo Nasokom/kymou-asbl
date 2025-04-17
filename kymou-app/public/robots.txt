@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kymou-asbl.vercel.app
+
+# Sitemaps
+Sitemap: https://kymou-asbl.vercel.app/sitemap.xml

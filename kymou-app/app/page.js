@@ -16,7 +16,7 @@ export const metadata = {
   //generator: 'Next.js',
   applicationName: 'Kymou asbl',
   referrer: 'origin-when-cross-origin',
-  keywords: ['Next.js', 'React', ''],
+  keywords: ['Asbl', 'Kymou', 'Luxembourg', 'Burkina','Burkina Faso','Association'],
   authors: [ { name: 'Katherine Kombia' }],
   creator: 'Katherine Kombia',
   publisher: 'Katherine Kombia',
