@@ -2,7 +2,7 @@ import React, { useEffect,useState } from 'react'
 import Image from 'next/image'
 import { FaArrowLeft, FaArrowRight,FaInfoCircle  } from "react-icons/fa";
 import { ImCross } from "react-icons/im";
-import {urlFor} from '@/app/utils/sanity/sanity'
+import {urlFor} from '@/utils/sanity/sanity'
 import Link from 'next/link';
 
 const ImageModal = ({selectedImg,setSelectedImg, datas}) => {

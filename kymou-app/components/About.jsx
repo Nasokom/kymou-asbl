@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import {urlFor} from '@/app/utils/sanity/sanity'
-import {getAbout} from '@/app/utils/actions'
+import {getAbout} from '@/utils/actions'
 import Title from './ux/Title'
 
 const About = async () => {

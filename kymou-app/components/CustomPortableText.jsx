@@ -4,8 +4,8 @@ import classNames from 'classnames';
 import { PortableText } from "next-sanity";
 import Link from "next/link";
 import Image from "next/image";
-import { resolveInnerImgREF } from "../app/utils/actions";
-import { urlFor } from "../app/utils/sanity/sanity";
+import { resolveInnerImgREF } from "../utils/actions";
+import { urlFor } from "../utils/sanity/sanity";
 import TitleEffect from "./ux/TitleEffect";
 
 export default function CustomPortableText({

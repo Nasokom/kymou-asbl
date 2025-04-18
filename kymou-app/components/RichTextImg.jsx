@@ -1,6 +1,6 @@
 'use client'
 import React, {useEffect, useState} from 'react'
-import { urlFor } from '../app/utils/sanity/sanity'
+import { urlFor } from '../utils/sanity/sanity'
 import Image from 'next/image'
 import CustomPortableText from './CustomPortableText'
 import ModalImg from './gallery/ModalImg'

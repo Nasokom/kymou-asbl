@@ -3,9 +3,9 @@ import AxesHome from "@/components/Home/AxesHome";
 import Hero from "@/components/Home/Hero";
 import { Suspense } from "react";
 import Image from "next/image";
-import {getHome} from "@/app/utils/actions";
+import {getHome} from "@/utils/actions";
 import About from "@/components/Home/About";
-import { urlFor } from "@/app/utils/sanity/sanity";
+import { urlFor } from "@/utils/sanity/sanity";
 import TitleEffect from "@/components/ux/TitleEffect";
 
 

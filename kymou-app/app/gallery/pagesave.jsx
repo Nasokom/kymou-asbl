@@ -1,5 +1,5 @@
 import React from 'react'
-import { getGallery,getLqip } from '../utils/actions'
+import { getGallery,getLqip } from '../../utils/actions'
 import GalleryImg from '../../components/GalleryImg'
 import Title from '../../components/ux/Title'
 

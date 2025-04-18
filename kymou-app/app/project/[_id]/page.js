@@ -1,8 +1,8 @@
 import CustomPortableText from "@/components/CustomPortableText"
-import { getSingleProject,resolveInnerImgREF, getProjects } from "@/app/utils/actions"
+import { getSingleProject,resolveInnerImgREF, getProjects } from "@/utils/actions"
 import Link from "next/link"
 import Image from "next/image"
-import { urlFor } from "@/app/utils/sanity/sanity"
+import { urlFor } from "@/utils/sanity/sanity"
 import RichTextImg from "@/components/RichTextImg"
 import { notFound } from 'next/navigation'
 import Gallery from "@/components/gallery/GalleryImg"
@@ -12,11 +12,17 @@ import TitleEffect from "@/components/ux/TitleEffect"
 
 
 export async function generateMetadata({ params, searchParams }){
+
   const {_id} = await params
  
   // fetch post information
   const post = await getSingleProject(_id)
+
+  if (!post.title){
+    return
+  }
   return {
+    key:post._id,
     title: post.title,
     description: post.description,
   }

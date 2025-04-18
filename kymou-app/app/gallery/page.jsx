@@ -1,9 +1,9 @@
 import React from 'react'
-import { getGallery,getLqip } from '../utils/actions'
+import { getGallery,getLqip } from '@/utils/actions'
 import GalleryImg from '../../components/GalleryImg'
 import Title from '../../components/ux/Title'
 import Image from 'next/image'
-import { urlFor } from '../utils/sanity/sanity'
+import { urlFor } from '@/utils/sanity/sanity'
 import PhotoCard from '@/components/gallery/PhotoCard'
 import Gallery from '@/components/gallery/GalleryImg'
 

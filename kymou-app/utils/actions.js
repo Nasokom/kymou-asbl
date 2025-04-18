@@ -41,9 +41,14 @@ export async function getAbout(){
     return datas
 }
 
-export async function getProject(){
+export async function getProjectMin(){
     noStore()
-    const datas = await client.fetch(`*[_type == "project"][0]`)
+    const datas = await client.fetch(`*[_type == "projectv2"]
+        {
+         slug,
+        title,
+        _updatedAt,
+        }`)
 
     return datas
 }
@@ -51,7 +56,8 @@ export async function getProject(){
 export async function getProjects(){
     noStore()
     const datas = await client.fetch(`*[_type == "projectv2"]|order(orderRank)
-        {title,
+        {
+        title,
         _id,
         slug,
         hero}

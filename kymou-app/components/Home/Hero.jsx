@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
-import { urlFor } from '@/app/utils/sanity/sanity';
-import { getIntro,getLqip,getHome} from '@/app/utils/actions'
+import { urlFor } from '@/utils/sanity/sanity';
+import { getIntro,getLqip,getHome} from '@/utils/actions'
 import CustomPortableText from '../CustomPortableText';
 import LineWrapper from '../lineWrapper';
 

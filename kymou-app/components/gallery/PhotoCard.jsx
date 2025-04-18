@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import { urlFor } from '@/app/utils/sanity/sanity'
+import { urlFor } from '@/utils/sanity/sanity'
 import {motion} from 'framer-motion'
 
 const PhotoCard = ({children,index}) => {

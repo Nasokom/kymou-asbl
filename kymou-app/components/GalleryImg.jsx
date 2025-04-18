@@ -1,8 +1,7 @@
 'use client'
 import React, { useState } from 'react'
 import Image from 'next/image'
-import {urlFor} from '@/app/utils/sanity/sanity'
-import {getProject, getLqip} from '@/app/utils/actions'
+import {urlFor} from '@/utils/sanity/sanity'
 import ImageModal from './ImageModal'
 
 

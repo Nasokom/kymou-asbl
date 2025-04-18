@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import {urlFor} from '@/app/utils/sanity/sanity'
-import {getProject, getLqip} from '@/app/utils/actions'
+import {getProject, getLqip} from '@/utils/actions'
 import Title from './ux/Title';
 import GalleryImg from './GalleryImg';
 
