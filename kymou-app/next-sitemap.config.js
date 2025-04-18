@@ -5,9 +5,10 @@ const siteUrl = 'https://kymou-asbl.vercel.app'
 module.exports = {
   siteUrl,
   generateRobotsTxt: true,
-  generateIndexSitemap: true,
+  generateIndexSitemap: false,
   outDir: './public',
   exclude: ['/404', '/_not-found'],
+  autoLastmod: true,
 
   additionalPaths: async (config) => {
     const paths = [
