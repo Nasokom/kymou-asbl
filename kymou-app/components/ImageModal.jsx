@@ -29,8 +29,6 @@ const ImageModal = ({selectedImg,setSelectedImg, datas}) => {
   }
     const [loader,setLoader] = useState('')
              useEffect(()=>{
-              console.log(selectedImg)
-                console.log(datas)
                // setLoader(urlFor(datas[selectedImg]).url())
                  
             },[selectedImg])

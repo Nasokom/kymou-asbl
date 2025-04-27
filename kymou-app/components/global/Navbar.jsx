@@ -42,7 +42,7 @@ const Navbar = () => {
     className="fixed top-0 left-0 w-full flex p-2 max-[600px]:p-1 items-center justify-between z-50">
 
       <div className='flex gap-2 max-[600px]:hidden'>
-          <Link href={'/h1'} className='font-display justify-center gap-2 items-center flex text-2xl'>
+          <Link href={'/blog-kymou'} className='font-display justify-center gap-2 items-center flex text-2xl'>
           <Image 
             //blurDataURL={datas.logo.asset.metadata.lqip}
             src={'/kymouLogo.svg'} 
@@ -54,7 +54,7 @@ const Navbar = () => {
 
         <div className='flex gap-4 bg-white font-rec1 uppercase shadow-md p-2 max-w-full max-[600px]:w-full rounded-xl '>
         <div className='flex gap-2'>
-          <Link href={'/h1'} className='font-display justify-center gap-2 items-center flex text-2xl'>
+          <Link href={'/blog-kymou'} className='font-display justify-center gap-2 items-center flex text-2xl'>
           <Image 
             //blurDataURL={datas.logo.asset.metadata.lqip}
             src={'/kymouLogo.svg'} 

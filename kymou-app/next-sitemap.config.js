@@ -21,7 +21,6 @@ module.exports = {
     
     try {
       const projects = await getProjectMini();
-      console.log(projects)
       const projectPaths = projects.map((project) => ({
         loc: `/project/${project.slug}`,
         lastmod: project._updatedAt,

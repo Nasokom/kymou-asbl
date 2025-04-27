@@ -7,15 +7,10 @@ import {colorInput} from '@sanity/color-input'
 import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 import {media,mediaAssetSource} from 'sanity-plugin-media'
 import { IoHomeOutline, IoAlbumsOutline  } from "react-icons/io5";
+import { defaultDocumentNode } from './deskStructure'; //
 
 import { FaHeart , FaHome, FaAddressBook} from "react-icons/fa";
 
-// Define the actions that should be available for singleton documents
-const singletonActions = new Set(["publish", "discardChanges", "restore"])
-
-// Define the singleton document types
-
-const singletonTypes = new Set(["settings"])
 
 const singletonListItem = (
   S,
@@ -64,60 +59,14 @@ export default defineConfig({
             ///* singletonListItem(S, "settings", "Settings"), */
             singletonListItem(S,'homePage2','Home Page ').icon(FaHome),
             orderableDocumentListDeskItem({type: 'projectv2', S,context,icon:FaHeart}),
-           // S.documentTypeListItem("projectv2").title("Liste des projets").icon(FaHeart),
+            S.documentTypeListItem("blogPost").title("Liste des Articles").icon(FaHeart),
             singletonListItem(S, "contact", "Contact Page").icon(FaAddressBook),
 
-            
-           /*  S.listItem()
-              .title("Settings")
-              .id("settings")
-              .child(
-                // Instead of rendering a list of documents, we render a single
-                // document, specifying the `documentId` manually to ensure
-                // that we're editing the single instance of the document
-                S.document()
-                  .schemaType("settings")
-                  .documentId("settings")
-              ),
-
-              S.listItem()
-              .title("Intro")
-              .id("intro")
-              .child(
-                // Instead of rendering a list of documents, we render a single
-                // document, specifying the `documentId` manually to ensure
-                // that we're editing the single instance of the document
-                S.document()
-                  .schemaType("intro")
-                  .documentId("intro")
-              ),
-
-              S.listItem()
-              .title("Projets")
-              .id("project")
-              .child(
-                // Instead of rendering a list of documents, we render a single
-                // document, specifying the `documentId` manually to ensure
-                // that we're editing the single instance of the document
-                S.document()
-                  .schemaType("project")
-                  .documentId("project")
-              ),
-
-              S.listItem()
-              .title("About")
-              .id("About")
-              .child(
-                // Instead of rendering a list of documents, we render a single
-                // document, specifying the `documentId` manually to ensure
-                // that we're editing the single instance of the document
-                S.document()
-                  .schemaType("about")
-                  .documentId("about")
-              ), */
            
             // Regular document types
           ]),
+          // 🔥 fullscreen
+          defaultDocumentNode,
     }),
     visionTool(),
   ],

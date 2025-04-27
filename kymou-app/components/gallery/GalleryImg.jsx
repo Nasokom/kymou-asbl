@@ -94,6 +94,7 @@ const Gallery = ({ images,marge=true}) => {
              <Image
                src={img.url}
                className="rounded"
+               alt={img.altText || 'Image '+ img.originalFilename }
                placeholder="blur"
                blurDataURL={img.lqip}  // Assuming `lqip` (Low-Quality Image Placeholder) is provided in data
                style={{
@@ -103,7 +104,6 @@ const Gallery = ({ images,marge=true}) => {
                }}
                height={img.height || 'auto'}
                width={img.width}
-               alt={`image-${index}`}
              />
             </motion.div>
       ))}

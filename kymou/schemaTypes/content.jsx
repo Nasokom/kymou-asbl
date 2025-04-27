@@ -6,6 +6,11 @@ export default defineType({
   type: 'array',
   of: [
     defineArrayMember({
+      title:'image',
+      type:'image',
+      name:'image'
+    }),
+    defineArrayMember({
       title: 'Block',
       type: 'block',
       
@@ -49,6 +54,12 @@ export default defineType({
                   </span>
                 ),
               },
+              {
+                type: 'image',
+                name:'image',
+                title:'image',
+                name:'image'
+              },
             {
               title: 'URL',
               name: 'link',
@@ -64,24 +75,7 @@ export default defineType({
           ],
         },
 
-      // {
-      //   type: 'image',
-      //   fields: [
-      //     {
-      //       type: 'text',
-      //       name: 'alt',
-      //       title: 'Alternative text',
-      //       description: `Some of your visitors cannot see images, 
-      //         be they blind, color-blind, low-sighted; 
-      //         alternative text is of great help for those 
-      //         people that can rely on it to have a good idea of 
-      //         what\'s on your page.`,
-      //       options: {
-      //         isHighlighted: true
-      //       }
-      //     }
-      //   ]
-      // }
-    }),
+      }),
+     
 ]
   })

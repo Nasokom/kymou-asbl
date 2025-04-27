@@ -51,7 +51,7 @@ export default function CustomPortableText({
         );
       },
       p:({children})=>{
-        return (<p className="text-7xl">{children}</p>)
+        return (<p className="text-7xl m-4">{children}</p>)
       }
     },
     decorators: {

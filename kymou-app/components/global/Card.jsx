@@ -5,12 +5,13 @@ import { urlFor } from '@/utils/sanity/sanity'
 import {motion} from 'framer-motion'
 import Link from 'next/link'
 
-const ProjectCard = ({project,index, isUnique=false}) => {
-  //const loader = project.hero ? urlFor(project.hero).width(300).height(300).url() : "/"
+const Card = ({project,index,isUnique=false}) => {
   const loader = project.hero ? urlFor(project.hero).url() : "/"
 
   return (
-      <Link className={'hover:scale-110 relative transition duration-700 '} href={`/project/${project.slug.current}`}>
+      <Link className={'hover:scale-110 relative transition duration-700 '}
+      href={`/blog-kymou/${project.slug ? project.slug.current : ''}`}
+      >
 
     <motion.div 
     className={`${isUnique ? 'projectCard2' : "projectCard"} flex flex-col opacity-[0] gap-2 zigzag rounded-xl items-center justify-between p-4 `}
@@ -37,4 +38,4 @@ const ProjectCard = ({project,index, isUnique=false}) => {
   )
 }
 
-export default ProjectCard
+export default Card

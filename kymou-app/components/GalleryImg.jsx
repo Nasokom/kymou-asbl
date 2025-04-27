@@ -24,7 +24,6 @@ const GalleryImg = ({datas,lqips}) => {
         lqip: matchLqip(d.image.asset._ref) 
       }  
     })
-    console.log(newimg)
   return (
     <>
 

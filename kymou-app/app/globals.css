@@ -8,11 +8,11 @@
   --color4:#000000;
   --color5:#2F52E0;
 
-  /* --color1:#FFF4E9;
-  --color2:#E8DBC5;
-  --color2:#C3A29E;
-  --color2:#B185A7; */
-
+  --color11:#BE92A2;
+  --color12:#937666;
+  --color13:#6A8D73;
+  --color14:#3BB273;
+  --color14:#C17817;
 }
 * {
   box-sizing: border-box;
@@ -339,7 +339,7 @@ animation-delay: 5s;
 } */
 
 /* Project page additional css */
-.project-section > h3:nth-of-type(even) {
+.project-section section > h3:nth-of-type(even) {
   text-align: right;
 }
 
@@ -362,6 +362,11 @@ animation-delay: 5s;
 
 .project-section .alt:nth-of-type(odd) img {
   float: left;
+}
+
+
+article.project-section > section h3:nth-of-type(odd) {
+  background-color: var(--color11);
 }
 
 /* .alt{

@@ -18,7 +18,7 @@ export async function generateMetadata({ params, searchParams }){
   // fetch post information
   const post = await getSingleProject(_id)
 
-  if (!post.title){
+  if (!post){
     return
   }
   return {
@@ -43,8 +43,7 @@ export default async function Page({params,list}){
     const nextLoader  = urlFor(nextProject.hero).url()
 
     //const loader =  urlFor(project.header[0].image).blur(50).url()
-    const loader = project.hero ? urlFor(project.hero).url() : '/'
-    console.log(urlFor(project.hero))
+    const loader = project.hero ? urlFor(project.hero.url).width(1000).height(1000).url() : '/'
     const loader2 = (ref)=>{
       const x = resolveInnerImgREF(ref)
         return x
@@ -58,11 +57,11 @@ export default async function Page({params,list}){
           </div>
 
       <div className="flex relative w-[70vw] max-[800px]:w-[93%] rounded h-[100vh] max-[800px]:h-[80vh] overflow-hidden animate-[appearDown_1s_forwards]">
-          <Image fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded"/>
+          <Image fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded" alt={project.hero.altText || project.hero.description || project.hero.originalFilename}/>
       </div>
 
 
-        <div className='project-section gap-10 flex flex-col p-10 max-[800px]:p-4 sm:p-0 max-w-[1000px] mt-12'>
+        <article className='project-section gap-10 flex flex-col p-10 max-[800px]:p-4 sm:p-0 max-w-[1000px] mt-12'>
 
             { project.pitch && 
             <>
@@ -94,7 +93,7 @@ export default async function Page({params,list}){
             }
 
      
-           </div>
+           </article>
 
            {project.gallery &&
            

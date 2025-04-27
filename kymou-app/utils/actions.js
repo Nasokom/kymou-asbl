@@ -7,18 +7,11 @@ import { unstable_noStore as noStore } from 'next/cache';
 export async function getHome(){
     noStore()
     const datas = await client.fetch('*[_type == "homePage2"][0]')
-    console.log(datas)
     return datas
 }
 export async function getIntro(){
     noStore()
     const datas = await client.fetch(`*[_type == "intro"][0]`)
-    return datas
-}
-
-export async function getHomeHeader(){
-    noStore()
-    const datas = await client.fetch('*[_type == "homeHeader"][0]')
     return datas
 }
 
@@ -65,6 +58,82 @@ export async function getProjects(){
         return datas
     }
 
+    export async function getBlogPosts(){
+        noStore()
+        const datas = await client.fetch(`*[_type == "blogPost"]
+             {title,
+             author,
+                content,
+                _createdAt,
+                description,
+                slug,
+                'hero':hero.asset->{
+                            originalFilename,
+                            url,
+                            title,
+                            description,
+                                'lqip':metadata.lqip,
+                                'dimensions':metadata.dimensions,
+                            altText,
+                            _rev,
+                    },}`)
+            return datas
+        }
+
+        export async function getBlogPostsFake(){
+            noStore()
+            const datas = await client.fetch(`*[_type == "blogPost"]`)
+                return datas
+            }
+
+        export async function getSingleBlogPost(_slug){
+            console.log(_slug)
+            noStore()
+            const datas = await client.fetch(`*[_type == "blogPost" && slug.current == '${_slug}'][0]
+                {title,
+                author,
+                content[]{
+                ...,
+                markDefs[]{
+                    ...,
+                    _type == "projectLink" => {
+                    _ref,
+                    href-> {slug}
+                    },
+                     _type == "articleLink" => {
+                    _ref,
+                    href-> {slug}
+                    },
+                     _type == "inlineicon" => {
+                    _ref,
+                    asset-> {
+                    originalFilename,
+                            url,
+                            title,
+                            description,
+                                'lqip':metadata.lqip,
+                            altText,
+                            _rev,}
+                    },
+                }
+                },
+                _createdAt,
+                description,
+                slug,
+                'hero':hero.asset->{
+                            originalFilename,
+                            url,
+                            title,
+                            description,
+                                'lqip':metadata.lqip,
+                                'dimensions':metadata.dimensions,
+                            altText,
+                            _rev,
+                    },}`)
+                return datas
+            }
+    
+
     export async function getProjectsPath(){
         noStore()
         const datas = await client.fetch(`*[_type == "projectv2"]|order(orderRank)
@@ -75,7 +144,6 @@ export async function getProjects(){
     }
     
     export async function getSingleProject(id){
-        console.log(id)
         const resolveImg = 
         `{
             text,
@@ -86,9 +154,17 @@ export async function getProjects(){
                 const datas = await client.fetch(`*[_type == "projectv2" && slug.current == '${id}'][0]
                     {title,
                     _id,
-                    hero,
+                    'hero':hero.asset->{
+                            originalFilename,
+                            url,
+                            title,
+                            description,
+                                'lqip':metadata.lqip,
+                                'dimensions':metadata.dimensions,
+                            altText,
+                            _rev,
+                    },
                     slug,
-                    hero,
                     pitch,
                     problem,
                     action,
@@ -105,7 +181,7 @@ export async function getProjects(){
 }}`)
                     //result${resolveImg}
 
-                
+           // console.log(datas.hero)
 
     return datas
 }
