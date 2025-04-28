@@ -1,5 +1,4 @@
 import {defineConfig} from 'sanity'
-import {structureTool} from 'sanity/structure'
 import { deskTool } from "sanity/desk"
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
@@ -8,8 +7,11 @@ import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 import {media,mediaAssetSource} from 'sanity-plugin-media'
 import { IoHomeOutline, IoAlbumsOutline  } from "react-icons/io5";
 import { defaultDocumentNode } from './deskStructure'; //
-
+import {structureTool} from 'sanity/structure'
+import { RiArticleLine,RiHeart2Fill} from "react-icons/ri";
 import { FaHeart , FaHome, FaAddressBook} from "react-icons/fa";
+
+
 
 
 const singletonListItem = (
@@ -22,6 +24,7 @@ const singletonListItem = (
     .id(typeName)
     .child(S.document().schemaType(typeName).documentId(typeName))
     
+
 
 export default defineConfig({
   name: 'default',
@@ -49,7 +52,7 @@ export default defineConfig({
   }),
   
     colorInput(),
-    deskTool({
+    structureTool({
       structure: (S,context) =>
         S.list()
           .title("Contenu de Kymou")
@@ -59,14 +62,14 @@ export default defineConfig({
             ///* singletonListItem(S, "settings", "Settings"), */
             singletonListItem(S,'homePage2','Home Page ').icon(FaHome),
             orderableDocumentListDeskItem({type: 'projectv2', S,context,icon:FaHeart}),
-            S.documentTypeListItem("blogPost").title("Liste des Articles").icon(FaHeart),
+            S.documentTypeListItem("blogPost").title("Liste des Articles").icon(RiArticleLine),
             singletonListItem(S, "contact", "Contact Page").icon(FaAddressBook),
 
            
             // Regular document types
           ]),
-          // 🔥 fullscreen
           defaultDocumentNode,
+          // 🔥 fullscreen
     }),
     visionTool(),
   ],

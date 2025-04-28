@@ -27,6 +27,7 @@ const page = async ({params}) => {
     // const nextProject = allPAth[currentIndex+1] ? allPAth[currentIndex+1] : allPAth[0]
 
     //const nextLoader  = urlFor(nextProject.hero).url()
+
   const dateFormat = () => {
     const date = new Date(article._createdAt)
     const day = date.getDay()
@@ -35,15 +36,16 @@ const page = async ({params}) => {
 
     return day + '-'+month+'-'+year
   }
-
     const loader = article.hero ? urlFor(article.hero.url).width(1000).height(1000).url() : '/'
-  return (
-    <div className='min-h-[100dvh]  m-4  mt-[15vh] pt-4 flex flex-col items-center justify-center max-w-[850px]'>
 
-      <div className='flex justify-center flex-col items-start max-w-full gap-2 mb-8 '>
+  return (
+
+    <div className='min-h-[100dvh]  m-4  mt-[15vh] pt-4 flex flex-col items-center justify-center max-w-[1000px]'>
+
+      <div className='flex flex-col w-full gap-2 mb-8 '>
               <h1 className='font-rec1 text-8xl'>{article.title}</h1>
               <p className='opacity-[0.7] '>{article.description}</p>
-          <div className='text-[--color3] flex gap-4'>
+          <div className='text-[--color3] flex gap-4 text-[20px]'>
               <p> Par <span className='text-black'>{article.author.name} </span> |</p>
             <p>{dateFormat()}</p>
             -
@@ -56,9 +58,9 @@ const page = async ({params}) => {
       </div>
 
 
-    <article className='project-section gap-10 flex flex-col p-10 max-[800px]:p-4  max-w-[1000px] mt-12'>
+    <article className='project-section gap-10 flex flex-col alt max-[800px]:p-4  max-w-[1000px] mt-12'>
         
-        <CustomPortableText  value={article.content} className={'flex gap-2 text-[20px] flex-wrap'}/>
+        <CustomPortableText  value={article.content} className={' alt flex gap-4 text-[20px] flex-wrap'}/>
 
     </article>
 

@@ -105,15 +105,16 @@ export async function getProjects(){
                     href-> {slug}
                     },
                      _type == "inlineicon" => {
-                    _ref,
-                    asset-> {
-                    originalFilename,
-                            url,
-                            title,
-                            description,
+                    float,
+                    'image':image.asset->{
+                                originalFilename,
+                                url,
+                                title,
+                                description,
                                 'lqip':metadata.lqip,
-                            altText,
-                            _rev,}
+                                altText,
+                                _rev,
+                            }
                     },
                 }
                 },

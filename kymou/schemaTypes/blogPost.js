@@ -61,6 +61,35 @@ export default {
             inputComponent: RenderReadingTime,
           }),
 
- 
+        defineField({
+            name:'bodyd',
+            title:'Contenu structure',
+            type:'array',
+            of:[
+                {
+                    name:'blocks',
+                    type:'object',
+                    title:'titre',
+                    fields:[
+                        {
+                            name:'title',
+                            type:'string',
+                            title:'Titre'
+                        },
+                        {
+                            name:'text',
+                            type:'blogContent',
+                            title:'string'
+                        },
+                        {
+                            name:'image',
+                            type:'image',
+                            title:'image'
+                        }
+                    ]
+                },
+               
+            ]
+        })
     ]
 }

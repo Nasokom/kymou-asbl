@@ -62,7 +62,7 @@ export default async function Page({params,list}){
 
 
         <article className='project-section gap-10 flex flex-col p-10 max-[800px]:p-4 sm:p-0 max-w-[1000px] mt-12'>
-
+            <section>
             { project.pitch && 
             <>
             <TitleEffect>Intro</TitleEffect>
@@ -91,7 +91,7 @@ export default async function Page({params,list}){
             <RichTextImg data={project.result}/>
             </>
             }
-
+            </section>
      
            </article>
 

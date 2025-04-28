@@ -364,9 +364,13 @@ animation-delay: 5s;
   float: left;
 }
 
+.project-section .toggle-float:nth-child(odd){
+  float: right;
+}
 
 article.project-section > section h3:nth-of-type(odd) {
-  background-color: var(--color11);
+  /* background-color: var(--color11); */
+  text-align: left;
 }
 
 /* .alt{

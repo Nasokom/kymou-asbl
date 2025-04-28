@@ -7,3 +7,6 @@ export const defaultDocumentNode = (S, { schemaType }) => {
   
     return S.document().views([S.view.form()])
   }
+
+    //   export const defaultDocumentNode = (S) =>
+    // S.document().views([S.form()]);

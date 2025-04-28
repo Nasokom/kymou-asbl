@@ -5,6 +5,7 @@ import { RiArticleLine} from "react-icons/ri";
 import { LaunchIcon } from '@sanity/icons'
 import {FaHeart} from 'react-icons/fa'
 import ImageText from './components/ImageText';
+import QuoteComponent from './components/QuoteComponent';
 import { PortableTextInput } from 'sanity'
 import { Box } from '@sanity/ui'
 import ImageRender from './components/ImageRender';
@@ -13,13 +14,17 @@ export default defineType({
   title: 'content',
   name: 'blogContent',
   type: 'array',
+  options: {
+    editModal: 'fullscreen',
+  },
   of: [
     defineArrayMember({
       title: 'Block',
       type: 'block',
       styles: [
         {title: 'Normal', value: 'normal'},
-        {title: 'subTitle', value: 'h2'},
+        {title: 'Title', value: 'h2'},
+        {title: 'subTitle', value: 'h3'},
       ],
 
       lists: [
@@ -37,7 +42,7 @@ export default defineType({
               value: 'highlight',
                 icon: () => 'H',
               component: (props) => (
-                <span style={{backgroundColor: '#0f0',fontFamily:'plakkaat'}}>
+                <span style={{color:'green',fontFamily:'plakkaat'}}>
                   {props.children}
                 </span>
               ),
@@ -47,9 +52,40 @@ export default defineType({
           // Annotations can be any object structure – e.g. a link or a footnote.
           annotations: [
             {
+              title: 'Citation',
+              name: 'quote',
+              type: 'object',
+              fields:[
+                {name:'credit',title:'credit',type:'string'}
+              ],
+              components:{
+                annotation:QuoteComponent
+              },
+              blockEditor: {
+                  description:'test',
+                icon: IoImage,
+              }
+          },
+            {
                 title: 'Image aligner au texte',
                 name: 'inlineicon',
-                type: 'image',
+                type: 'object',
+                fields:[
+                  {
+                    type:'string',name:'float',
+                    title:'Position',
+                    initialValue:'flex-row-reverse',
+                    options: {
+                      list: [
+                        {title: 'Aligner a Gauche', value: 'left'},
+                        {title: 'Aligner a droite', value: 'right'}
+                      ], // <-- predefined values
+                    }
+                  },
+                  {
+                    type:'image',name:'image'
+                  },
+                ],
                 components:{
                   annotation:ImageText
                 },
@@ -94,6 +130,7 @@ export default defineType({
                 },
               ],
             },
+
 
             {
               title: 'lien source externe',

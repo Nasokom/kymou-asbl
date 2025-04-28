@@ -8,22 +8,25 @@ export const ImageText = (props) => {
   const client = useClient(); // ✨ get the Sanity client for Studio
   const builder = imageUrlBuilder(client);
 
-  const imageUrl = value?.asset?._ref
-    ? builder.image(value).width(500).height(500).url()
+  const imageUrl = value?.image?.asset?._ref
+    ? builder.image(value.image).width(500).height(500).url()
     : null;
 
+    const float = value.float || 'left'
+
   return (
-    <Card padding={4} shadow={1} radius={2} style={{display:'flex', alignItems:'center'}}>
-      <Text style={{ color: 'blue', width: '50%' }}>
+    <Card padding={0} shadow={0} radius={2} style={{display:'flex', alignItems:'center',margin:'15px 0'}}>
+      <Text style={{ color: 'blue',  }}>
+        <img src={imageUrl} width={200} height={200} style={{float:float,margin:'5px', borderRadius:'5px'}}></img>
         {renderDefault(props)}
       </Text>
-      <div style={{width:'50%',height:'fit', minHeight:'200px', 
+      {/* <div style={{width:'50%',height:'fit', minHeight:'200px', 
         backgroundImage:`url(${imageUrl})`,objectFit:'scale-down',
-        backgroundPosition:'center', /* Center the image */
-        backgroundRepeat:'no-repeat', /* Do not repeat the image */
+        backgroundPosition:'center', 
+        backgroundRepeat:'no-repeat', 
         backgroundSize:'cover' }}>
         
-      </div>
+      </div> */}
       {/* {imageUrl ? (
         
         <img

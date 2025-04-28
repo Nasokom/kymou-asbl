@@ -20,21 +20,26 @@ export default function CustomPortableText({
         return (
           <>
             {value.isFullScreen ?  
-              <div className="responsive relative w-full h-[60vh]">
+              <div className="responsive relative w-full h-[70vh] min-h-[500px] rounded overflow-hidden">
                  <Image
                   src={loader}
                   fill
+                  style={{objectFit:'cover'}}
                   alt={value.alt || "Image"}
                   />
               </div>
               :
+              <span>
             <Image
               src={loader}
               width={500}
               height={500}
               alt={value.alt || "Image"}
-              className="float-start"
-            />
+              //className="float-start"
+              style={{float:'right'}}
+              className="textimg"
+              />
+              </span>
           }
           </>
         );
@@ -64,6 +69,12 @@ export default function CustomPortableText({
       h2: ({ children }) => {
         return (
           <TitleEffect>{children}</TitleEffect>
+        );
+      },
+
+      h3: ({ children }) => {
+        return (
+          <h3 className="font-rec1 text-4xl">{children}</h3> 
         );
       },
 
@@ -104,6 +115,16 @@ export default function CustomPortableText({
           </Link>
         );
       },
+      quote:({children,value})=>{
+        return(
+          <span className="bg-white p-8 bg-[white] flex rounded-xl w-full m-2">
+            <span className="border-l-4 border-[--color3] p-4 flex flex-col gap-4 text-[--color3]">
+                  <span className="italic">"{children}"</span>
+                  <cite className={'w-full text-right'}style={{fontStyle:'normal'}}>{value.credit}</cite>
+            </span>
+          </span>
+        )
+      },
 
 
       projectLink: ({ children, value }) => {
@@ -129,14 +150,22 @@ export default function CustomPortableText({
       },
 
       inlineicon:({children,value})=>{
+
+        console.log(value)
         return(
-            <span className="flex w-full">
-              <span className="w-[50%]">{children}</span>
-              <div className="relative w-[50%] min-h-[300px] h-full">
-              <Image src={value.asset.url} className={'float-right'} style={{objectFit:'cover'}} placeholder="blur"  blurDataURL={value.asset.lqip}
-                fill
-                />
-              </div>
+            <span className={`flex w-full mt-2 mb-2 gap-2 toggle-float flex items-center ${value.float == 'left' ?' flex-row-reverse ':''}`}>
+              <span className="w-full">{children}</span>
+              {/* <span className="relative w-[50%] min-w-[200px] min-h-[300px] h-full">
+                </span> */}
+                <span className="flex flex-col rounded overflow-hidden">
+                  <Image src={value.image.url} 
+                  style={{objectFit:'cover'}} placeholder="blur"  blurDataURL={value.image.lqip}
+                  objectFit="scale-down"
+                  width={500}
+                  height={500}
+                  />
+                  <span className="bg-white w-full p-4 text-[--color3] text-[15px]">{value.image.description || value.image.originalFilename }</span>
+              </span>
             </span>
         )
       },
@@ -155,8 +184,8 @@ export default function CustomPortableText({
   };
 
   return (
-    <div className={className}>
+    <section className={className}>
       <PortableText components={components} value={value} />
-    </div>
+    </section>
   );
 }
