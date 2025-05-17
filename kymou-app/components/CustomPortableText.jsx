@@ -1,6 +1,5 @@
 import { FaLink } from "react-icons/fa6";
 import { FaExternalLinkAlt } from "react-icons/fa";
-import classNames from 'classnames';
 import { PortableText } from "next-sanity";
 import Link from "next/link";
 import Image from "next/image";
