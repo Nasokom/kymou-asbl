@@ -1,0 +1,40 @@
+import Link from "next/link";
+import { sanityFetch } from "@/sanity/lib/live";
+import { POSTS_QUERY } from "@/sanity/lib/queries";
+import BlogCard from '@/components/BlogCard'
+import { POSTS_QUERYResult } from "@/sanity/types";
+
+export default async function Page() {
+  const { data: posts } = await sanityFetch({ query: POSTS_QUERY });
+
+  return (
+    <div className='mt-[15vh] bg-[--color2]'>
+        <div className="w-full flex z-0 gap-10 justify-around max-w-[1000px] z-0 pt-8 pb-32 items-center flex-col flex-wrap ">
+            
+        <h1 className={'font-rec2 text-9xl overflow-hidden pb-2 border-2 border-black'}>
+          <div className='animate-[appearDown_0.3s_ease-out_forwards] zigzagsm'>
+            Blog KYMOU
+          </div>
+          
+        </h1>
+
+            {posts.map((post:any,i:number)=> {
+ 
+                    if(!post.slug || !post.slug.current){
+                        return
+                    }
+
+                return(
+                            <BlogCard data={post} key={i}/>    
+                )
+                
+
+                }
+            )}
+
+
+        </div>
+
+    </div>
+  )
+}
