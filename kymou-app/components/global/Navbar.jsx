@@ -45,6 +45,7 @@ const Navbar = ({blog}) => {
           <Link href={'/blog-kymou'} className='font-display justify-center gap-2 items-center flex text-2xl'>
           <Image 
             //blurDataURL={datas.logo.asset.metadata.lqip}
+            alt="logo kymou"
             src={'/kymouLogo.svg'} 
             height={50} width={50} 
             className="bg-[--color1] p-1  border-2 border-[--color2] rounded-full"

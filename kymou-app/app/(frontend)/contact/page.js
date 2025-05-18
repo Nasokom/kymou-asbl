@@ -1,7 +1,7 @@
 import React from 'react'
 import { getContact } from '@/utils/actions'
 import Link from 'next/link'
-import CustomPortableText from '../../components/CustomPortableText'
+import CustomPortableText from '../../../components/CustomPortableText'
  
 export const metadata = {
   title: 'Contact',

@@ -1,12 +1,12 @@
 
-import Only from "@/components/Only";
+
 import dynamic from "next/dynamic"
-import AxesHome from "../components/Home/AxesHome";
-import Hero from "../components/Home/Hero";
+import AxesHome from "../../components/Home/AxesHome";
+import Hero from "../../components/Home/Hero";
 import { Suspense } from "react";
 import Image from "next/image";
-import {getHome} from "@/utils/actions";
-import About from "../components/Home/About";
+import {getHome,getTest} from "@/utils/actions";
+import About from "../../components/Home/About";
 import { urlFor } from "@/utils/sanity/sanity";
 import TitleEffect from "@/components/ux/TitleEffect";
 import Head from "next/head";
@@ -32,6 +32,9 @@ export const metadata = {
 export default async function Home() {
   const datas = await getHome()
   const loader = urlFor(datas.footer.image).url()
+  const test = await getTest()
+  console.log('app router')
+  console.log(test)
   //comment 4 launch
   return (
 

@@ -1,5 +1,5 @@
 import React from 'react'
-import Title from '../../components/ux/Title'
+import Title from '../../../components/ux/Title'
 import TitleProject from '@/components/Project/Title'
 import Head from 'next/head'
 const layout = ({children}) => {

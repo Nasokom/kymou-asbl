@@ -47,7 +47,7 @@ const Footer = ({blog}) => {
 
                 <p className='font-rec1 text-[8vw] text-center leading-none flex'>KYM 
                     <span className='relative w-[8vw] h-[8vw] hover:animate-spin'>
-                    <Image src={"/kymouLogo.svg"} fill className='rounded-full logoSvg bg-[--color1] border-4 border-[--color2] p-1' />
+                    <Image src={"/kymouLogo.svg"} alt='logo kymou'fill className='rounded-full logoSvg bg-[--color1] border-4 border-[--color2] p-1' />
                     </span>
                     U</p>
                 <p className='w-full text-center text-xl mb-8'> 

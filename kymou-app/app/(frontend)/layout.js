@@ -1,11 +1,12 @@
 import { Inter } from "next/font/google";
-import "./globals.css";
-import Navbar from "../components/global/Navbar";
+import "../globals.css";
+import Navbar from "../../components/global/Navbar";
 import { Suspense } from "react";
 import Footer from "@/components/Footer";
 const inter = Inter({ subsets: ["latin"] });
 import Head from "next/head";
 import { getBlogPosts } from "@/utils/actions";
+import { SanityLive } from '@/sanity/lib/live'
 
 
 export const metadata = {
@@ -31,13 +32,18 @@ export default async function RootLayout({ children }) {
   const blogPost = await getBlogPosts()
 
   return (
-    <html lang="en" className="bg-[--color1] ">
+    <>
       <Head>
       <meta name="google-site-verification" content="4VHbOuvyxkMPrmqoVd5xPWHVRe_y6d0khtbrCcdiCTY" />
       </Head>
-      <body>
+      <main className={`${inter.className} w-[100dvw] min-h-[100vh] h-full flex flex-col relative items-center `}>
+        <Navbar blog={blogPost}/>
+        <Suspense fallback={<p>loading</p>}>
           {children}
-        </body>
-    </html>
+        </Suspense>
+        <Footer blog={blogPost}/>
+              <SanityLive />
+        </main>
+    </>
   );
 }

@@ -5,28 +5,29 @@ import { urlFor } from '@/utils/sanity/sanity'
 import CustomPortableText from '@/components/global/CustomPortableText'
 import { FaClock } from "react-icons/fa";
 
-const page = async ({params}) => {
+const page = async props => {
+  const params = await props.params;
   console.log(params._slug)
-    console.log('client')
-    const article = await getSingleBlogPost(params._slug)
-    
-    console.log(article._id)
+  console.log('client')
+  const article = await getSingleBlogPost(params._slug)
 
-   const allPAth = await getBlogPosts();
-   
-   const readingTime = () =>{
-  const x =  article.content.filter((block) => block._type === "block" && Array.isArray(block.children))
-    .flatMap((block) => block.children.map((child) => child.text))
-    .join(" ") || "";
-      const wordsPerMinute = 150 // Average reading speed of an adult
-      const words = x.split(/\s+/).length // Split by whitespace and count words
-      const minutes = Math.ceil(words / wordsPerMinute)
-      return minutes
-   }
-    // const currentIndex = allPAth.findIndex((elt) => elt._id == article._id)
-    // const nextProject = allPAth[currentIndex+1] ? allPAth[currentIndex+1] : allPAth[0]
+  console.log(article._id)
 
-    //const nextLoader  = urlFor(nextProject.hero).url()
+  const allPAth = await getBlogPosts();
+
+  const readingTime = () =>{
+ const x =  article.content.filter((block) => block._type === "block" && Array.isArray(block.children))
+   .flatMap((block) => block.children.map((child) => child.text))
+   .join(" ") || "";
+     const wordsPerMinute = 150 // Average reading speed of an adult
+     const words = x.split(/\s+/).length // Split by whitespace and count words
+     const minutes = Math.ceil(words / wordsPerMinute)
+     return minutes
+  }
+  // const currentIndex = allPAth.findIndex((elt) => elt._id == article._id)
+  // const nextProject = allPAth[currentIndex+1] ? allPAth[currentIndex+1] : allPAth[0]
+
+  //const nextLoader  = urlFor(nextProject.hero).url()
 
   const dateFormat = () => {
     const date = new Date(article._createdAt)
@@ -36,7 +37,7 @@ const page = async ({params}) => {
 
     return day + '-'+month+'-'+year
   }
-    const loader = article.hero ? urlFor(article.hero.url).width(1000).height(1000).url() : '/'
+  const loader = article.hero ? urlFor(article.hero.url).width(1000).height(1000).url() : '/'
 
   return (
 

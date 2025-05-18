@@ -10,6 +10,9 @@ const  Hero = async ({datas}) => {
     const lqips = await getLqip();
 
     const matchLqip = (ref) => {
+      if(lqips == null || lqips.length == 0 ){
+        return ''
+      }
         const match = lqips.find((elt) => elt._id == ref)
         return match ? match.metadata.lqip : null
     }
@@ -27,6 +30,7 @@ const  Hero = async ({datas}) => {
       <Image 
         fill 
         src={bgLoader}
+        alt='Image principale de kymou'
         blurDataURL={bgLqip} 
         placeholder="blur"
         style={{objectFit:'cover', zIndex:0,transition:'10s'}} 
@@ -39,7 +43,7 @@ const  Hero = async ({datas}) => {
             <div className='overflow-hidden pb-2'>
               <h1 className='text-9xl font-rec2 flex items-center animate-[appearDown_0.3s_ease-out_forwards]'>
                 Kym
-                <Image src={"/kymouLogo.svg"} width={75} height={75} className='rounded-full logoSvg bg-[--color1] border-4 border-[--color2] p-1' />
+                <Image src={"/kymouLogo.svg"} alt={'logo kymou asbl'} width={75} height={75} className='rounded-full logoSvg bg-[--color1] border-4 border-[--color2] p-1' />
                 u  
                 <span className='text-xl ml-4'>asbl</span>
                 </h1>

@@ -1,42 +1,53 @@
 'use server'
 
-import { client } from "./sanity/sanity"
+//import { client } from "./sanity/sanity"
+import {client } from '@/sanity/lib/client'
 import { unstable_noStore as noStore } from 'next/cache';
+import { sanityFetch } from "@/sanity/lib/live";
+// import { sanityFetch } from './sanity/live';
 
 
 export async function getHome(){
     noStore()
-    const datas = await client.fetch('*[_type == "homePage2"][0]')
+      const datas = await sanityFetch({ query:'*[_type == "homePage2"][0]'})
+    return datas.data
+}
+
+export async function getTest(){
+    noStore()
+    const datas = await sanityFetch({ query:'*[_type == "homePage2"][0]'})
+    console.log('Actions server')
+    console.log(datas)
     return datas
 }
 export async function getIntro(){
     noStore()
-    const datas = await client.fetch(`*[_type == "intro"][0]`)
+    const datas = await sanityFetch(`*[_type == "intro"][0]`)
     return datas
 }
 
 
 export async function getContact(){
     noStore()
-    const datas = await client.fetch('*[_type == "contact"][0]')
+    const datas = await sanityFetch('*[_type == "contact"][0]')
     return datas
 }
 
 export async function getAxes(){
     noStore()
-    const datas = await client.fetch(`*[_type == "headerAxes"][0]`)
+    const datas = await sanityFetch(`*[_type == "headerAxes"][0]`)
     return datas
 }
 
 export async function getAbout(){
     noStore()
-    const datas = await client.fetch(`*[_type == "about"][0]`)
+    const datas = await sanityFetch(`*[_type == "about"][0]`)
     return datas
 }
 
 export async function getProjectMin(){
     noStore()
-    const datas = await client.fetch(`*[_type == "projectv2" && defined(slug)]
+    const datas = await sanityFetch(`*[_type == "projectv2" && defined(slug)]
         {
          slug,
         title,
@@ -48,7 +59,7 @@ export async function getProjectMin(){
 
 export async function getProjects(){
     noStore()
-    const datas = await client.fetch(`*[_type == "projectv2" && defined(slug)]|order(orderRank)
+    const datas = await sanityFetch(`*[_type == "projectv2" && defined(slug)]|order(orderRank)
         {
         title,
         _id,
@@ -60,7 +71,7 @@ export async function getProjects(){
 
     export async function getBlogPosts(){
         noStore()
-        const datas = await client.fetch(`*[_type == "blogPost" && defined(slug) && defined(publishedAt)]
+        const datas = await sanityFetch(`*[_type == "blogPost" && defined(slug) && defined(publishedAt)]
              {title,
              author,
                 content,
@@ -89,7 +100,7 @@ export async function getProjects(){
         export async function getSingleBlogPost(_slug){
             console.log(_slug)
             noStore()
-            const datas = await client.fetch(`*[_type == "blogPost" && slug.current == '${_slug}'][0]
+            const datas = await sanityFetch(`*[_type == "blogPost" && slug.current == '${_slug}'][0]
                 {title,
                 author,
                 content[]{
@@ -137,7 +148,7 @@ export async function getProjects(){
 
     export async function getProjectsPath(){
         noStore()
-        const datas = await client.fetch(`*[_type == "projectv2"]|order(orderRank)
+        const datas = await sanityFetch(`*[_type == "projectv2"]|order(orderRank)
             {
             title,
             }
@@ -152,7 +163,7 @@ export async function getProjects(){
                 image}
                 }`
                 noStore()
-                const datas = await client.fetch(`*[_type == "projectv2" && slug.current == '${id}'][0]
+                const datas = await sanityFetch(`*[_type == "projectv2" && slug.current == '${id}'][0]
                     {title,
                     _id,
                     'hero':hero.asset->{
@@ -196,13 +207,13 @@ export async function getProjects(){
   
 export async function resolveInnerImgREF(_ref){
     noStore()
-    const img = await client.fetch(`*[_type=='gallery' && _id == "${_ref}"][0]`)
+    const img = await sanityFetch(`*[_type=='gallery' && _id == "${_ref}"][0]`)
     return img
 }
 
 export async function getGallery(){
     noStore()
-    const datas = await client.fetch(`*[
+    const datas = await sanityFetch(`*[
   _type == 'sanity.imageAsset'
   && opt.media.tags != null
 ]{originalFilename,

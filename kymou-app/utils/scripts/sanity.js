@@ -1,4 +1,4 @@
-// scripts/sanity.js
+// !! Use 4 dynamics sitemap check /api
 const { createClient } = require('next-sanity')
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID // '6ahsdz3c'
