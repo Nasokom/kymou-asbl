@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@tailwindcss/postcss
 @plugin "@tailwindcss/typography";
 @reference "./ref.css";
 
@@ -45,4 +46,18 @@ body {
   padding: 0;
   margin: 0;
   /* font-family: dyna; */
+}
+
+.zigzag {
+  --s: 100px;
+  --_g: var(--color3) 90deg, #ff000000 90.5deg;
+  
+  background:
+   conic-gradient(from -45.5deg, var(--_g)),
+   conic-gradient(from 135.5deg, var(--_g)) calc(var(--s)/2) 0,
+ 
+   var(--color2);
+  
+  background-size: var(--s) var(--s);
+  transition: 2s;
 }
