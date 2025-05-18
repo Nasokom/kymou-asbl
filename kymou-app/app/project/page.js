@@ -24,12 +24,8 @@ const project = await getProjects()
                     {project.map((p,i) =>{
                         
                         return (
-                            <>
-                                { p.slug &&
-                                  
+
                                             <ProjectCard project={p} index={i} key={i}/>
-                                    }
-                            </>
                             
                         )
                     })}

@@ -36,7 +36,7 @@ export async function getAbout(){
 
 export async function getProjectMin(){
     noStore()
-    const datas = await client.fetch(`*[_type == "projectv2"]
+    const datas = await client.fetch(`*[_type == "projectv2" && defined(slug)]
         {
          slug,
         title,
@@ -48,7 +48,7 @@ export async function getProjectMin(){
 
 export async function getProjects(){
     noStore()
-    const datas = await client.fetch(`*[_type == "projectv2"]|order(orderRank)
+    const datas = await client.fetch(`*[_type == "projectv2" && defined(slug)]|order(orderRank)
         {
         title,
         _id,
@@ -60,7 +60,7 @@ export async function getProjects(){
 
     export async function getBlogPosts(){
         noStore()
-        const datas = await client.fetch(`*[_type == "blogPost"]
+        const datas = await client.fetch(`*[_type == "blogPost" && defined(slug) && defined(publishedAt)]
              {title,
              author,
                 content,

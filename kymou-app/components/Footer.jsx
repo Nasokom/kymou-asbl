@@ -4,9 +4,9 @@ import Link from 'next/link'
 import { usePathname } from "next/navigation";
 import Image from 'next/image';
 
-const Footer = () => {
+const Footer = ({blog}) => {
 
-    const links = [{name:'home',path:'/'},{name:'project',path:"/project"},{name:"gallery",path:'/gallery'},{name:'contact',path:'/contact'}]
+    const links = [{name:'home',path:'/'},{name:'project',path:"/project"},{name:"gallery",path:'/gallery'},{name:'blog',path:'/blog'},{name:'contact',path:'/contact'}]
 
   return (
     <div className='w-[95vw] mt-20 p-20 p-[6vw] h-fit pb-0 bottom-0 relative zigzag flex rounded-t-[50px]'>
@@ -19,6 +19,9 @@ const Footer = () => {
                         <p className='font-rec1 text-4xl text-center'>Navigation</p>
                         <ul className='font-rec flex flex-wrap'>
                         {links.map((link,i)=>{
+                              if(link.name == 'blog' && blog.length == 0 ){
+                                return
+                            }
                             return (
                                 <li key={i}>
                                 <Link  href={link.path} 

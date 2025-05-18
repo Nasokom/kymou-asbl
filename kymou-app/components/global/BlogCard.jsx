@@ -6,11 +6,12 @@ import React from 'react'
 import Image from 'next/image'
 import {dateFormat,readingTime} from '@/utils/function'
 import { FaClock } from 'react-icons/fa6'
+import dayjs from 'dayjs'
+
 const BlogCard = ({data}) => {
 
     const loader =data.hero ? urlFor(data.hero.url).url() : ''
-
-
+    
     const imageDesc = data.hero.title || data.hero.originalFilename
   return (
     <motion.div initial={{y:200,opacity:0}}
@@ -32,7 +33,7 @@ const BlogCard = ({data}) => {
                         <p className='font-rec1 text-4xl'>{data.title}</p>
                         <p className='font-rec'>{data.description}</p>
                         <div className='text-[--color3] flex gap-4'>
-                            <p className='flex gap-2'>{dateFormat(data._createdAt)} </p> |
+                            <p className='flex gap-2'>{dateFormat(data.publishedAt)} </p> |
                             <p className='flex items-center justify-center gap-1'>{readingTime(data.content)} min <FaClock/> </p>
                         </div>
                     </div>

@@ -19,19 +19,12 @@ const page = async () => {
           </div>
         </h1>
 
-            {datas.map((data,i)=> {
- 
-                    if(!data.slug || !data.slug.current){
-                        return
-                    }
-
-                return(
-                            <BlogCard data={data} key={i}/>    
-                )
-                
-
-                }
-            )}
+            {
+            datas.length > 0 
+            ? datas.map((data,i)=> <BlogCard data={data} key={i}/>)
+            : <p>aucun article publié, Reviens plus tard ...</p>
+            
+            }
 
 
         </div>

@@ -1,10 +1,14 @@
-export  const dateFormat = (data) => {
-    const date = new Date(data)
-    const day = date.getDay()
-    const month = date.getMonth()
-    const year = date.getFullYear()
+require('dayjs/locale/fr')
+import dayjs from 'dayjs'
+dayjs.locale('fr')  
 
-    return day + '-'+month+'-'+year
+export  const dateFormat = (data) => {
+    // const date = new Date(data)
+    // const day = date.getDay()
+    // const month = date.getMonth()
+    // return day + '-'+month+'-'+year
+    // const year = date.getFullYear()
+    return dayjs(data).format('D MMMM YYYY')
   }
 
   export const  readingTime = (data) =>{

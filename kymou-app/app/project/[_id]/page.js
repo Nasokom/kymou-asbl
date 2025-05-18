@@ -1,12 +1,10 @@
 import CustomPortableText from "@/components/CustomPortableText"
 import { getSingleProject,resolveInnerImgREF, getProjects } from "@/utils/actions"
-import Link from "next/link"
 import Image from "next/image"
 import { urlFor } from "@/utils/sanity/sanity"
 import RichTextImg from "@/components/RichTextImg"
 import { notFound } from 'next/navigation'
 import Gallery from "@/components/gallery/GalleryImg"
-import ProjectCard from "@/components/Project/ProjectCard"
 import ButtonGroup from "@/components/ux/ButtonGroup"
 import TitleEffect from "@/components/ux/TitleEffect"
 

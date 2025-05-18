@@ -5,10 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
-const Navbar = () => {
+const Navbar = ({blog}) => {
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
-  const links = [{name:'blog',path:'/blog-kymou'},{name:'blog',path:'/blog'},{name:'home',path:'/'},{name:'projets',path:"/project"},{name:"galerie",path:'/gallery'},{name:'contact',path:'/contact'}]
+  const links = [{name:'home',path:'/'},{name:'projets',path:"/project"},{name:"galerie",path:'/gallery'},{name:'blog',path:'/blog'},{name:'contact',path:'/contact'}]
 
   // const controlNavbar = () => {
   //   if (typeof window !== "undefined") {
@@ -53,17 +53,11 @@ const Navbar = () => {
       </div>
 
         <div className='flex gap-4 bg-white font-rec1 uppercase shadow-md p-2 max-w-full max-[600px]:w-full rounded-xl '>
-        <div className='flex gap-2'>
-          <Link href={'/blog-kymou'} className='font-display justify-center gap-2 items-center flex text-2xl'>
-          <Image 
-            //blurDataURL={datas.logo.asset.metadata.lqip}
-            src={'/kymouLogo.svg'} 
-            height={25} width={25} 
-            className="bg-[--color1] p-1  border-2 border-[--color2] rounded-full"
-            />
-            </Link>
-      </div>
+
         {links.map((link,i)=>{
+          if(link.name == 'blog' && blog.length == 0 ){
+              return
+          }
             return <Link key={i} href={link.path} 
             className={`
               ${usePathname() == link.path || link.path.length > 2 && usePathname().includes(link.path)? "zigzagsm text-white " : "hover:outline hover:text-[--color2] hover:scale-110 "}

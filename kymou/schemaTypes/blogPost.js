@@ -54,12 +54,18 @@ export default {
                 editModal:'fullscreen'
             }
         }),
+
        defineField({
             name: 'readingTime',
             title: 'Reading Time',
             type: 'string',
             inputComponent: RenderReadingTime,
           }),
+        
+        defineField({
+            name: 'publishedAt',
+            type: 'datetime',
+        }),
 
         defineField({
             name:'bodyd',
