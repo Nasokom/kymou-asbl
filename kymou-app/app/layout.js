@@ -31,7 +31,7 @@ export default async function RootLayout({ children }) {
   const blogPost = await getBlogPosts()
 
   return (
-    <html lang="en" className="bg-[--color1] ">
+    <html lang="en" className="bg-[--color1]">
       <Head>
       <meta name="google-site-verification" content="4VHbOuvyxkMPrmqoVd5xPWHVRe_y6d0khtbrCcdiCTY" />
       </Head>

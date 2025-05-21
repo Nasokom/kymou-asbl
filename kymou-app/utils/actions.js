@@ -71,7 +71,7 @@ export async function getProjects(){
 
     export async function getBlogPosts(){
         noStore()
-        const datas = await sanityFetch(`*[_type == "blogPost" && defined(slug) && defined(publishedAt)]
+        const datas = await sanityFetch(`*[_type == "blogPost" && defined(slug)]
              {title,
              author,
                 content,
@@ -100,7 +100,7 @@ export async function getProjects(){
         export async function getSingleBlogPost(_slug){
             console.log(_slug)
             noStore()
-            const datas = await sanityFetch(`*[_type == "blogPost" && slug.current == '${_slug}'][0]
+            const datas = await client.fetch(`*[_type == "blogPost" && slug.current == '${_slug}'][0]
                 {title,
                 author,
                 content[]{
