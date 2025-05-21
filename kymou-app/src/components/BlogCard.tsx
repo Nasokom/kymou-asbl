@@ -6,12 +6,13 @@ import React from 'react'
 import Image from 'next/image'
 import {dateFormat,readingTime} from '@/utils/fonction'
 import { FaClock } from 'react-icons/fa6'
+import { POSTS_QUERYResult } from "@/sanity/types";
 
-const BlogCard = ({data}:{data:any}) => {
+const BlogCard = ({data}:{data:POSTS_QUERYResult}) => {
 
-    const loader = data.hero ? urlFor(data.hero).url() : ''
+    const loader = data?.hero ? urlFor(data.hero).url() : ''
 
-    const imageDesc = data.hero.title || data.hero.originalFilename || 'dssd'
+    const imageDesc = data?.hero?.asset?.title || data?.hero?.asset?.originalFilename || 'dssd'
 
   return (
     <motion.div initial={{y:200,opacity:0}}
@@ -19,7 +20,7 @@ const BlogCard = ({data}:{data:any}) => {
         viewport={{ once: true}}
         className='w-full h-fit'
     >
-        <Link href={'/blog/'+data.slug.current} className='w-full flex gap-4 bg-[white] min-h-[30vw] min-h-fit rounded-xl  overflow-hidden'>
+        <Link href={'/blog/'+data?.slug?.current} className='w-full flex gap-4 bg-[white] min-h-[30vw] min-h-fit rounded-xl  overflow-hidden'>
 
             <div className='relative w-full h-[100] min-h-[400px] max-w-[50%] w-[50%]'>
                 <Image src={loader}  style={{objectFit:'cover'}} fill className='z-0' alt={imageDesc}/>
@@ -28,12 +29,12 @@ const BlogCard = ({data}:{data:any}) => {
 
             <div className='w-[50%] max-w-[50%] flex-auto flex min-h-full flex-col justify-center pt-4 p-2 gap-4'>
                     <div className='flex justify-center flex-col gap-4'>
-                        <p className='text-[--color3]'> Par <span className='text-black'>{data.author.name}</span></p>
-                        <p className='font-rec1 text-4xl'>{data.title}</p>
-                        <p className='font-rec'>{data.description}</p>
+                        <p className='text-[--color3]'> Par <span className='text-black'>{data?.author?.name}</span></p>
+                        <p className='font-rec1 text-4xl'>{data?.title}</p>
+                        <p className='font-rec'>{data?.description}</p>
                         <div className='text-[--color3] flex gap-4'>
-                            <p className='flex gap-2'>{dateFormat(data._createdAt)} </p> |
-                            <p className='flex items-center justify-center gap-1'>{readingTime(data.content)} min <FaClock/> </p>
+                            <p className='flex gap-2'>{dateFormat(data?._createdAt)} </p> |
+                            <p className='flex items-center justify-center gap-1'>{readingTime(data?.content)} min <FaClock/> </p>
                         </div>
                     </div>
                 <div className='w-full flex items-end justify-end h-full'>

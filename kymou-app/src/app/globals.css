@@ -1,13 +1,20 @@
-@import "tailwindcss";
-@tailwindcss/postcss
-@plugin "@tailwindcss/typography";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @reference "./ref.css";
 
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
+    --color1:#F5E9D1;
+  --color2:#c17817;
+  --color3:#3F784C;
+  --color4:#000000;
+  --color5:#2F52E0;
+
 }
+
 
 @theme inline {
   --color-background: var(--color1);
