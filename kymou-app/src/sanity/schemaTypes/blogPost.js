@@ -1,42 +1,55 @@
-import {defineField} from 'sanity'
+import {defineField,defineType} from 'sanity'
 
-export default {
+export default defineType({
     title:'Article',
     name:'blogPost',
     type:'document',
+    groups: [
+    {name: 'editorial', title: 'Editorial'},
+    {name: 'details', title: 'Details'},
+],
     fields:[
-        defineField({
-            name:'author',
-            title:'Auteur',
-            type:'object',
-            fields:[{type:'string',name:'name',initialValue:'Katherine Nicol-Kombia'},
-                {name:'image', type:'image',title:'photo'}
-            ]
-
-        }),
+   
         defineField({
             name:'title',
             title:'title',
-            type:'string'
+            type:'string',
+            validation: rule => [
+              rule.required().min(10).error('A title of min. 10 characters is required'),
+              rule.max(50).warning('Shorter titles are usually better'),
+            ],
+            group: ['details','editorial'],
         }),
         defineField({
             name:'slug',
             title:'Slug',
             type:'slug',
+            group: 'details',
+            description:"Url de l'article",
             options: {
             source: 'title',
- // will be ignored if slugify is set
+            // will be ignored if slugify is set
           slugify: input => input
                                .toLowerCase()
                                .replace(/\//g,'')
                                .replace(/\s+/g, '-')
                                .slice(0, 200)
-        }
+        },
+        validation: (rule) => rule
+        .required()
+        .error(`Required to generate a page on the website`),
         }),
         defineField({
             name:'description',
             title:'Description',
             type:'text'
+        }),
+
+        defineField({
+            name:'date',
+            type:'date',
+            group:'details',
+            description:'Date de publication'
         }),
         
         defineField({
@@ -46,51 +59,62 @@ export default {
             options: {
                 hotspot: true,
             },
+            group:'editorial'
           }),
 
         defineField({
             name:'content',
             title:'Contenu Page',
             type:'blogContent',
+               group:'editorial',
             options:{
                 editModal:'fullscreen'
             }
         }),
-       defineField({
-            name: 'readingTime',
-            title: 'Reading Time',
-            type: 'string',
-          }),
 
-        defineField({
-            name:'bodyd',
-            title:'Contenu structure',
-            type:'array',
-            of:[
-                {
-                    name:'blocks',
-                    type:'object',
-                    title:'titre',
-                    fields:[
-                        {
-                            name:'title',
-                            type:'string',
-                            title:'Titre'
-                        },
-                        {
-                            name:'text',
-                            type:'blogContent',
-                            title:'string'
-                        },
-                        {
-                            name:'image',
-                            type:'image',
-                            title:'image'
-                        }
-                    ]
-                },
-               
+      defineField({
+            name:'author',
+            title:'Auteur',
+            type:'object',
+            group: 'details',
+            fields:[{type:'string',name:'name',initialValue:'Katherine Nicol-Kombia'},
+                {name:'image', type:'image',title:'photo'}
             ]
+        }),
+
+    ],
+    preview: {
+  select: {
+    name: 'title',
+    date: '_createdAt',
+    update:'_updatedAt',
+    image: 'hero',
+  },
+
+  prepare({name,  date,update, image}) {
+    const nameFormatted = name || 'Untitled event'
+
+    const dateFormatted = date
+      ? new Date(date).toLocaleDateString(undefined, {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
         })
-    ]
-}
+      : 'No date'
+
+       const lastUpdate = update
+      ? new Date(update).toLocaleDateString(undefined, {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        })
+      : 'No date'
+
+    return {
+      title: nameFormatted,
+      subtitle:  `Creation: ${dateFormatted} | Mis a jour: ${lastUpdate}` ,
+      media: image,
+    }
+  },
+},
+})

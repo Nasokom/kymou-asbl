@@ -1,4 +1,5 @@
-export default {
+import { defineType } from "sanity";
+export default defineType({
     name: "customMedia",
     type: "document",
     title: "Custom Media",
@@ -35,5 +36,4 @@ export default {
         title: "Copyright Info",
       },
     ],
-  };
-  
+  })

@@ -15,7 +15,7 @@ export default defineType({
   name: 'blogContent',
   type: 'array',
   options: {
-    editModal: 'fullscreen',
+    modal: 'fullscreen',
   },
   of: [
     defineArrayMember({

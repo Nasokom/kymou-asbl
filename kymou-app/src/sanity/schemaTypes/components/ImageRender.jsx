@@ -10,7 +10,6 @@ const ImageRender = ({props}) => {
       const imageUrl = value?.asset?._ref
         ? builder.image(value).width(500).height(500).url()
         : null;
-        console.log(props)
   return (
 
         <img

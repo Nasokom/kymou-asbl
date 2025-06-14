@@ -1,16 +1,17 @@
-'use client'
+ 'use client'
 import { urlFor } from '@/sanity/lib/image'
 import Link from 'next/link'
 import {motion} from 'framer-motion'
 import React from 'react'
 import Image from 'next/image'
-import {dateFormat,readingTime} from '@/utils/fonction'
+import {readingTime} from '@/utils/fonction'
 import { FaClock } from 'react-icons/fa6'
-import { POSTS_QUERYResult } from "@/sanity/types";
+import { POSTS_QUERYResult} from "@/sanity/types";
+import { PublishedAt } from './PublishedAt'
 
-const BlogCard = ({data}:{data:POSTS_QUERYResult}) => {
+const BlogCard = ({data,className}:{data:POSTS_QUERYResult[number],className?:string}) => {
 
-    const loader = data?.hero ? urlFor(data.hero).url() : ''
+    const loader = data?.hero ? urlFor(data.hero).url() : null
 
     const imageDesc = data?.hero?.asset?.title || data?.hero?.asset?.originalFilename || 'dssd'
 
@@ -18,12 +19,12 @@ const BlogCard = ({data}:{data:POSTS_QUERYResult}) => {
     <motion.div initial={{y:200,opacity:0}}
         whileInView={{y:0,opacity:1}}
         viewport={{ once: true}}
-        className='w-full h-fit'
+        className={`w-full h-fit `+className}
     >
-        <Link href={'/blog/'+data?.slug?.current} className='w-full flex gap-4 bg-[white] min-h-[30vw] min-h-fit rounded-xl  overflow-hidden'>
+        <Link href={'/blog/'+data?.slug?.current} className={'w-full flex gap-4 bg-[white] min-h-[30vw] min-h-fit rounded-xl  overflow-hidden '}>
 
             <div className='relative w-full h-[100] min-h-[400px] max-w-[50%] w-[50%]'>
-                <Image src={loader}  style={{objectFit:'cover'}} fill className='z-0' alt={imageDesc}/>
+                {loader && <Image src={loader}  style={{objectFit:'cover'}} fill className='z-0' alt={imageDesc}/>}
                 <p className='absolute bottom-0 bg-[--color3] opacity-[0.7] w-full p-2 text-white'>{imageDesc} </p>
             </div>
 
@@ -33,7 +34,7 @@ const BlogCard = ({data}:{data:POSTS_QUERYResult}) => {
                         <p className='font-rec1 text-4xl'>{data?.title}</p>
                         <p className='font-rec'>{data?.description}</p>
                         <div className='text-[--color3] flex gap-4'>
-                            <p className='flex gap-2'>{dateFormat(data?._createdAt)} </p> |
+                            <PublishedAt className='flex gap-2' publishedAt={data?._createdAt}/>                          |
                             <p className='flex items-center justify-center gap-1'>{readingTime(data?.content)} min <FaClock/> </p>
                         </div>
                     </div>

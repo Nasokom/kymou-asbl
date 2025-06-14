@@ -1,0 +1,10 @@
+import Image from "next/image"
+const loading = () => {
+  return (
+    <div className="w-full h-[100vh] flex items-center justify-center">
+        <Image height={300} width={300} alt={"gvguvdwe"}src={'/kymouLogo.svg'} className='animate-bounce'/>
+    </div>
+  )
+}
+
+export default loading

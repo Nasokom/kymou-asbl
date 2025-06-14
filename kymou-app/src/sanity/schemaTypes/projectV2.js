@@ -5,15 +5,30 @@ export default defineType({
   name: 'projectv2',
   title: 'projectsV4',
   type: 'document',
+  groups:[{name:'detail',title:'Details'}],
   orderings: [orderRankOrdering],
   fields: [
+
     orderRankField({ type: "orderRank" }),
+
     defineField({
         name: 'title',
         title: 'title',
         type: 'string',
+        validation: rule => [
+      rule.required().min(10).error('A title of min. 10 characters is required'),
+      rule.max(50).warning('Shorter titles are usually better')
+  ]
       }),
 
+      defineField({
+        name:'isPublished',
+        type:'boolean',
+        description:'Clicker pour publier le projet',
+        initialValue:false,
+         readOnly: ({document}) => document?.title == null || document?.slug == null || document?.hero == null
+      }),
+      
       defineField({
         title: 'Slug',
         name: 'slug',
@@ -62,4 +77,5 @@ export default defineType({
       }),
 
   ],
+  
 })

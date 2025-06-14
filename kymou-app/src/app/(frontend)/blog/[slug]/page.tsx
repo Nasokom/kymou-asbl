@@ -1,55 +1,78 @@
 
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
 import { sanityFetch } from "@/sanity/lib/live";
 import { POST_QUERY } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
-import { PortableText } from "next-sanity";
 import CustomPortableText from "@/components/CustomPortableText";
 import { FaClock } from "react-icons/fa";
+import { readingTime } from "@/utils/fonction";
+import { PublishedAt } from "@/components/PublishedAt";
+import type { Metadata } from "next";
+
+
+type RouteProps = {
+  params: Promise<{ slug: string }>;
+};
+
+const getPost = async (params: RouteProps["params"]) =>
+  sanityFetch({
+    query: POST_QUERY,
+    params: await params,
+  });
+
+export async function generateMetadata({
+  params,
+}: RouteProps): Promise<Metadata> {
+  const { data: page } = await getPost(params);
+
+  if (!page) {
+    return {}
+  }
+
+  const metadata: Metadata = {
+    title: page.title,
+    description: page.description,
+  };
+
+  metadata.openGraph = {
+    images: {
+      url:
+      //  page.hero
+      //   ? urlFor(page.hero).width(1200).height(630).url()
+      //   : 
+        `/api/og?id=${page._id}`,
+      width: 1200,
+      height: 630,
+    },
+  };
+  
+  // if (page.seo.noIndex) {
+  //   metadata.robots = "noindex";
+  // }
+
+  return metadata;
+}
 
 export default async function Page({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { data: post } = await sanityFetch({
-    query: POST_QUERY,
-    params: await params,
-  });
+
+  const {data: post} = await getPost(params)
 
   if (!post) {
     notFound();
   }
 
-
-  console.log(post?._id)
-
   //const allPAth = await getBlogPosts()
 
-  const readingTime = () =>{
- const x =  post?.content?.filter((block:any) => block._type === "block" && Array.isArray(block.children))
-   .flatMap((block:any) => block.children.map((child:any) => child.text))
-   .join(" ") || "";
-     const wordsPerMinute = 150 // Average reading speed of an adult
-     const words = x.split(/\s+/).length // Split by whitespace and count words
-     const minutes = Math.ceil(words / wordsPerMinute)
-     return minutes
-  }
   // const currentIndex = allPAth.findIndex((elt) => elt._id == article._id)
   // const nextProject = allPAth[currentIndex+1] ? allPAth[currentIndex+1] : allPAth[0]
 
   //const nextLoader  = urlFor(nextProject.hero).url()
 
-  const dateFormat = () => {
-    const date = new Date(post?._createdAt)
-    const day = date.getDay()
-    const month = date.getMonth()
-    const year = date.getFullYear()
-
-    return day + '-'+month+'-'+year
-  }
   const loader = post.hero ? urlFor(post.hero).width(1000).height(1000).url() : '/'
 
   return (
@@ -61,14 +84,17 @@ export default async function Page({
               <p className='opacity-[0.7] '>{post.description}</p>
           <div className='text-[--color3] flex gap-4 text-[20px]'>
               <p> Par <span className='text-black'>{post.author?.name} </span> |</p>
-            <p>{dateFormat()}</p>
-            -
-            <p className='flex items-center justify-center gap-1'>{readingTime()}min <FaClock/> </p>
+              <PublishedAt className='flex gap-2' publishedAt={post?._createdAt}/>   
+              -
+            <p className='flex items-center justify-center gap-1'>{readingTime(post?.content)}min <FaClock/> </p>
             </div>
       </div>
 
    <div className="flex relative w-full rounded h-[100vh] overflow-hidden animate-[appearDown_1s_forwards]">
-          <Image fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded" alt={post?.hero?.altText || post?.hero?.description || post?.hero?.originalFilename}/>
+          <Image fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded" 
+         // alt={post?.hero?.altText || post?.hero?.description || post?.hero?.originalFilename}
+            alt="fake altText"
+          />
       </div>
 
 

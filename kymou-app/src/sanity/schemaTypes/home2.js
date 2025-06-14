@@ -5,6 +5,13 @@ export default defineType({
     name: 'homePage2',
     type: 'document',
     title: 'Home page',
+    groups:[  
+    {name: 'header', title: 'header'},
+    {name: 'axes', title: 'Objectifs'},
+    {name: 'about', title: 'About'},
+    {name: 'footer', title: 'Footer'},
+  ],
+
     fields: [
 
       defineField({
@@ -19,11 +26,15 @@ export default defineType({
         title:'header',
         name:"header",
         type:"object",
+        group:'header',
         fields:[
           {
             name:'image',
             type:'image',
             title:'image',
+            options:{
+              hotspot:true
+            }
           },
           { title:'quote',
             name:'quote',
@@ -49,6 +60,7 @@ export default defineType({
         title:'about',
         name:'about',
         type:'object',
+        group:'about',
         description:"Section 'about' home page penser a une image",
         fields:[
           {
@@ -71,6 +83,7 @@ export default defineType({
         title:"Objectifs de l'association",
         name:'goal',
         type:'object',
+        group:'axes',
         description:"Section",
         fields:[
           {
@@ -109,6 +122,7 @@ export default defineType({
         type:'object',
         name:'footer',
         title:'footer',
+        group:'footer',
         fields:[
           {
             type:'string',

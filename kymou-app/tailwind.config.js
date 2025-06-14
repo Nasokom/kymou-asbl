@@ -7,6 +7,13 @@ module.exports = {
   "./src/**/*.{js,ts,jsx,tsx,mdx}",
 ],
   theme: {
+     fontFamily: {
+      'rec': ['RecoletaReg'],
+      'rec1': ['RecoletaBold'],
+      'rec2':['RecoletaBlack'],
+      'display':['Plakkat'],
+
+    },
     extend: {},
   },
   plugins: [],
