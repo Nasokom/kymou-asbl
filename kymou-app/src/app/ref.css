@@ -77,7 +77,7 @@ body {
   @font-face {
     font-family: 'RecoletaBlack';
     font-display: swap;
-    src: url('/public/fonts/Recoleta/Recoleta\ Black.otf')
+    src: url('/public/fonts/Recoleta/Recoleta-Black.otf')
   }
 }
 
@@ -94,7 +94,7 @@ body {
   @font-face {
     font-family: 'RecoletaBold';
     font-display: swap;
-    src: url('/public/fonts/Recoleta/Recoleta\ Bold.otf')
+    src: url('/public/fonts/Recoleta/Recoleta-Bold.otf')
   }
 }
 

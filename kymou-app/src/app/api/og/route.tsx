@@ -26,7 +26,7 @@ import { join } from 'node:path'
 // }
 
 const Recoleta = await readFile(
-    join(process.cwd(), '/public/fonts/Recoleta/Recoleta\ Black.otf')
+    join(process.cwd(), '/public/fonts/Recoleta/Recoleta-Black.otf')
   )
 
   //reg
@@ -83,7 +83,7 @@ export async function GET(request: Request) {
               <img
                 src={data.hero ? urlFor(data.hero).width(500).height(630).url() : ''}
                 alt=""
-                tw="w-full h-full object-cover"
+                tw="w-full h-full object-cover" 
                 style={{objectFit:'cover'}}
               />
             </div>

@@ -9,7 +9,7 @@ module.exports = {
   theme: {
      fontFamily: {
       'rec': ['RecoletaReg'],
-      'rec1': ['RecoletaBold'],
+      'rec1': 'RecoletaBold',
       'rec2':['RecoletaBlack'],
       'display':['Plakkat'],
 
