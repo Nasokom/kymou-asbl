@@ -1,0 +1,130 @@
+.main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Plakkaat';
+}
+
+.imgContainer{
+  display: flex;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+}
+
+.imgBox{
+  width: 100vw;
+  height: 100dvh;
+  position: relative;
+  transition: 0.3s;
+}
+
+
+.lottie{
+  border-radius: 20px;
+}
+
+
+.helperBox{
+  justify-self: flex-start;
+  width: 100vw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  position: absolute;
+  padding: 30px;
+  color: white;
+  font-family: 'Plakkaat';
+ 
+}
+
+
+.helper{
+  border: 3px solid white;
+  background-color: rgba(0, 0, 0, 0.724);
+  backdrop-filter: blur(15px);
+  padding: 40px;
+  border-radius: 20px;
+  text-align: center;
+  min-height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.helper button{
+  padding: 15px;
+  background-color: rgba(0, 0, 0, 0.007);
+  color: white;
+  border-radius: 50%;
+  font-size: 30px;
+  border: 3px solid white;
+}
+
+.arrow{
+  display: none;
+}
+
+.helpText::after{
+  content: 'Scroll pour parcourir la plaquette'
+}
+
+@media (min-width:500px) {
+  .main{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .helpText::after{
+    content: 'Utilise les fleches pour parcourir la plaquette'
+  }
+
+  .helper{
+    height: 100%;
+  }
+
+  .helperBox{
+    width: 500px;
+    height:100%
+
+  }
+
+    .arrow{
+      display:flex;
+      font-size: 50px;
+      margin: 50px;
+      border-radius: 50%;
+      height: 50px;
+      width: 50px;
+      text-align: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: 0.2s;
+      border: 2px solid #E6CF96;
+      background-color:  #e6cf964f;
+      color:  #BAD388;
+    }
+
+    .arrow:active{
+      scale: 1.2;
+    }
+
+    .imgContainer{
+      width: 430px;
+      height: 750px;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      border-radius: 20px;
+    }
+
+    .imgBox{
+      height: 100%;
+    }
+}
