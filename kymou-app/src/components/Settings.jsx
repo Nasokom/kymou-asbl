@@ -126,14 +126,14 @@ function resetCssVar(){
             </div>
         </li>
 
-        <li className='flex border-t p-4 justify-between items-center'>
+        {/* <li className='flex border-t p-4 justify-between items-center'>
             <p>Utiliser une font adapter </p>
             <div className='flex flex-col justify-center items-center gap-2'>
               <button className='border-2 h-8 w-20 rounded-full border-[--color3] relative flex items-center'> 
                 <div className='h-8 w-8 bg-[--color3] rounded-full'></div>
               </button>
             </div>
-        </li>
+        </li> */}
 
          <li className='flex border-t p-4 justify-between items-center'>
             <p>Utiliser les parametre par defaults</p>
