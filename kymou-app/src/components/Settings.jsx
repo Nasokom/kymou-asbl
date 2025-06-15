@@ -1,9 +1,10 @@
 'use client'
 import React from 'react'
+import { TbSettings } from "react-icons/tb";
 import { useState,useEffect } from 'react'
 
-const Settings = ({toggle}) => {
-
+const Settings = () => {
+  const [showSettings, setShowSettings] = useState(false);
   const [fontSize,setFontSize ] = useState(20)
   const [lineHeigth,setLineheigth ] = useState(1)
   const [wordSpacing,setWordSpacing ] = useState(0.1)
@@ -75,7 +76,11 @@ function resetCssVar(){
 }
 
   return (
+<>
 
+    <TbSettings onClick={()=>setShowSettings(!showSettings)} className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${showSettings ? 'stroke-[--color2] scale-115' :''}`}/>
+
+{showSettings && 
     <div className='absolute w-full top-[110%] bg-white max-h-[85vh] overflow-scroll left-0 rounded-xl shadow-md p-4' >
     <div className='flex '>
       <p className='p-4 text-[--text]'>Preferences</p>
@@ -141,7 +146,8 @@ function resetCssVar(){
         </li>
     </ul>
     </div>
-
+  }
+</>
   )
 }
 

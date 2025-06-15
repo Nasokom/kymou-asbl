@@ -6,45 +6,11 @@ export default defineType({
   type: 'document',
   fields: [
     defineField({
-      name: 'name',
-      title: 'Name',
-      type: 'string',
-    }),
-    defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'name',
-        maxLength: 96,
-      },
-    }),
-    defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'bio',
-      title: 'Bio',
+      name: 'allowStudio',
+      title: 'Machine Administrateur',
+      description:"Definis les machines qui auront access au studio ",
       type: 'array',
-      of: [
-        {
-          title: 'Block',
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
-          lists: [],
-        },
-      ],
+      of:[{type:'object',fields:[{name:'name',title:"Nom de l'appareil",type:"string"},{name:"ip",title:"Adresse IP",type:'string'}]}]
     }),
-  ],
-  preview: {
-    select: {
-      title: 'name',
-      media: 'image',
-    },
-  },
+  ]
 })

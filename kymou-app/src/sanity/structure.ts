@@ -3,6 +3,7 @@ import {orderableDocumentListDeskItem} from '@sanity/orderable-document-list'
 import { RiArticleLine,RiArticleFill} from "react-icons/ri";
 import { FaHeart , FaHome, FaAddressBook} from "react-icons/fa";
 import { FaHeartCircleExclamation } from "react-icons/fa6";
+import { IoSettingsSharp } from "react-icons/io5";
 
 const singletonListItem = (
   S:any,
@@ -37,6 +38,7 @@ S.list()
             ///* singletonListItem(S, "settings", "Settings"), */
             singletonListItem(S,'homePage2','Home Page ').icon(FaHome),
             singletonListItem(S, "contact", "Contact Page").icon(FaAddressBook),
+        
             
             S.divider(),
             orderableDocumentListDeskItem({type: 'projectv2', S,context,icon:FaHeart, title:'Projets en ligne',filter:'isPublished == true'}),
@@ -47,6 +49,7 @@ S.list()
               .child(S.documentList().title('Article sur la toile').filter('_type == "projectv2" && !defined(isPublished)')),
 
              S.divider(),
+        singletonListItem(S, "settings", "Reglages").icon(IoSettingsSharp),
 
   //             S.listItem()
   // .title('Projets')

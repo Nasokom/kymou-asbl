@@ -60,7 +60,7 @@ p{
   line-height: var(--hauteur);
   word-spacing: var(--wordSpace);
   letter-spacing: var(--letterSpace);
-  font-family: 'RecoletaReg';
+  /* font-family: 'RecoletaReg'; */
 }
 
 html,

@@ -146,10 +146,10 @@ export const SITEMAP_QUERY = defineQuery(`
 
     ),
     'priority':select(
-      _type == 'homePage2' => '0.5',
-      _type == 'contact' => '0.3',
-      _type == "blogPost" => '1',
-      _type == "projectv2" => '1',
+      _type == 'homePage2' => 0.5,
+      _type == 'contact' => 0.3,
+      _type == "blogPost" => 1,
+      _type == "projectv2" => 1,
     ),
     'freq':select(
       _type == 'homePage2' => 'monthly',
@@ -160,3 +160,5 @@ export const SITEMAP_QUERY = defineQuery(`
     _updatedAt
 }
 `)
+
+export const SETTINGS_QUERY = defineQuery(`*[_type == "settings" ][0]`)

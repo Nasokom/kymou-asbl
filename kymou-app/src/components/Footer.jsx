@@ -6,7 +6,7 @@ import Image from 'next/image';
 
 const Footer = ({blog}) => {
 
-    const links = [{name:'home',path:'/'},{name:'project',path:"/project"},{name:"gallery",path:'/gallery'},{name:'blog',path:'/blog'},{name:'contact',path:'/contact'}]
+    const links = [{name:'home',path:'/'},{name:'project',path:"/project"},{name:"gallery",path:'/gallery'},{name:'blog',path:'/blog'},{name:'contact',path:'/contact'},{name:'Studio',path:'/studio'}]
 
   return (
     <div className='w-[95vw] mt-20 p-20 p-[6vw] h-fit pb-0 bottom-0 relative zigzag flex rounded-t-[50px]'>

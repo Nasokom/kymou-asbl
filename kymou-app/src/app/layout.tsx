@@ -1,5 +1,4 @@
 import "@/app/globals.css";
-import StudioBtn from '@/components/StudioBtn'
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -10,4 +9,4 @@ export default function RootLayout({
       <body>{children}</body>
     </html>
   );
-}
+} 

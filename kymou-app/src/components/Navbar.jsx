@@ -77,10 +77,8 @@ const Navbar = ({blog}) => {
               {link.name}
             </Link>
         })}
-        <TbSettings onClick={()=>setShowSettings(!showSettings)} className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${showSettings ? 'stroke-[--color2] scale-115' :''}`}/>
-
-        {showSettings && <Settings toggle={setShowSettings}/>}
-
+        {/* <TbSettings onClick={()=>setShowSettings(!showSettings)} className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${showSettings ? 'stroke-[--color2] scale-115' :''}`}/> */}
+          <Settings />
         </div>
         
     </motion.div>
