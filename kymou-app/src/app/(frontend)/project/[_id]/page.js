@@ -26,7 +26,7 @@ export async function generateMetadata({ params}){
    metadata.openGraph = {
     images: {
       url: post.hero
-        ? urlFor(post.hero).width(1200).height(630).url()
+        ? urlFor(post.hero.url).width(1200).height(630).url()
         : `/api/og?id=${page._id}`,
       width: 1200,
       height: 630,
@@ -57,6 +57,14 @@ export default async function Page({params}){
 
     //const loader =  urlFor(project.header[0].image).blur(50).url()
     const loader = project.hero ? urlFor(project.hero.url).width(1000).height(1000).url() : '/'
+
+     const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Project',
+    name: project.title,
+    image: loader,
+    description: project.description,
+  }
 
     
   return (

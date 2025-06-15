@@ -772,16 +772,20 @@ export type PROJECT_QUERYResult = {
   } | null> | null;
 } | null;
 // Variable: OG_IMAGE_QUERY
-// Query: *[_id == $id][0]{    title,    description,    hero,    "image": hero.asset->{      url,      metadata {        palette      }    }  }
+// Query: *[_id == $id][0]{    title,    description,    hero,    content,    _createdAt,    "image": hero.asset->{      url,      metadata {        palette      }    }  }
 export type OG_IMAGE_QUERYResult = {
   title: null;
   description: null;
   hero: null;
+  content: null;
+  _createdAt: string;
   image: null;
 } | {
   title: string | null;
   description: null;
   hero: null;
+  content: null;
+  _createdAt: string;
   image: null;
 } | {
   title: string | null;
@@ -798,6 +802,8 @@ export type OG_IMAGE_QUERYResult = {
     crop?: SanityImageCrop;
     _type: "image";
   } | null;
+  content: null;
+  _createdAt: string;
   image: {
     url: string | null;
     metadata: {
@@ -808,6 +814,8 @@ export type OG_IMAGE_QUERYResult = {
   title: string | null;
   description: string | null;
   hero: null;
+  content: null;
+  _createdAt: string;
   image: null;
 } | {
   title: string | null;
@@ -824,6 +832,8 @@ export type OG_IMAGE_QUERYResult = {
     crop?: SanityImageCrop;
     _type: "image";
   } | null;
+  content: BlogContent | null;
+  _createdAt: string;
   image: {
     url: string | null;
     metadata: {
@@ -832,9 +842,18 @@ export type OG_IMAGE_QUERYResult = {
   } | null;
 } | null;
 // Variable: SITEMAP_QUERY
-// Query: *[_type in ["projectv2", "blogPost"] && defined(slug.current)] {    "href": select(      _type == "blogPost" => "/blog/" + slug.current,      _type == "projectv2" => "/project/" + slug.current,      slug.current    ),    _updatedAt}
+// Query: *[_type in ['homePage2','contact'] || _type == "projectv2" && defined(slug.current) && isPublished == true || _type =="blogPost" && defined(slug.current) && now() > date ] {    "href": select(      _type == 'homePage2' => "/",      _type == 'contact' => "/contact",      _type == "blogPost" => "/blog/" + slug.current,      _type == "projectv2" => "/project/" + slug.current,    ),    'priority':select(      _type == 'homePage2' => 1,      _type == 'contact' => 0.3,      _type == "blogPost" => 1,      _type == "projectv2" => 1,    ),    _updatedAt}
 export type SITEMAP_QUERYResult = Array<{
+  href: "/";
+  priority: 1;
+  _updatedAt: string;
+} | {
+  href: "/contact";
+  priority: 0.3;
+  _updatedAt: string;
+} | {
   href: string | null;
+  priority: 1;
   _updatedAt: string;
 }>;
 
@@ -853,7 +872,7 @@ declare module "@sanity/client" {
     "*[_type == \"projectv2\" && isPublished == true]|order(orderRank)\n        {\n        title,\n        _id,\n        slug,\n        hero{\n          ...,\n          asset->\n        }}\n        ": PROJECTS_QUERYResult;
     "*[_type == \"projectv2\" && isPublished == true]\n        {\n        title,\n        _id,\n        slug\n        ,_createdAt,_updatedAt\n         \n          }\n        ": PROJECTS_SITEMAP_QUERYResult;
     "*[_type == \"projectv2\" && slug.current == $_id][0]\n                    {title,\n                    _id,\n                    'hero':hero.asset->{\n                            originalFilename,\n                            url,\n                            title,\n                            description,\n                                'lqip':metadata.lqip,\n                                'dimensions':metadata.dimensions,\n                            altText,\n                            _rev,\n                    },\n                    slug,\n                    pitch,\n                    problem,\n                    action,\n                    result,\n                  'gallery':gallery[].asset->{\n  originalFilename,\n  url,\n  title,\n  description,\n       'lqip':metadata.lqip,\n    'dimensions':metadata.dimensions,\n  altText,\n  _rev,\n}}": PROJECT_QUERYResult;
-    "\n  *[_id == $id][0]{\n    title,\n    description,\n    hero,\n    \"image\": hero.asset->{\n      url,\n      metadata {\n        palette\n      }\n    }\n  }    \n": OG_IMAGE_QUERYResult;
-    "\n*[_type in [\"projectv2\", \"blogPost\"] && defined(slug.current)] {\n    \"href\": select(\n      _type == \"blogPost\" => \"/blog/\" + slug.current,\n      _type == \"projectv2\" => \"/project/\" + slug.current,\n      slug.current\n    ),\n    _updatedAt\n}\n": SITEMAP_QUERYResult;
+    "\n  *[_id == $id][0]{\n    title,\n    description,\n    hero,\n    content,\n    _createdAt,\n    \"image\": hero.asset->{\n      url,\n      metadata {\n        palette\n      }\n    }\n  }    \n": OG_IMAGE_QUERYResult;
+    "\n*[_type in ['homePage2','contact'] || _type == \"projectv2\" && defined(slug.current) && isPublished == true || _type ==\"blogPost\" && defined(slug.current) && now() > date ] {\n    \"href\": select(\n      _type == 'homePage2' => \"/\",\n      _type == 'contact' => \"/contact\",\n      _type == \"blogPost\" => \"/blog/\" + slug.current,\n      _type == \"projectv2\" => \"/project/\" + slug.current,\n\n    ),\n    'priority':select(\n      _type == 'homePage2' => 1,\n      _type == 'contact' => 0.3,\n      _type == \"blogPost\" => 1,\n      _type == \"projectv2\" => 1,\n\n    ),\n    _updatedAt\n}\n": SITEMAP_QUERYResult;
   }
 }

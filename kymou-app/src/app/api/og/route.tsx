@@ -5,6 +5,8 @@ import { notFound } from "next/navigation";
 import { ImageResponse } from "next/og";
 import { readFile } from 'node:fs/promises'
 import { join } from 'node:path'
+import { readingTime } from "@/utils/fonction";
+import { PublishedAt } from "@/components/PublishedAt";
 
 //export const runtime = "edge";
 
@@ -68,6 +70,7 @@ export async function GET(request: Request) {
       >
         {/* Content container */}
         <div tw="flex flex-row w-full h-full relative">
+           <PublishedAt className='flex gap-2' publishedAt={data?._createdAt}/>  
           {/* Text content */}
           <div tw="flex-1 flex items-center flex-col justify-center px-10 font-rec1">
             <h1 tw="text-7xl tracking-tight leading-none text-white leading-tight">

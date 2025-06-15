@@ -12,8 +12,8 @@ module.exports = {
       'rec1': 'RecoletaBold',
       'rec2':['RecoletaBlack'],
       'display':['Plakkat'],
-
     },
+    
     extend: {},
   },
   plugins: [],

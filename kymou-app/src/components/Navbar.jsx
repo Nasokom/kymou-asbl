@@ -4,10 +4,16 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { TbSettings } from "react-icons/tb";
+import Settings from '@/components/Settings'
+
+
 
 const Navbar = ({blog}) => {
+
   const [showNavbar, setShowNavbar] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [showSettings, setShowSettings] = useState(false);
   const links = [{name:'home',path:'/'},{name:'projets',path:"/project"},{name:"galerie",path:'/gallery'},{name:'blog',path:'/blog'},{name:'contact',path:'/contact'}]
 
   // const controlNavbar = () => {
@@ -53,7 +59,7 @@ const Navbar = ({blog}) => {
             </Link>
       </div>
 
-        <div className='flex gap-4 bg-white font-rec1 uppercase shadow-md p-2 max-w-full max-[600px]:w-full rounded-xl '>
+        <div className='relative flex gap-4 bg-white font-rec1 items-center uppercase shadow-md p-2 max-w-full max-[600px]:w-full rounded-xl '>
 
         {links.map((link,i)=>{
           if(link.name == 'blog' && blog.length == 0 ){
@@ -71,9 +77,12 @@ const Navbar = ({blog}) => {
               {link.name}
             </Link>
         })}
+        <TbSettings onClick={()=>setShowSettings(!showSettings)} className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${showSettings ? 'stroke-[--color2] scale-115' :''}`}/>
+
+        {showSettings && <Settings toggle={setShowSettings}/>}
+
         </div>
-
-
+        
     </motion.div>
   )
 };

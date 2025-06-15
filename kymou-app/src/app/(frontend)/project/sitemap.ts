@@ -14,6 +14,8 @@ const {data:projects} = await sanityFetch({query:PROJECTS_SITEMAP_QUERY})
     url: `${BASE_URL}/project/${project?.slug?.current}`,
     lastModified: project._updatedAt,
     loc:`${BASE_URL}/project/${project?.slug?.current}`,
+    changeFrequency: "weekly",
+    priority: 1,
 
   }))
 }

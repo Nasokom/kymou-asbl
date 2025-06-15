@@ -66,6 +66,8 @@ export default async function Page({
     notFound();
   }
 
+
+
   //const allPAth = await getBlogPosts()
 
   // const currentIndex = allPAth.findIndex((elt) => elt._id == article._id)
@@ -75,10 +77,24 @@ export default async function Page({
 
   const loader = post.hero ? urlFor(post.hero).width(1000).height(1000).url() : '/'
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    name: post.title,
+    image: loader,
+    description: post.description,
+  }
+
   return (
-
+<>
+ <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
+        }}
+      />
     <div className='min-h-[100dvh]  m-4  mt-[15vh] pt-4 flex flex-col items-center justify-center max-w-[1000px]'>
-
+      
       <div className='flex flex-col w-full gap-2 mb-8 '>
               <h1 className='font-rec1 text-8xl'>{post.title}</h1>
               <p className='opacity-[0.7] '>{post.description}</p>
@@ -93,8 +109,8 @@ export default async function Page({
    <div className="flex relative w-full rounded h-[100vh] overflow-hidden animate-[appearDown_1s_forwards]">
           <Image fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded" 
          // alt={post?.hero?.altText || post?.hero?.description || post?.hero?.originalFilename}
-            alt="fake altText"
-          />
+         alt="fake altText"
+         />
       </div>
 
 
@@ -106,5 +122,6 @@ export default async function Page({
 
 
     </div>
+</>
   )
 }

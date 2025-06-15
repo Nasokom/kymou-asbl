@@ -14,12 +14,15 @@
 }
 
 /* Dark Mode  later */
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+      --color1:#1B3022;
+      --color2:#c17817;
+      --color3:#3F784C;
   }
-} */
+}
 
 body {
   background: var(--background);
@@ -28,6 +31,9 @@ body {
   /* font-family: ; */
 }
 :root{
+  --hauteur:normal;
+  --text:22px;
+  --text:10px;
   --color1:#F5E9D1;
   --color2:#c17817;
   --color3:#3F784C;
@@ -48,6 +54,15 @@ body {
   /* font-family: dyna; */
 }
 
+
+p{
+  font-size:var(--text);
+  line-height: var(--hauteur);
+  word-spacing: var(--wordSpace);
+  letter-spacing: var(--letterSpace);
+  font-family: 'RecoletaReg';
+}
+
 html,
 body {
   max-width: 100vw;
@@ -55,6 +70,20 @@ body {
   scroll-behavior: smooth;
   font-family: 'RecoletaReg';
 }
+input {
+  all: unset;
+}
+
+  .thumb::-webkit-slider-thumb {
+     -webkit-appearance: none;
+        width: 18px;
+        height: 18px;
+        background: var(--color3);
+        border-radius: 50%;
+        cursor: -moz-grab;
+        cursor: -webkit-grab;
+      cursor:move;
+  }
 .zigzag {
   --s: 100px;
   --_g: var(--color3) 90deg, #ff000000 90.5deg;
