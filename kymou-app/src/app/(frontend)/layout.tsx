@@ -10,14 +10,21 @@ import { sanityFetch } from "@/sanity/lib/live";
 import {BLOG_LENGTH_QUERY,SETTINGS_QUERY} from '@/sanity/lib/queries'
 import StudioBtn from "@/components/StudioBtn";
 
+
 export default async function FrontendLayout({
   children,
 }: Readonly<{
   children: React.ReactNode
 }>) {
 
+      const baseUrl = process.env.VERCEL
+      ? `https://${process.env.VERCEL_URL}`
+      : "http://localhost:3000";
+
   const {data:data} = await sanityFetch({query:BLOG_LENGTH_QUERY})
-  const {data:devices} = await sanityFetch({query:SETTINGS_QUERY})
+
+  const isStudioAllowed = await fetch(baseUrl+'/api/ip').then(data=>data.json())
+ console.log(isStudioAllowed)
 
   return (
     <div className="w-[100dvw] min-h-[100vh] flex flex-col relative items-center ">
@@ -34,6 +41,12 @@ export default async function FrontendLayout({
           <VisualEditing />
         </>
       )}
+
+      {(await draftMode()).isEnabled == false &&  isStudioAllowed.isAllow ?(
+        <StudioBtn/>) :''
+       }
+
+
     </div>
   )
 }
