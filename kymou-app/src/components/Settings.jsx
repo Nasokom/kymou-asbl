@@ -41,22 +41,29 @@ useEffect(()=>{
 
 //set val to css variable
 const x = localStorage.getItem('--text');
-  changeRootCss('--text',x+'px')
+changeRootCss('--text',x+'px')
+if(x){
   setFontSize(x)
+}
 //set them to all the state
-
 const h = localStorage.getItem('--hauteur');
+if(h){
   changeRootCss('--hauteur',h+'em')
   setLineheigth(h)
+}
 
 const w = localStorage.getItem('--wordSpace');
+if(w){
   changeRootCss('--wordSpace',w+'em')
   setLineheigth(w)
+}
 
 
   const l = localStorage.getItem('--letterSpace');
-  changeRootCss('--letterSpace',l+'em')
-  setLineheigth(l)
+  if(l){
+    changeRootCss('--letterSpace',l+'em')
+    setLineheigth(l)
+  }
 
 },[])
 
@@ -110,7 +117,7 @@ function resetCssVar(){
             <p>espacement des mots</p>
            <div className='flex flex-col justify-center items-center gap-2'>
               <span>{wordSpacing}</span>
-              <input type='range' min={0} max={1} step={0.1} className='bg-[--color1] h-2 rounded-full thumb'
+              <input type='range' min={0} max={1} step={0.1} value={wordSpacing} className='bg-[--color1] h-2 rounded-full thumb'
               onChange={(e)=>changeValue('--wordSpace',e.target.value,'em')}  
               />
             </div>
@@ -120,7 +127,7 @@ function resetCssVar(){
             <p>espacement des lettres</p>
            <div className='flex flex-col justify-center items-center gap-2'>
              <span>{letterSpacing}</span>
-              <input type='range' min={0} max={0.2} step={0.02} className='bg-[--color1] h-2 rounded-full thumb'
+              <input type='range' min={0} max={0.2} step={0.02} value={letterSpacing} className='bg-[--color1] h-2 rounded-full thumb'
               onChange={(e)=>changeValue('--letterSpace',e.target.value,'em')}  
               />
             </div>

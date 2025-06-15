@@ -32,6 +32,10 @@ body {
 }
 :root{
   --hauteur:normal;
+  --letterSpace:0em;
+  --text:30px;
+  --wordSpace:0em;
+  --hauteur:1em;
   --text:22px;
   --text:10px;
   --color1:#F5E9D1;
