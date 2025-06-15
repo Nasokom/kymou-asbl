@@ -1,8 +1,8 @@
 
 
-import { NextRequest } from 'next/server'
+//import { NextRequest } from 'next/server'
 
-export async function GET(request: NextRequest) {
+export async function GET(request) {
   const forwarded = request.headers.get('x-forwarded-for')
   const ip = forwarded?.split(',')[0] || request.ip || 'Unknown'
 
