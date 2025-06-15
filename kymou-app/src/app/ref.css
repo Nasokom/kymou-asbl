@@ -1,0 +1,422 @@
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+.zigzag {
+  --s: 100px;
+  --_g: var(--color3) 90deg, #ff000000 90.5deg;
+  
+  background:
+   conic-gradient(from -45.5deg, var(--_g)),
+   conic-gradient(from 135.5deg, var(--_g)) calc(var(--s)/2) 0,
+ 
+   var(--color2);
+  
+  background-size: var(--s) var(--s);
+  transition: 2s;
+}
+
+.outline{
+  outline: #000000;
+  outline-width: 2px;
+  outline-style: auto;
+  outline-offset: 2px;
+}
+.zigzagsm{
+  --s: 30px;
+  --c1: #000000;
+  
+  --_g: var(--color3) 90deg, #ff000000 90.5deg;
+  
+  background:
+   conic-gradient(from -45.5deg, var(--_g)),
+   conic-gradient(from 135.5deg, var(--_g)) calc(var(--s)/2) 0,
+ 
+   var(--color2);
+  
+  background-size: var(--s) var(--s);
+  transition: 0.3s;
+}
+.zigzagsm:hover{
+  background-position-y: 50%;
+  background-position-x: 50%;
+  transition: 1s;
+  rotate: 45deg;
+}
+
+
+
+@font-face {
+  font-family: "dyna";
+  src: url('/public/DynaPuff.ttf');
+  font-display: swap;
+}
+
+@layer base {
+  @font-face {
+    font-family: 'Plakkaat';
+    font-display: swap;
+    src: url('/public/Plakkaat.ttf');
+  }
+}
+
+
+@layer base {
+  @font-face {
+    font-family: 'Recoleta';
+    font-display: swap;
+    src: url('/public/fonts/Recoleta-Regular.otf')
+  }
+
+
+/* Recoleta */
+
+  @font-face {
+    font-family: 'RecoletaBlack';
+    font-display: swap;
+    src: url('/public/fonts/Recoleta/Recoleta-Black.otf')
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: 'RecoletaReg';
+    font-display: swap;
+    src: url('/public/fonts/Recoleta/Recoleta\ Regular.otf')
+  }
+}
+
+
+@layer base {
+  @font-face {
+    font-family: 'RecoletaBold';
+    font-display: swap;
+    src: url('/public/fonts/Recoleta/Recoleta-Bold.otf')
+  }
+}
+
+
+@theme {
+  --font-rec: "Recoleta", "sans-serif";
+    --font-rec1: "RecoletaBlack", "sans-serif";
+    --font-rec2: "RecoletaBlack", "sans-serif";
+  }
+
+h1{
+  font-size: 40px;
+}
+.float-start {
+  float: left;
+}
+.float-end {
+  float: right;
+}
+
+/* Assurons-nous que nous ciblons les images dans tous les composants CustomPortableText */
+
+
+/* .containerBla {
+  display: flex;
+}
+.alternate{
+ display: flex;
+}
+
+
+ .alternate:nth-child(even){
+  flex-direction: row-reverse;
+} */
+
+/* .containerBla .alternate img:nth-child(odd){
+  float: inline-end;
+}
+
+.containerBla .alternate img:nth-child(even){
+  float: inline-start;
+} */
+/* Réinitialisation après chaque image flottante pour éviter les chevauchements */
+.containerBla {
+  clear: both; /* Permet de commencer une nouvelle ligne après chaque image */
+}
+
+.animatedAreaD3 {
+  animation: heartbeat 3s infinite;
+  transform-origin: center; /* Ensure scaling happens around the center */
+}
+
+@keyframes heartbeat {
+  0% {
+    transform: scale(1); /* Normal size */
+  }
+  50% {
+    transform: scale(1.2)  translateX(25px) ; /* Enlarged size */
+  }
+  100% {
+    transform: scale(1); /* Back to normal size */
+  }
+}
+
+
+@keyframes loader  {
+  0% {
+    /* transform: scale(0); */
+    rotate: 0deg;
+
+  }
+  50% {
+    transform: scale(1); /* Normal size */
+    opacity: 1;
+  }
+  90%{
+
+  }
+  99%{
+    opacity: 0;
+  }
+  100% {
+    rotate: 360deg;
+    opacity: 0;
+    display: none;
+  }
+}
+
+.loader{
+scale: 1;
+animation: loader 1.5s ease-in forwards;
+}
+
+@keyframes quoteAnim  {
+  0% {
+    opacity: 0; /* Normal size */
+    translate:0 50px ;
+  }
+  100% {
+    opacity: 1;
+    translate:0 0 ;
+  }
+}
+
+.quoteAnim{
+opacity: 0;
+animation: quoteAnim 1s ease-in-out 2s forwards;
+}
+
+.animeBg{
+  mask-image: linear-gradient(rgb(0 0 0 / 100%), transparent);
+  animation: circle 2s forwards;
+  animation-delay: 1s;
+  background: orange;
+  clip-path: circle(20%);
+  opacity: 0;
+}
+
+
+.animeBg1{
+  mask-image: linear-gradient(rgb(0 0 0 / 100%), transparent);
+  animation: animebg 1.5s ease-in-out forwards;
+  /* animation-delay: 1s; */
+  clip-path: inset(28% 25% 90% 25% round 10px);
+  border-radius: 20px;
+}
+
+
+.bgHeader{
+}
+@keyframes circle {
+  0%{
+    clip-path: circle(0%)
+  }
+  75% {
+    opacity: 1; }
+
+  100% { clip-path: circle(100%);
+    opacity: 1; }
+}
+
+@keyframes animebg {
+
+
+  40% {
+    clip-path: inset(28% 25% 25% 25% round 10px);
+  }
+
+
+  100% {
+    clip-path: inset(0% 0% 0% 0%); /* Back to normal size */
+    opacity: 1;
+  }
+}
+
+.text_shad{
+  text-shadow: 5px 5px #eceddc;
+}
+
+.icon_invert { 
+  -webkit-filter: invert(100%);
+  filter: invert(100%);
+}
+
+.masked-text {
+
+  font-weight: bold;
+  color: transparent;
+  background-image: url('https://images.unsplash.com/photo-1732535725600-f805d8b33c9c?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); 
+  background-size: 100%; /* Enlarged for smooth animation */
+  background-position: 0 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: animate-background 4s ease-in-out forwards;
+}
+
+
+.anim{
+animation:anim 4s 0.5s forwards;
+animation-delay: 5s;
+}
+
+@keyframes anim{
+  0%{
+    opacity: 1;
+  }
+  100%{
+    opacity: 0;
+  }
+}
+
+@keyframes animate-background {
+  0% {
+      background-position: 50% 50%;
+      background-size: 100%;
+  }
+
+  100% {
+    background-position: 50% 50%;
+    background-size: 100%;
+}
+}
+
+
+
+
+/* 
+.qAnim2{
+  --delay: calc(1s * var(--index));
+  animation: fadeIn var(--delay) forwards;
+}
+.qAnim2:nth-child(1) { --index: 1; }
+.qAnim2:nth-child(2) { --index: 2; }
+.qAnim2:nth-child(3) { --index: 3; }
+
+@keyframes fadeIn{
+  0%{
+    translate: 0 100px;
+  }
+
+  100%{
+    translate: 0 0px;
+  }
+} */
+
+/* Project page additional css */
+.project-section section > h3:nth-of-type(even) {
+  text-align: right;
+}
+
+.project-section > span:nth-of-type(even) {
+  right: 0;
+}
+
+.project-section > h3:nth-of-type(odd) {
+  text-align: left;
+}
+
+.project-section > span:nth-of-type(odd) {
+  left:0
+}
+
+
+.project-section .alt:nth-of-type(even) img {
+  float: right;
+}
+
+.project-section .alt:nth-of-type(odd) img {
+  float: left;
+}
+
+.project-section .toggle-float:nth-child(odd){
+  float: right;
+}
+
+article.project-section > section h3:nth-of-type(odd) {
+  /* background-color: var(--color11); */
+  text-align: left;
+}
+
+/* .alt{
+  display: flex;
+  flex-direction: row;
+}
+
+.alt:nth-child(odd){
+  flex-direction: row-reverse;
+} */
+
+
+@keyframes translateUp {
+    from{
+      translate: 0 0% ;
+    }
+    to{
+      translate: 0 -100% ;
+    }
+}
+
+@keyframes appearDown {
+  from{
+    translate: 0 100% ;
+  }
+  to{
+    translate: 0 0% ;
+  }
+}
+
+
+.logoSvg g{
+  fill:#3F784C
+}
+
+.projectCard{
+  width: 30vw;
+  height: 30vw;
+}
+
+.projectCard2{
+  width: 50vw;
+  height: 50vw;
+}
+
+.projectCard .imgWrapper{
+
+}
+
+.sub{
+font-size: clamp(30px,5vw,70px)
+}
+
+.bigSub{
+  font-size: clamp(40px,7vw,110px)
+}
+
+@media (max-width : 800px){
+  .projectCard,.projectCard2{
+    width: 90vw;
+    height: 90vw;
+  }
+
+}
+
+
