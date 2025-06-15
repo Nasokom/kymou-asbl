@@ -75,7 +75,7 @@ export default async function Page({
 
   //const nextLoader  = urlFor(nextProject.hero).url()
 
-  const loader = post.hero ? urlFor(post.hero).width(1000).height(1000).url() : '/'
+  const loader = post.hero ? urlFor(post.hero).width(1000).height(1000).url() : ''
 
   const jsonLd = {
     '@context': 'https://schema.org',
