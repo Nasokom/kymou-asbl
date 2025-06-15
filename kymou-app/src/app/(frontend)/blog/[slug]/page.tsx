@@ -77,22 +77,23 @@ export default async function Page({
 
   const loader = post.hero ? urlFor(post.hero).width(1000).height(1000).url() : ''
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Article',
-    name: post.title,
-    image: loader,
-    description: post.description,
-  }
+  // const newLocal = {
+  //   '@context': 'https://schema.org',
+  //   '@type': 'Article',
+  //   name: post.title,
+  //   image: loader,
+  //   description: post.description,
+  // };
+  // const jsonLd = newLocal
 
   return (
 <>
- <script
+ {/* <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
         }}
-      />
+      /> */}
     <div className='min-h-[100dvh]  m-4  mt-[15vh] pt-4 flex flex-col items-center justify-center max-w-[1000px]'>
       
       <div className='flex flex-col w-full gap-2 mb-8 '>
