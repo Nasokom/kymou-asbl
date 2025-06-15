@@ -7,7 +7,6 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
 //   const ip = typeof forwarded === 'string' ? forwarded.split(',')[0] : req.socket.remoteAddress
 
  res.status(200).json({
-     //ip
-    messsage:'sdfsf'
+    messsage:'tesgerg'
     })
 }
