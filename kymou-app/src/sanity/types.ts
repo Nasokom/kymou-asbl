@@ -467,9 +467,12 @@ export type Settings = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  name?: string;
+  title?: string;
   allowStudio?: Array<{
     name?: string;
     ip?: string;
+    allow?: boolean;
     _key: string;
   }>;
 };
@@ -880,9 +883,12 @@ export type SETTINGS_QUERYResult = {
   _createdAt: string;
   _updatedAt: string;
   _rev: string;
+  name?: string;
+  title?: string;
   allowStudio?: Array<{
     name?: string;
     ip?: string;
+    allow?: boolean;
     _key: string;
   }>;
 } | null;

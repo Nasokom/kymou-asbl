@@ -8,7 +8,7 @@ import Footer from "@/components/Footer"
 import { Suspense } from 'react';
 import { sanityFetch } from "@/sanity/lib/live";
 import {BLOG_LENGTH_QUERY,SETTINGS_QUERY} from '@/sanity/lib/queries'
-import StudioBtn from "@/components/StudioBtn";
+ import StudioBtn from "@/components/StudioBtn";
 
 
 export default async function FrontendLayout({
@@ -22,9 +22,20 @@ export default async function FrontendLayout({
       : "http://localhost:3000";
 
   const {data:data} = await sanityFetch({query:BLOG_LENGTH_QUERY})
+let isStudioAllowed = false;
 
-  const isStudioAllowed = await fetch(baseUrl+'/api/ip').then(data=>data.json())
- console.log(isStudioAllowed)
+try {
+  const d = await fetch(baseUrl + '/api/ip');
+  if (d.ok) {
+    const ipData = await d.json();
+    isStudioAllowed = ipData?.isAllow ?? false;
+  } else {
+    console.warn('/api/ip responded with status:', d.status);
+  }
+} catch (e) {
+  console.error('Failed to fetch /api/ip:', e);
+}
+
 
   return (
     <div className="w-[100dvw] min-h-[100vh] flex flex-col relative items-center ">
@@ -35,16 +46,15 @@ export default async function FrontendLayout({
        </Suspense>
       <Footer blog={data}/>
       <SanityLive />
-      {(await draftMode()).isEnabled && (
+      {(await draftMode()).isEnabled ?(
         <>
           <DisableDraftMode />
           <VisualEditing />
         </>
-      )}
+      ) :
+      await isStudioAllowed ? <StudioBtn/> :null
+      }
 
-      {(await draftMode()).isEnabled == false &&  isStudioAllowed.isAllow ?(
-        <StudioBtn/>) :''
-       }
 
 
     </div>
