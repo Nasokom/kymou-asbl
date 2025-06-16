@@ -24,6 +24,7 @@ export default async function FrontendLayout({
   const {data:data} = await sanityFetch({query:BLOG_LENGTH_QUERY})
 let isStudioAllowed = false;
 
+if (process.env.NODE_ENV !== 'production') {
 try {
   const d = await fetch(baseUrl + '/api/ip');
   if (d.ok) {
@@ -35,7 +36,7 @@ try {
 } catch (e) {
   console.error('Failed to fetch /api/ip:', e);
 }
-
+}
 
   return (
     <div className="w-[100dvw] min-h-[100vh] flex flex-col relative items-center ">
