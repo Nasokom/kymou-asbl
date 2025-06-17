@@ -5,7 +5,7 @@ import { useEffect,useState } from "react";
 import { BASE_URL } from "@/utils/constants";
 
 
-const StudioBtn = ({allow}) => {
+const StudioBtn = () => {
 
 const [data,setData] =useState(false)
 

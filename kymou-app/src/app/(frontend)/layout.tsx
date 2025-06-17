@@ -56,7 +56,7 @@ try {
           <VisualEditing />
         </>
       ) :
-       <StudioBtn allow={isStudioAllowed}/> 
+       <StudioBtn /> 
       }
 
 
