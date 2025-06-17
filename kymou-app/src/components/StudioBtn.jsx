@@ -5,6 +5,7 @@ import { useEffect,useState } from "react";
 
 
 
+
 const StudioBtn = () => {
 
 const [data,setData] =useState(false)
@@ -13,7 +14,7 @@ const [data,setData] =useState(false)
     fetch('/api/ip',{ cache:'no-store' })
     .then(data => data.json())
     .then(data => setData(data))
-  },[])
+  },[data])
 
 
   const isStudio = usePathname().includes('/studio')
