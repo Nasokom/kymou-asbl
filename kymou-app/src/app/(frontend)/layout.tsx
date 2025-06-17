@@ -29,7 +29,7 @@ try {
   const d = await fetch(baseUrl + '/api/ip');
   if (d.ok) {
     const ipData = await d.json();
-    isStudioAllowed = ipData?.isAllow ?? false;
+    isStudioAllowed = await ipData?.isAllow ?? false;
   } else {
     console.warn('/api/ip responded with status:', d.status);
   }

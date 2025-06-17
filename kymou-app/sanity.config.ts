@@ -60,6 +60,7 @@ export const myTheme = buildLegacyTheme({
 })
 
 const defaultPLugin = [
+  structureTool({structure,defaultDocumentNode}),
    media({
     creditLine: {
       enabled: true,
@@ -73,7 +74,6 @@ const defaultPLugin = [
     maximumUploadSize: 10000000
     // number - maximum file size (in bytes) that can be uploaded through the plugin interface
   }),
-    structureTool({structure,defaultDocumentNode}),
     // Vision is for querying with GROQ from inside the Studio
     // https://www.sanity.io/docs/the-vision-plugin
 
