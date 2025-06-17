@@ -55,7 +55,7 @@ try {
           <VisualEditing />
         </>
       ) :
-      await isStudioAllowed ? <StudioBtn/> : null
+       <StudioBtn allow={isStudioAllowed}/> 
       }
 
 
