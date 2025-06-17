@@ -10,7 +10,7 @@ const StudioBtn = () => {
 const [data,setData] =useState(false)
 
   useEffect(()=>{
-    fetch(BASE_URL+'/api/ip')
+    fetch('/api/ip')
     .then(data => data.json())
     .then(data => setData(data))
   },[])
