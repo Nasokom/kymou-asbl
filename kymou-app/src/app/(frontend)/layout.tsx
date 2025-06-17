@@ -42,6 +42,7 @@ try {
     <div className="w-[100dvw] min-h-[100vh] flex flex-col relative items-center ">
       
        <Navbar blog={data}/>
+       <p>{JSON.stringify(isStudioAllowed)}</p>
        {/* Maybe change this shitty loading ? */}
        <Suspense fallback={<p>ewwf</p>}>
           {children}
