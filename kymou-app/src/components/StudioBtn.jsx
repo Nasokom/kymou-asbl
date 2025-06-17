@@ -18,15 +18,11 @@ const [data,setData] =useState(false)
   const isStudio = usePathname().includes('/studio')
 
   return (
-    <div className={`fixed z-[10000] left-0 top-[50%] w-[210px] h-50 flex`}>
-
-          <p className="absolute">
-            {data && data.ip}
-            </p>
-{/*       
+    <div className={`fixed z-[10000] right-0 top-[50%] w-[210px] h-50 flex ${!isStudio && !data ? 'hidden': 'flex'}`}>
+      
         <div className="absolute top-[50%] left-[-50px]">
                 <Link href={isStudio?"/api/draft-mode/disable":'/studio'}className="zigzag border-4 p-4 text-xl rounded-xl text-white font-rec1">{isStudio ? "Retour au siteweb" : "Acceder au BackOffice"}</Link>
-        </div> */}
+        </div>
 
 
 
