@@ -24,7 +24,7 @@ export default async function FrontendLayout({
   const {data:data} = await sanityFetch({query:BLOG_LENGTH_QUERY})
 let isStudioAllowed = false;
 
-
+//Allowing studio link for website administrator
 try {
   const d = await fetch(baseUrl + '/api/ip');
   if (d.ok) {
@@ -42,6 +42,7 @@ try {
     <div className="w-[100dvw] min-h-[100vh] flex flex-col relative items-center ">
       
        <Navbar blog={data}/>
+       {/* Maybe change this shitty loading ? */}
        <Suspense fallback={<p>ewwf</p>}>
           {children}
        </Suspense>
