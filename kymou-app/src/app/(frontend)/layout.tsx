@@ -13,6 +13,7 @@ import {BLOG_LENGTH_QUERY,SETTINGS_QUERY} from '@/sanity/lib/queries'
 
 export default async function FrontendLayout({
   children,
+  
 }: Readonly<{
   children: React.ReactNode
 }>) {
