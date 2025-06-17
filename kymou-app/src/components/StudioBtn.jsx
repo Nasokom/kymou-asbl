@@ -21,7 +21,7 @@ const [data,setData] =useState(false)
     <div className={`fixed z-[10000] left-0 top-[50%] w-[210px] h-50 flex`}>
 
           <p className="absolute">
-            {JSON.stringify(data)}
+            {data && data.ip}
             </p>
 {/*       
         <div className="absolute top-[50%] left-[-50px]">
