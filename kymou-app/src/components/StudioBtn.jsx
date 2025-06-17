@@ -13,7 +13,7 @@ const [data,setData] =useState(false)
   useEffect(()=>{
     fetch('/api/ip',{ cache:'no-store' })
     .then(data => data.json())
-    .then(data => setData(data))
+    .then(data => setData(data.isAllow))
   },[data])
 
 
