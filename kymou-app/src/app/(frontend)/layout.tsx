@@ -53,7 +53,7 @@ try {
           <VisualEditing />
         </>
       ) :
-      await isStudioAllowed ? <StudioBtn/> :null
+      await isStudioAllowed ? <StudioBtn/> : null
       }
 
 
