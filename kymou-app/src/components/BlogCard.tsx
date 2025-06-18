@@ -16,7 +16,8 @@ const BlogCard = ({data,className}:{data:POSTS_QUERYResult[number],className?:st
     const imageDesc = data?.hero?.asset?.title || data?.hero?.asset?.originalFilename || 'dssd'
 
   return (
-    <motion.div initial={{y:200,opacity:0}}
+    <motion.div 
+        initial={{y:200,opacity:0}}
         whileInView={{y:0,opacity:1}}
         viewport={{ once: true}}
         className={`w-full h-fit `+className}

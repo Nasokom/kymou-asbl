@@ -468,6 +468,16 @@ article.project-section > section h3:nth-of-type(odd) {
 }
 
 
+@keyframes translateRight{
+  from{
+    translate: 0% 0% ;
+  }
+  to{
+    translate: 100% 0% ;
+  }
+}
+
+
 .logoSvg g{
   fill:#3F784C
 }

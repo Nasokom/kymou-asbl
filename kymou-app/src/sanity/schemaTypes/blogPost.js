@@ -1,12 +1,16 @@
 import {defineField,defineType} from 'sanity'
+import { PiArticleMediumLight } from "react-icons/pi";
+import { MdOutlineRocketLaunch } from "react-icons/md";
+import { MdOutlineSettings } from "react-icons/md";
 
 export default defineType({
     title:'Article',
     name:'blogPost',
     type:'document',
     groups: [
-    {name: 'editorial', title: 'Editorial'},
-    {name: 'details', title: 'Details'},
+    {name: 'editorial', title: 'Contenu Article', icon:PiArticleMediumLight, default: true},
+    {name: 'details', title: 'Details', icon:MdOutlineSettings},
+    {name: 'publish', title: 'Publication', icon:MdOutlineRocketLaunch},
 ],
     fields:[
    
@@ -20,6 +24,7 @@ export default defineType({
             ],
             group: ['details','editorial'],
         }),
+
         defineField({
             name:'slug',
             title:'Slug',
@@ -39,17 +44,20 @@ export default defineType({
         .required()
         .error(`Required to generate a page on the website`),
         }),
+        
         defineField({
             name:'description',
             title:'Description',
-            type:'text'
+            type:'text',
+            group: 'editorial',
         }),
 
         defineField({
             name:'date',
             type:'date',
             group:'details',
-            description:'Date de publication'
+            description:'Date de publication',
+             group: ['publish','details'],
         }),
         
         defineField({
