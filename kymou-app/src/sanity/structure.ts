@@ -25,7 +25,7 @@ S.list()
               .title('Articles non publies')
               .schemaType('blogPost')
               .icon(RiArticleLine)
-              .child(S.documentList().title('Article a venir').filter('_type == "blogPost" && date >= now() || _type == "blogPost" && !defined(date) ||  _type == "blogPost" && !defined(isPublished) ||_type == "blogPost" && isPublished == true')),
+              .child(S.documentList().title('Article a venir').filter('_type == "blogPost" && date >= now() || _type == "blogPost" && !defined(date) ||  _type == "blogPost" && !defined(isPublished) ||_type == "blogPost" && isPublished == false')),
             S.listItem()
               .title('Articles publies')
               .schemaType('blogPost')
