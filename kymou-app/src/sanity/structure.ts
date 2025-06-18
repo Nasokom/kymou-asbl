@@ -25,13 +25,13 @@ S.list()
               .title('Articles non publies')
               .schemaType('blogPost')
               .icon(RiArticleLine)
-              .child(S.documentList().title('Article a venir').filter('_type == "blogPost" && date >= now() || _type == "blogPost" && !defined(date) ')),
+              .child(S.documentList().title('Article a venir').filter('_type == "blogPost" && date >= now() && isPublished == false || _type == "blogPost" && !defined(date)  && !defined(isPublished)')),
 
             S.listItem()
               .title('Articles publies')
               .schemaType('blogPost')
               .icon(RiArticleFill)
-              .child(S.documentList().title('Article sur la toile').filter('_type == "blogPost" && date <= now()')),
+              .child(S.documentList().title('Article sur la toile').filter('_type == "blogPost" && date <= now() && isPublished == true')),
             S.divider(),
 
             // Our singleton type has a list item with a custom child
@@ -47,7 +47,6 @@ S.list()
               .schemaType('blogPost')
               .icon(FaHeartCircleExclamation)
               .child(S.documentList().title('Article sur la toile').filter('_type == "projectv2" && !defined(isPublished)')),
-
              S.divider(),
         singletonListItem(S, "settings", "Reglages").icon(IoSettingsSharp),
 

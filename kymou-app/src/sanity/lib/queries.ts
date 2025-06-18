@@ -15,7 +15,7 @@ export const HOME_QUERY = defineQuery(`*[_type == "homePage2"][0]{
     }
   }
 }`)
-export const POSTS_QUERY = defineQuery(`*[_type == "blogPost" && defined(slug.current) && now() > date ][0...12]{
+export const POSTS_QUERY = defineQuery(`*[_type == "blogPost" && defined(slug.current) && isPublished == true && now() > date ][0...12]{
   _id, title, author, slug,  content, _createdAt,publishedAt,description,
   hero{
     ...,
@@ -27,9 +27,9 @@ export const POSTS_QUERY = defineQuery(`*[_type == "blogPost" && defined(slug.cu
   },
 }`)
 
-export const BLOG_SITEMAP_QUERY = defineQuery(`*[_type == "blogPost" && now() > date ]{_id,slug,_createdAt,_updatedAt}`)
+export const BLOG_SITEMAP_QUERY = defineQuery(`*[_type == "blogPost" && now() > date && isPublished == true ]{_id,slug,_createdAt,_updatedAt}`)
 
-export const BLOG_LENGTH_QUERY= defineQuery(`*[_type == "blogPost" && now() > date ]{}`)
+export const BLOG_LENGTH_QUERY= defineQuery(`*[_type == "blogPost" && now()  > date && isPublished == true ]{}`)
 export const POST_QUERY = defineQuery(`*[_type == "blogPost" && slug.current == $slug][0]{
   _id,
   title,

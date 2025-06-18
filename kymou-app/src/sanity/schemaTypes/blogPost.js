@@ -59,6 +59,7 @@ export default defineType({
             description:'Date de publication',
              group: ['publish','details'],
         }),
+       
         
         defineField({
             name: 'hero',
@@ -88,6 +89,15 @@ export default defineType({
             fields:[{type:'string',name:'name',initialValue:'Katherine Nicol-Kombia'},
                 {name:'image', type:'image',title:'photo'}
             ]
+        }),
+
+          defineField({
+            name:'isPublished',
+            type:'boolean',
+            group:'details',
+            initialValue:'true',
+            description:'Publier article ?',
+             group: ['publish'],
         }),
 
     ],
