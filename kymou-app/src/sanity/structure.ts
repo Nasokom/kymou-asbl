@@ -25,13 +25,12 @@ S.list()
               .title('Articles non publies')
               .schemaType('blogPost')
               .icon(RiArticleLine)
-              .child(S.documentList().title('Article a venir').filter('_type == "blogPost" && date >= now() && isPublished == false || _type == "blogPost" && !defined(date)  && !defined(isPublished)')),
-
+              .child(S.documentList().title('Article a venir').filter('_type == "blogPost" && date >= now() || _type == "blogPost" && !defined(date) ||  _type == "blogPost" && !defined(isPublished) ||_type == "blogPost" && isPublished == true')),
             S.listItem()
               .title('Articles publies')
               .schemaType('blogPost')
               .icon(RiArticleFill)
-              .child(S.documentList().title('Article sur la toile').filter('_type == "blogPost" && date <= now() && isPublished == true')),
+              .child(S.documentList().title('Article sur la toile').filter('_type == "blogPost" && date <= now() && isPublished == true ')),
             S.divider(),
 
             // Our singleton type has a list item with a custom child
@@ -47,8 +46,9 @@ S.list()
               .schemaType('blogPost')
               .icon(FaHeartCircleExclamation)
               .child(S.documentList().title('Article sur la toile').filter('_type == "projectv2" && !defined(isPublished)')),
+
              S.divider(),
-        singletonListItem(S, "settings", "Reglages").icon(IoSettingsSharp),
+        singletonListItem(S, "settings", "Reglage").icon(IoSettingsSharp),
 
   //             S.listItem()
   // .title('Projets')
