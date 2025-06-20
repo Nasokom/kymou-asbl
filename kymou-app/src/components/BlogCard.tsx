@@ -19,7 +19,7 @@ const BlogCard = ({data,className}:{data:POSTS_QUERYResult[number],className?:st
     <motion.div 
         initial={{y:200,opacity:0}}
         whileInView={{y:0,opacity:1}}
-        viewport={{ once: true}}
+        viewport={{ once: true, margin:'200px'}}
         className={`w-full h-fit flex `+className}
     >
         <Link href={'/blog/'+data?.slug?.current}

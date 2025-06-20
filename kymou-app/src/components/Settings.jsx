@@ -99,7 +99,8 @@ function resetCssVar(){
             <p>Taille de Lecture</p>
             <div className='flex flex-col justify-center items-center gap-2'>
               <span>{fontSize}px</span>
-              <input type='range' min={12} max={22} step={1} value={fontSize} onChange={(e)=>changeValue('--text',e.target.value,'px')} className='bg-[--color1] h-2 rounded-full thumb'/>
+              {/* max:22 = optimal */}
+              <input type='range' min={12} max={30} step={1} value={fontSize} onChange={(e)=>changeValue('--text',e.target.value,'px')} className='bg-[--color1] h-2 rounded-full thumb'/>
             </div>
         </li>
         
