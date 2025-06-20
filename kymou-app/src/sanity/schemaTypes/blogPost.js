@@ -16,7 +16,7 @@ export default defineType({
    
         defineField({
             name:'title',
-            title:'title',
+            title:"Titre de l'article",
             type:'string',
             validation: rule => [
               rule.required().min(10).error('A title of min. 10 characters is required'),
@@ -47,7 +47,7 @@ export default defineType({
         
         defineField({
             name:'description',
-            title:'Description',
+            title:"Pitch de l'article",
             type:'text',
             group: 'editorial',
         }),
@@ -63,7 +63,7 @@ export default defineType({
         
         defineField({
             name: 'hero',
-            title:'Image header',
+            title:'Image principale',
             type: 'image',
             options: {
                 hotspot: true,
@@ -73,7 +73,7 @@ export default defineType({
 
         defineField({
             name:'content',
-            title:'Contenu Page',
+            title:'Article',
             type:'blogContent',
                group:'editorial',
             options:{
@@ -93,9 +93,10 @@ export default defineType({
 
           defineField({
             name:'isPublished',
+            title:"Publier l'article",
             type:'boolean',
             group:'details',
-            initialValue:'true',
+            initialValue:'false',
             description:'Publier article ?',
              group: ['publish'],
         }),

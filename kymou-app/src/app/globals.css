@@ -13,23 +13,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* Dark Mode  later */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-      --color1:#1B3022;
-      --color2:#c17817;
-      --color3:#3F784C;
-  }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-  /* font-family: ; */
-}
 :root{
   --hauteur:normal;
   --letterSpace:0em;
@@ -43,7 +26,7 @@ body {
   --color3:#3F784C;
   --color4:#000000;
   --color5:#2F52E0;
-  --color6:#931621
+  --color6:#931621;
  
   --color11:#BE92A2;
   --color12:#937666;
@@ -51,6 +34,28 @@ body {
   --color14:#3BB273;
   --color14:#C17817;
 }
+
+/* Dark Mode  later */
+/* @media (prefers-color-scheme: dark) {
+
+  :root {
+    
+    --background: #0a0a0a;
+    --foreground: #ededed;
+    --color1:#1B3022;
+    --color1:#1c1a18;
+      --color2:#c17817;
+      --color3:#3F784C;
+  }
+} */
+
+body {
+  background: var(--color1);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  /* font-family: ; */
+}
+
 * {
   box-sizing: border-box;
   padding: 0;

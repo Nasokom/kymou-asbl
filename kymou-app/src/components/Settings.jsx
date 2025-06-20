@@ -2,6 +2,8 @@
 import React from 'react'
 import { TbSettings } from "react-icons/tb";
 import { useState,useEffect } from 'react'
+import { FaWindowClose } from 'react-icons/fa';
+
 
 const Settings = () => {
   const [showSettings, setShowSettings] = useState(false);
@@ -89,9 +91,9 @@ function resetCssVar(){
 
 {showSettings && 
     <div className='absolute w-full top-[110%] bg-white max-h-[85vh] overflow-scroll left-0 rounded-xl shadow-md p-4' >
-    <div className='flex '>
-      <p className='p-4 text-2xl'>Preferences</p>
-
+    <div className='flex p-4 text-2xl justify-between items-center '>
+      <p className='text-2xl'>Preferences</p>
+      <FaWindowClose onClick={()=>setShowSettings(!showSettings)} className={`flex cursor-pointer flex-basis text-4xl m-2 hover:fill-[--color2]  hover:scale-125 ${showSettings ? 'stroke-[--color2] scale-115' :''}`}/>
     </div>
 
     <ul className='flex flex-col font-rec normal-case gap-4 w-full '>
@@ -100,7 +102,7 @@ function resetCssVar(){
             <div className='flex flex-col justify-center items-center gap-2'>
               <span>{fontSize}px</span>
               {/* max:22 = optimal */}
-              <input type='range' min={12} max={30} step={1} value={fontSize} onChange={(e)=>changeValue('--text',e.target.value,'px')} className='bg-[--color1] h-2 rounded-full thumb'/>
+              <input type='range' min={12} max={25} step={1} value={fontSize} onChange={(e)=>changeValue('--text',e.target.value,'px')} className='bg-[--color1] h-2 rounded-full thumb'/>
             </div>
         </li>
         
