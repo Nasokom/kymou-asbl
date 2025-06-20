@@ -51,6 +51,7 @@ export async function generateMetadata({
   //   metadata.robots = "noindex";
   // }
 
+
   return metadata;
 }
 
@@ -77,23 +78,41 @@ export default async function Page({
 
   const loader = post.hero ? urlFor(post.hero).width(1000).height(1000).url() : ''
 
-  // const newLocal = {
-  //   '@context': 'https://schema.org',
-  //   '@type': 'Article',
-  //   name: post.title,
-  //   image: loader,
-  //   description: post.description,
-  // };
-  // const jsonLd = newLocal
+
+  const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: post.title,
+  image: [loader],
+  datePublished: post._createdAt,
+  dateModified: post._updatedAt || post._createdAt,
+  author: {
+    "@type": "Person",
+    name: post.author?.name || "unknow",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Kymou asbl",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://kymou.lu/kymouLogo.svg",
+    },
+  },
+  description: post.description,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `https://kymou.lu/blog/${post.slug}`,
+  },
+};
 
   return (
 <>
- {/* <script
+ <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
         }}
-      /> */}
+      />
     <div className='min-h-[100dvh]  m-4  mt-[15vh] pt-4 flex flex-col items-center justify-center max-w-[1000px]'>
       
       <div className='flex flex-col w-full gap-2 mb-8 '>
@@ -117,7 +136,7 @@ export default async function Page({
 
     <article className='project-section gap-10 flex flex-col alt max-[800px]:p-4  max-w-[1000px] mt-12'>
         
-        <CustomPortableText  value={post.content} className={' alt flex gap-4 text-[20px] flex-wrap'}/>
+        <CustomPortableText  value={post.content} className={' alt flex gap-4 text-xl flex-wrap'}/>
 
     </article>
 

@@ -5,7 +5,7 @@ import { useState,useEffect } from 'react'
 
 const Settings = () => {
   const [showSettings, setShowSettings] = useState(false);
-  const [fontSize,setFontSize ] = useState(20)
+  const [fontSize,setFontSize ] = useState(16)
   const [lineHeigth,setLineheigth ] = useState(1)
   const [wordSpacing,setWordSpacing ] = useState(0.1)
   const [letterSpacing,setLetterSpacing ] = useState(0.02)
@@ -72,7 +72,7 @@ if(w){
 function resetCssVar(){
   const valeurs = [
     {key:'--letterSpace',value:0,unit:'em'},
-    {key:'--text',value:30,unit:'px'},
+    {key:'--text',value:16,unit:'px'},
     {key:'--wordSpace',value:0,unit:'em'},
     {key:'--hauteur',value:1,unit:'em'},
   ]
@@ -90,16 +90,16 @@ function resetCssVar(){
 {showSettings && 
     <div className='absolute w-full top-[110%] bg-white max-h-[85vh] overflow-scroll left-0 rounded-xl shadow-md p-4' >
     <div className='flex '>
-      <p className='p-4 text-[--text]'>Preferences</p>
+      <p className='p-4 text-2xl'>Preferences</p>
 
     </div>
 
-    <ul className='flex flex-col font-rec normal-case gap-4 w-full text-[--text]'>
+    <ul className='flex flex-col font-rec normal-case gap-4 w-full '>
         <li className='flex border-t p-4 justify-between items-center'>
             <p>Taille de Lecture</p>
             <div className='flex flex-col justify-center items-center gap-2'>
               <span>{fontSize}px</span>
-              <input type='range' min={16} max={55} step={2} value={fontSize} onChange={(e)=>changeValue('--text',e.target.value,'px')} className='bg-[--color1] h-2 rounded-full thumb'/>
+              <input type='range' min={12} max={22} step={1} value={fontSize} onChange={(e)=>changeValue('--text',e.target.value,'px')} className='bg-[--color1] h-2 rounded-full thumb'/>
             </div>
         </li>
         
@@ -107,7 +107,7 @@ function resetCssVar(){
             <p>Hauteur de ligne</p>
            <div className='flex flex-col justify-center items-center gap-2'>
               <span>{lineHeigth}</span>
-              <input type='range' min={1} max={4} step={0.1} value={lineHeigth} className='bg-[--color1] h-2 rounded-full thumb'
+              <input type='range' min={1} max={2} step={0.1} value={lineHeigth} className='bg-[--color1] h-2 rounded-full thumb'
                 onChange={(e)=>changeValue('--hauteur',e.target.value,'em')}  
                 />
             </div>

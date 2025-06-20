@@ -2074,6 +2074,13 @@
           }
         },
         "optional": true
+      },
+      "isPublished": {
+        "type": "objectAttribute",
+        "value": {
+          "type": "boolean"
+        },
+        "optional": true
       }
     }
   },

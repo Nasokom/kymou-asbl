@@ -17,7 +17,7 @@ const ProjectCard = ({project,index, isUnique=false, className=''}) => {
     initial={{opacity:0,y: "40%"
 
     }}
-    whileInView={{ opacity:1 ,y:"0%"
+    whileInView={{ opacity:1 ,y:"10%"
       
     }}
     //animate={{ opacity: 1, scale: 1 ,y:"0%"}}
@@ -31,7 +31,7 @@ const ProjectCard = ({project,index, isUnique=false, className=''}) => {
         />
         </div>
 
-        <p className='text-xl font-rec1 bg-[--color1] rounded-lg p-2'>{project.title}</p>
+        <p className='text-xl font-rec1 bg-[--color1] rounded-lg p-2 text-center'>{project.title}</p>
 
     </motion.div>
     </Link>

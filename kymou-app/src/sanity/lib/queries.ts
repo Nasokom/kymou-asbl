@@ -22,6 +22,7 @@ export const POSTS_QUERY = defineQuery(`*[_type == "blogPost" && defined(slug.cu
     asset-> {
       title,
       url,
+      credit,
       ...
     }
   },
@@ -32,11 +33,13 @@ export const BLOG_SITEMAP_QUERY = defineQuery(`*[_type == "blogPost" && now() > 
 export const BLOG_LENGTH_QUERY= defineQuery(`*[_type == "blogPost" && now()  > date && isPublished == true ]{}`)
 export const POST_QUERY = defineQuery(`*[_type == "blogPost" && slug.current == $slug][0]{
   _id,
+  'slug':slug.current,
   title,
   author,
   content, 
   publishedAt,
   _createdAt,
+  _updatedAt,
   description,
   hero{
     ...,
@@ -90,19 +93,18 @@ export const PROJECTS_SITEMAP_QUERY = defineQuery(`*[_type == "projectv2" && isP
          
           }
         `)
-export const PROJECT_QUERY = defineQuery(`*[_type == "projectv2" && slug.current == $_id][0]
+export const PROJECT_QUERY = defineQuery(`*[_type == "projectv2" && slug.current == $slug][0]
                     {title,
                     _id,
-                    'hero':hero.asset->{
-                            originalFilename,
-                            url,
-                            title,
-                            description,
-                                'lqip':metadata.lqip,
-                                'dimensions':metadata.dimensions,
-                            altText,
-                            _rev,
-                    },
+                    _createdAt,
+                    _updatedAt,
+                     hero{
+    ...,
+    asset->{
+      ...
+    }
+  },
+                    'description':pt::text(pitch),
                     slug,
                     pitch,
                     problem,

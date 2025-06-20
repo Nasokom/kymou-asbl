@@ -60,7 +60,7 @@ body {
 
 
 p{
-  font-size:var(--text);
+  /* font-size:var(--text); */
   line-height: var(--hauteur);
   word-spacing: var(--wordSpace);
   letter-spacing: var(--letterSpace);
@@ -73,6 +73,7 @@ body {
   overflow-x: hidden;
   scroll-behavior: smooth;
   font-family: 'RecoletaReg';
+   font-size:var(--text);
 }
 input {
   all: unset;
