@@ -12,9 +12,37 @@ const Gallery = ({ images,marge=true}) => {
     const [toggle,setToggle] = useState(false)
   const [containerh,setContainerH] = useState(0);
 
-  function callModal(i){
+  function callModal(e,i){
     setToggle(!toggle)
     setSelectedImg(i)
+    const imgs = document.querySelectorAll('.imgElt_Gallery')
+    imgs.forEach(img => {
+      img.classList.remove('selectedImg')
+    })
+
+    const [focusedIndex, setFocusedIndex] = useState(null);
+
+function handleImageClick(index) {
+  setFocusedIndex(index);
+  document.documentElement.style.overflow = 'hidden';
+}
+
+function closeFocused() {
+  setFocusedIndex(null);
+  document.documentElement.style.overflow = 'scroll';
+}
+
+    if(toggle){
+      document.documentElement.style.overflow = 'hidden'
+    }else{
+      document.documentElement.style.overflow = 'scroll'
+    } 
+
+    e.target.classList.add('selectedImg')
+    e.target.style.scale = '1.5'
+
+
+    //console.log(window.scrollY)
   }
 
   const testRef = useRef()
@@ -89,21 +117,22 @@ const Gallery = ({ images,marge=true}) => {
              //animate={{ opacity: 1, scale: 1 ,y:"0%"}}
              viewport={{ once: true, amount:0.1}}
              transition={{ duration: 0.5, ease: "easeOut",delay:index > 5 ? 0 : '0.'+index*2}}
-             onClick={()=>callModal(index)}
+             //onClick={(e)=>callModal(e,index)}
             > 
              <Image
                src={img.url}
-               className="rounded"
+               className="rounded imgElt_Gallery"
                alt={img.altText || img.originalFilename }
                placeholder="blur"
                blurDataURL={img.lqip}  // Assuming `lqip` (Low-Quality Image Placeholder) is provided in data
                style={{
-                 top: img.top,
-                 left: img.left,
+                //  top: img.top,
+                //  left: img.left,
                  objectFit: 'cover',
                }}
                height={img.height || 'auto'}
                width={img.width}
+                onClick={(e)=>callModal(e,index)}
              />
             </motion.div>
       ))}

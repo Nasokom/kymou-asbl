@@ -1,5 +1,6 @@
 import { sanityFetch } from "@/sanity/lib/live"
 import { SETTINGS_QUERY } from "@/sanity/lib/queries"
+//import { ipAddress } from '@vercel/functions'
 
 export async function GET(request) {
   try {

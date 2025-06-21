@@ -70,12 +70,13 @@ export default function CustomPortableText({
       h2: ({ children }) => {
         return (
           <TitleEffect>{children}</TitleEffect>
-        );
+                    // <h2>{children}</h2>
+        )
       },
 
       h3: ({ children }) => {
         return (
-          <h3 className="font-rec1 text-4xl">{children}</h3> 
+          <h3 className="font-rec1 text-4xl max-[800px]:text-2xl w-full">{children}</h3> 
         );
       },
 
@@ -95,7 +96,7 @@ export default function CustomPortableText({
         );
       },
       p:({children})=>{
-        return (<p className="text-7xl">{children}</p>)
+        return (<p className="text-xl">{children}</p>)
       }
     },
     decorators: {

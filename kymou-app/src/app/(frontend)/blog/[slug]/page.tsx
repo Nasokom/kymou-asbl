@@ -113,12 +113,12 @@ export default async function Page({
           __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
         }}
       />
-    <div className='min-h-[100dvh]  m-4  mt-[15vh] pt-4 flex flex-col items-center justify-center max-w-[1000px]'>
+    <div className='min-h-[100dvh] m-4 max-[800px]:m-0 mt-[15vh] pt-4 flex flex-col items-center justify-center max-w-[1000px]'>
       
-      <div className='flex flex-col w-full gap-2 mb-8 '>
-              <h1 className='font-rec1 text-8xl'>{post.title}</h1>
-              <p className='opacity-[0.7] '>{post.description}</p>
-          <div className='text-[--color3] flex gap-4 text-[20px]'>
+      <div className='flex flex-col w-full gap-4 mb-8 '>
+              <h1 className='font-rec1 text-8xl max-[800px]:text-4xl'>{post.title}</h1>
+              <p className='opacity-[0.7] text-2xl max-[800px]:text-xl'>{post.description}</p>
+          <div className='text-[--color3] flex flex-wrap gap-4 text-2xl mt-2'>
               <p> Par <span className='text-black'>{post.author?.name} </span> |</p>
               <PublishedAt className='flex gap-2' publishedAt={post?._createdAt}/>   
               -
@@ -134,7 +134,7 @@ export default async function Page({
       </div>
 
 
-    <article className='project-section gap-10 flex flex-col alt max-[800px]:p-4  max-w-[1000px] mt-12'>
+    <article className='gap-10 flex flex-col alt max-[800px]:p-1  max-w-[1000px] mt-12'>
         
         <CustomPortableText  value={post.content} className={' alt flex gap-4 text-xl flex-wrap'}/>
 

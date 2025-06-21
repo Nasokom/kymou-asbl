@@ -14,7 +14,7 @@ const {data:data}  = await sanityFetch({ query: CONTACT_QUERY });
 
 return (
 
-    <div className='min-h-[100dvh] w-[100vw] max-w-[1200px] pt-24 pb-12 items-left justify-center flex flex-col gap-4 p-8'>
+    <div className='min-h-[100dvh] w-[100vw] max-w-[1200px] pt-24 pb-12 items-left justify-center flex flex-col gap-4 p-8 '>
 
         {data?.text && <CustomPortableText  className={'text-2xl'} value={data?.text}/>}
 
