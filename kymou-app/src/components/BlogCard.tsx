@@ -25,7 +25,7 @@ const BlogCard = ({data,className}:{data:POSTS_QUERYResult[number],className?:st
         <Link href={'/blog/'+data?.slug?.current}
          className={'max-[800px]:flex-col w-full flex items-center justify-center gap-4 bg-[white] min-h-[400px] rounded-xl overflow-hidden '}>
 
-            <div className='relative w-full h-full min-h-[400px] grow min-[800px]:h-[100px] min-[800px]:w-[50%]'>
+            <div className='relative w-full h-full min-h-[400px] grow min-[800px]:w-[50%]'>
                 {loader && <Image src={loader}  
                 fill
                 style={{objectFit:'cover'}} 

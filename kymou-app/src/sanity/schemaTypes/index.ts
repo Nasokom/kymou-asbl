@@ -10,7 +10,8 @@ import customMedia from './customMedia'
 import home2 from './home2'
 import blogPost from './blogPost'
 import settings from './settings'
+import { seoType } from './seoType'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [settings,blogContent,blogPost,home2,customMedia,contact,textImg,content, blockContent, projectV2],
+  types: [seoType,settings,blogContent,blogPost,home2,customMedia,contact,textImg,content, blockContent, projectV2],
 }

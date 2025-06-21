@@ -18,8 +18,8 @@ export const metadata = {
   generator: 'Next.js',
   applicationName: 'Kymou asbl',
   referrer: 'origin-when-cross-origin',
-  keywords: ['Kymou', 'Kymou-asbl', ''],
-  authors: [ { name: 'Katherine Kombia', url: 'https://nextjs.org' }],
+  keywords: ['Kymou', 'Kymou-asbl', 'asbl',],
+  authors: [ { name: 'Katherine Kombia', url: 'https://kymou.lu' }],
   creator: 'Katherine Kombia',
   publisher: 'Katherine Kombia',
   formatDetection: {

@@ -91,7 +91,11 @@ export default defineType({
         of:[{type: 'image'}],
            group:'edit'
       }),
-
+       defineField({
+        name:'seo',
+        type:'seo',
+        group:'detail'
+      }),
   ],
   
 })

@@ -30,14 +30,14 @@ export async function generateMetadata({
     return {}
   }
   const metadata: Metadata  ={
-    title: project.title,
-    description: project.description,
+    title: project?.seo?.title || project.title,
+    description: project?.seo?.description||project.description,
   }
 
    metadata.openGraph = {
     images: {
-      url: project.hero
-        ? urlFor(project?.hero).width(1200).height(630).url()
+      url: project.seo?.image
+        ? urlFor(project?.seo?.image).width(1200).height(630).url()
         : `/api/og?id=${project._id}`,
       width: 1200,
       height: 630,
@@ -74,15 +74,58 @@ export default async function Page({
     //const loader =  urlFor(project.header[0].image).blur(50).url()
     const loader = project.hero ? urlFor(project?.hero).width(1000).height(1000).url() : '/'
 
-     const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'Project',
-    name: project.title,
-    image: loader,
-    description: project.description,
-  }
 
+  const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  headline: project.title,
+  image: [loader],
+  datePublished: project._createdAt,
+  dateModified: project._updatedAt || project._createdAt,
+  author: {
+    "@type": "Person",
+    name: "Katherine Nicol kombia",
+  },
+  publisher: {
+    "@type": "Organization",
+    name: "Kymou asbl",
+    logo: {
+      "@type": "ImageObject",
+      url: "https://kymou.lu/kymouLogo.svg",
+    },
+  },
+
+  description: project.description,
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": `https://kymou.lu/project/${project.slug}`,
+  },
+};
     
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://kymou.lu",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Blog",
+      item: "https://kymou.lu/blog",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: project.title,
+      item: `https://kymou.lu/project/${project.slug}`,
+    },
+  ],
+};
   return (
     <div className='min-h-[100dvh] w-[100vw] pt-4 flex flex-col items-center'>
 
@@ -92,13 +135,19 @@ export default async function Page({
           __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
         }}
       />
+        <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify(breadcrumbLd).replace(/</g, '\\u003c'),
+  }}
+/>
 
           <div className="flex absolute h-[25vh] max-[600px]:h-[20vh] z-[3] items-end p-0 text-[5vw] top-0 font-rec1 overflow-hidden border-b-4 border-[black]">
             <h2 className="w-full leading-none bottom-0 h-[5.5vw] p-0 text-center uppercase translate-y-[100%] animate-[translateUp_0.3s_ease-out_1.2s_forwards]">{project.title}</h2>
           </div>
 
       <div className="flex relative w-[70vw] max-[800px]:w-[93%] rounded h-[100vh] max-[800px]:h-[80vh] overflow-hidden animate-[appearDown_1s_forwards]">
-          <Image fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded" alt={project?.hero?.asset?.altText || project?.hero?.asset?.description || project.hero?.asset?.originalFilename || "Image de Projet"}/>
+          <Image priority fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded" alt={project?.hero?.asset?.altText || project?.hero?.asset?.description || project.hero?.asset?.originalFilename || "Image de Projet"}/>
       </div>
 
 

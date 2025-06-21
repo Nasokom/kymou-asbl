@@ -2,11 +2,11 @@
 import React from 'react'
 import { TbSettings } from "react-icons/tb";
 import { useState,useEffect } from 'react'
-import { FaWindowClose } from 'react-icons/fa';
+import { IoClose } from 'react-icons/io5';
 
 
-const Settings = () => {
-  const [showSettings, setShowSettings] = useState(false);
+const Settings = ({showSettings,setShowSettings,setMenu}) => {
+  //const [showSettings, setShowSettings] = useState(false);
   const [fontSize,setFontSize ] = useState(16)
   const [lineHeigth,setLineheigth ] = useState(1)
   const [wordSpacing,setWordSpacing ] = useState(0.1)
@@ -86,14 +86,22 @@ function resetCssVar(){
 
   return (
 <>
-
-    <TbSettings onClick={()=>setShowSettings(!showSettings)} className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${showSettings ? 'stroke-[--color2] scale-115' :''}`}/>
+    { 
+      showSettings ? 
+      <button onClick={()=>setShowSettings(!showSettings)} >
+        <IoClose  className={`cursor-pointer text-4xl m-2 hover:scale-125`}/>
+      </button>
+      :
+      <button onClick={()=>{setShowSettings(!showSettings),setMenu(false)}} >
+        <TbSettings className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${showSettings ? 'stroke-[--color2] scale-115' :''}`}/>
+      </button>
+    }
 
 {showSettings && 
     <div className='absolute w-full top-[110%] bg-white max-h-[85vh] overflow-scroll left-0 rounded-xl shadow-md p-4' >
-    <div className='flex p-4 text-2xl justify-between items-center '>
+    <div className='flex p-4 text-2xl justify-center items-center w-full '>
       <p className='text-2xl'>Preferences</p>
-      <FaWindowClose onClick={()=>setShowSettings(!showSettings)} className={`flex cursor-pointer flex-basis text-4xl m-2 hover:fill-[--color2]  hover:scale-125 ${showSettings ? 'stroke-[--color2] scale-115' :''}`}/>
+    
     </div>
 
     <ul className='flex flex-col font-rec normal-case gap-4 w-full '>

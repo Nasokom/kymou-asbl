@@ -17,6 +17,11 @@ export default defineType({
         title: 'Texte',
       type:'content'
       }),
+       defineField({
+        name:'seo',
+        type:'seo',
+        group:'details'
+      }),
 
     defineField({
       name: 'contact',

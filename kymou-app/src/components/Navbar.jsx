@@ -7,38 +7,40 @@ import Image from "next/image";
 import { TbSettings } from "react-icons/tb";
 import Settings from '@/components/Settings'
 import { GiHamburgerMenu } from "react-icons/gi";
+import { IoClose } from "react-icons/io5";
 
 
 
 const Navbar = ({blog}) => {
 
   const [showNavbar, setShowNavbar] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+ // const [lastScrollY, setLastScrollY] = useState(0);
   const [showSettings, setShowSettings] = useState(false);
+   const [menu,setMenu] = useState(false)
   const links = [{name:'home',path:'/'},{name:'projets',path:"/project"},{name:"galerie",path:'/gallery'},{name:'blog',path:'/blog'},{name:'contact',path:'/contact'}]
 
   // const controlNavbar = () => {
-  //   if (typeof window !== "undefined") {
-  //     const currentScrollY = window.scrollY;
+    //   if (typeof window !== "undefined") {
+    //     const currentScrollY = window.scrollY;
 
-  //     if (currentScrollY > lastScrollY && currentScrollY > 50) {
-  //       setShowNavbar(false); // scrolling down
-  //     } else {
-  //       setShowNavbar(true); // scrolling up
-  //     }
+    //     if (currentScrollY > lastScrollY && currentScrollY > 50) {
+    //       setShowNavbar(false); // scrolling down
+    //     } else {
+    //       setShowNavbar(true); // scrolling up
+    //     }
 
-  //     setLastScrollY(currentScrollY);
-  //   }
-  // };
+    //     setLastScrollY(currentScrollY);
+    //   }
+    // };
 
-  // useEffect(() => {
-  //   if (typeof window !== "undefined") {
-  //     window.addEventListener("scroll", controlNavbar);
+    // useEffect(() => {
+    //   if (typeof window !== "undefined") {
+    //     window.addEventListener("scroll", controlNavbar);
 
-  //     return () => {
-  //       window.removeEventListener("scroll", controlNavbar);
-  //     };
-  //   }
+    //     return () => {
+    //       window.removeEventListener("scroll", controlNavbar);
+    //     };
+    //   }
   // }, [lastScrollY]);
 
   return (
@@ -78,7 +80,7 @@ const Navbar = ({blog}) => {
               {link.name}
             </Link>
         })}
-          <Settings />
+          <Settings showSettings={showSettings} setShowSettings={setShowSettings} setMenu={setMenu}/>
 
         </div>
 
@@ -86,12 +88,13 @@ const Navbar = ({blog}) => {
 
  <div className='min-[800px]:hidden w-[90vh] justify-between relative flex gap-2 bg-white items-center shadow-md p-2 max-w-full rounded-xl '>
 
-          <MobileMenu links={links} blog={blog}/>
+          <MobileMenu links={links} blog={blog} menu={menu} setMenu={setMenu} setShowSettings={setShowSettings}/>
          
           <p className="font-rec1 text-2xl">Kymou 
             {/* <span className="text-sm">asbl</span> */}
             </p>
-          <Settings />
+
+            <Settings showSettings={showSettings} setShowSettings={setShowSettings} setMenu={setMenu}/>
 
         </div>
         
@@ -101,16 +104,21 @@ const Navbar = ({blog}) => {
 
 export default Navbar;
 
-const MobileMenu = ({links,blog})=>{
+const MobileMenu = ({links,blog,menu,setMenu,setShowSettings})=>{
 
-  const [menu,setmenu] = useState(false)
+ 
 
 
   return (
     <> 
-    <GiHamburgerMenu onClick={()=>setmenu(!menu)}className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${menu ? 'stroke-[--color2] scale-115' :''}`}/>
+{
+  menu ?
+  <IoClose onClick={()=>setMenu(!menu)}className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${menu ? 'stroke-[--color2] scale-115' :''}`}/>
+:  <GiHamburgerMenu onClick={()=>{setMenu(!menu),setShowSettings(false)}}className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${menu ? 'stroke-[--color2] scale-115' :''}`}/>
 
-    {menu && 
+} 
+
+    {menu &&  
         <div className='absolute w-full top-[110%] bg-white max-h-[85vh] overflow-scroll left-0 rounded-xl shadow-md p-4 pl-1 pr-1' >
 
         <ul className='flex flex-col font-rec normal-case gap-8 w-full'>
@@ -119,9 +127,9 @@ const MobileMenu = ({links,blog})=>{
           if(link.name == 'blog' && blog.length == 0 ){
               return
           }
-            return <Link key={i} href={link.path}  onClick={()=>setmenu(!menu)}
+            return <Link key={i} href={link.path}  onClick={()=>setMenu(!menu)}
             className={`
-              ${usePathname() == link.path || link.path.length > 2 && usePathname().includes(link.path)? "bg-[--color2] text-white " : ""}
+              ${usePathname() == link.path || link.path.length > 2 && usePathname().includes(link.path)? "bg-[--color2] text-white" : "hover:outline hover:text-[--color2]"}
               p-4 rounded
               transition
               text-2xl

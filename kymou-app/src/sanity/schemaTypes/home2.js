@@ -135,7 +135,13 @@ export default defineType({
             title:'Image footer',
           }
         ]
-      }) 
+      }) ,
+       defineField({
+        name:'seo',
+        type:'seo',
+        group:'details'
+      }),
+      
     ],
   });
   

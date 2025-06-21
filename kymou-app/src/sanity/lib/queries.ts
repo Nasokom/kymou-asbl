@@ -41,6 +41,7 @@ export const POST_QUERY = defineQuery(`*[_type == "blogPost" && slug.current == 
   _createdAt,
   _updatedAt,
   description,
+  seo,
   hero{
     ...,
     asset->{
@@ -98,6 +99,7 @@ export const PROJECT_QUERY = defineQuery(`*[_type == "projectv2" && slug.current
                     _id,
                     _createdAt,
                     _updatedAt,
+                    seo,
                      hero{
     ...,
     asset->{
@@ -106,10 +108,10 @@ export const PROJECT_QUERY = defineQuery(`*[_type == "projectv2" && slug.current
   },
                     'description':pt::text(pitch),
                     slug,
-                    pitch,
-                    problem,
-                    action,
-                    result,
+                    pitch{text,"image":image.asset->},
+                    problem{text,"image":image.asset->},
+                    action{text,"image":image.asset->},
+                    result{text,"image":image.asset->},
                   'gallery':gallery[].asset->{
   originalFilename,
   url,

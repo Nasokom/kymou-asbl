@@ -9,6 +9,7 @@ import { FaClock } from "react-icons/fa";
 import { readingTime } from "@/utils/fonction";
 import { PublishedAt } from "@/components/PublishedAt";
 import type { Metadata } from "next";
+import Link from "next/link";
 
 
 type RouteProps = {
@@ -31,22 +32,31 @@ export async function generateMetadata({
   }
 
   const metadata: Metadata = {
-    title: page.title,
-    description: page.description,
+    title: page?.seo?.title || page.title,
+    description: page?.seo?.description || page.description,
   };
 
   metadata.openGraph = {
+    
     images: {
       url:
-      //  page.hero
-      //   ? urlFor(page.hero).width(1200).height(630).url()
-      //   : 
+       page?.seo?.image
+        ? urlFor(page?.seo?.image).width(1200).height(630).url()
+        : 
         `/api/og?id=${page._id}`,
       width: 1200,
       height: 630,
     },
   };
-  
+metadata.twitter = {
+  card: "summary_large_image",
+  images: [
+    page?.seo?.image
+        ? urlFor(page?.seo?.image).width(1200).height(630).url()
+        : 
+        `/api/og?id=${page._id}`,
+  ],
+};
   // if (page.seo.noIndex) {
   //   metadata.robots = "noindex";
   // }
@@ -105,6 +115,32 @@ export default async function Page({
   },
 };
 
+
+const breadcrumbLd = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    {
+      "@type": "ListItem",
+      position: 1,
+      name: "Home",
+      item: "https://kymou.lu.com",
+    },
+    {
+      "@type": "ListItem",
+      position: 2,
+      name: "Blog",
+      item: "https://kymou.lu/blog",
+    },
+    {
+      "@type": "ListItem",
+      position: 3,
+      name: post.title,
+      item: `https://kymou.lu/blog/${post.slug}`,
+    },
+  ],
+};
+
   return (
 <>
  <script
@@ -113,9 +149,23 @@ export default async function Page({
           __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
         }}
       />
-    <div className='min-h-[100dvh] m-4 max-[800px]:m-0 mt-[15vh] pt-4 flex flex-col items-center justify-center max-w-[1000px]'>
+
+      <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify(breadcrumbLd).replace(/</g, '\\u003c'),
+  }}
+/>
+    <div className='min-h-[100dvh] mt-[20vh] pt-4 max-[800px]:p-1 flex flex-col items-center justify-center max-w-[1000px]'>
       
       <div className='flex flex-col w-full gap-4 mb-8 '>
+                  <nav aria-label="Breadcrumb" className="text-sm text-gray-600">
+                      <ol className="list-none flex text-ellipsis">
+                        <li><Link href="/">Home</Link> &gt;</li>
+                        <li><Link href="/blog">Blog</Link> &gt;</li>
+                        <li aria-current="page">{post.title}</li>
+                      </ol>
+                    </nav>
               <h1 className='font-rec1 text-8xl max-[800px]:text-4xl'>{post.title}</h1>
               <p className='opacity-[0.7] text-2xl max-[800px]:text-xl'>{post.description}</p>
           <div className='text-[--color3] flex flex-wrap gap-4 text-2xl mt-2'>
@@ -127,7 +177,7 @@ export default async function Page({
       </div>
 
    <div className="flex relative w-full rounded h-[100vh] overflow-hidden animate-[appearDown_1s_forwards]">
-          <Image fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded" 
+          <Image priority fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded" 
          // alt={post?.hero?.altText || post?.hero?.description || post?.hero?.originalFilename}
          alt="fake altText"
          />

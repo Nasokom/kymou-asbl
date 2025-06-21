@@ -55,7 +55,6 @@ export default defineType({
         defineField({
             name:'date',
             type:'date',
-            group:'details',
             description:'Date de publication',
              group: ['publish','details'],
         }),
@@ -95,11 +94,15 @@ export default defineType({
             name:'isPublished',
             title:"Publier l'article",
             type:'boolean',
-            group:'details',
             initialValue:'false',
             description:'Publier article ?',
-             group: ['publish'],
+             group: ['publish','details'],
         }),
+          defineField({
+        name:'seo',
+        type:'seo',
+        group:'details'
+      }),
 
     ],
     preview: {
