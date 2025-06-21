@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { TbSettings } from "react-icons/tb";
 import Settings from '@/components/Settings'
-import { GiHamburgerMenu } from "react-icons/gi";
 
 
 
@@ -46,9 +45,9 @@ const Navbar = ({blog}) => {
     initial={{ y: 0 }}
     animate={{ y: showNavbar ? 0 : -100 }}
     transition={{ duration: 0.3, ease: "easeInOut" }}
-    className="fixed top-0 left-0 w-full flex p-2 max-[600px]:p-1 items-center justify-between z-50 max-[800px]:justify-center">
+    className="fixed top-0 left-0 w-full flex p-2 max-[600px]:p-1 items-center justify-between z-50">
 
-      <div className='flex gap-2 max-[800px]:hidden'>
+      <div className='flex gap-2 max-[600px]:hidden'>
           <Link href={'/blog-kymou'} className='font-display justify-center gap-2 items-center flex text-2xl'>
           <Image 
             //blurDataURL={datas.logo.asset.metadata.lqip}
@@ -60,7 +59,7 @@ const Navbar = ({blog}) => {
             </Link>
       </div>
 
-        <div className='max-[800px]:hidden relative flex gap-4 bg-white font-rec1 items-center uppercase shadow-md p-2 max-w-full max-[600px]:w-full rounded-xl '>
+        <div className='relative flex gap-4 bg-white font-rec1 items-center uppercase shadow-md p-2 max-w-full max-[600px]:w-full rounded-xl '>
 
         {links.map((link,i)=>{
           if(link.name == 'blog' && blog.length == 0 ){
@@ -78,21 +77,8 @@ const Navbar = ({blog}) => {
               {link.name}
             </Link>
         })}
+        {/* <TbSettings onClick={()=>setShowSettings(!showSettings)} className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${showSettings ? 'stroke-[--color2] scale-115' :''}`}/> */}
           <Settings />
-
-        </div>
-
-{/* Mobile  */}
-
- <div className='min-[800px]:hidden w-[90vh] justify-between relative flex gap-2 bg-white items-center shadow-md p-2 max-w-full rounded-xl '>
-
-          <MobileMenu links={links} blog={blog}/>
-         
-          <p className="font-rec1 text-2xl">Kymou 
-            {/* <span className="text-sm">asbl</span> */}
-            </p>
-          <Settings />
-
         </div>
         
     </motion.div>
@@ -100,44 +86,3 @@ const Navbar = ({blog}) => {
 };
 
 export default Navbar;
-
-const MobileMenu = ({links,blog})=>{
-
-  const [menu,setmenu] = useState(false)
-
-
-  return (
-    <> 
-    <GiHamburgerMenu onClick={()=>setmenu(!menu)}className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${menu ? 'stroke-[--color2] scale-115' :''}`}/>
-
-    {menu && 
-        <div className='absolute w-full top-[110%] bg-white max-h-[85vh] overflow-scroll left-0 rounded-xl shadow-md p-4 pl-1 pr-1' >
-
-        <ul className='flex flex-col font-rec normal-case gap-8 w-full'>
-          
-          {links.map((link,i)=>{
-          if(link.name == 'blog' && blog.length == 0 ){
-              return
-          }
-            return <Link key={i} href={link.path}  onClick={()=>setmenu(!menu)}
-            className={`
-              ${usePathname() == link.path || link.path.length > 2 && usePathname().includes(link.path)? "bg-[--color2] text-white " : ""}
-              p-4 rounded
-              transition
-              text-2xl
-              uppercase 
-              font-rec1 
-            `}
-            >
-              {link.name}
-            </Link>
-        })}
-        </ul>
-        </div>
-      }
-    </>
-  )
-
-
-}
-
