@@ -42,7 +42,7 @@ const AxesHome = ({ datas }) => {
           trigger: section,
           start: "45% 50%", // When the top of the section reaches 80% of the viewport height
           end: "65% 30%", // When the bottom of the section reaches 20% of the viewport height
-          markers: true, // Debugging - remove for production
+          //markers: true, // Debugging - remove for production
           toggleActions: "play reverse play reverse", // Play on entry, reverse on exit
           scrub: false, // No scrub, not tied to scroll position
         },
