@@ -5,8 +5,7 @@ import { SETTINGS_QUERY } from "@/sanity/lib/queries"
 export async function GET(request) {
   try {
     const forwarded = request.headers.get('x-forwarded-for')
-    //const x = ipAddress(request)
-     const { geo, ip } = await request
+      const ip = ipAddress(req)
     //const ip = forwarded?.split(',')[0].trim() || 'Unknown'
     const { data: devices } = await sanityFetch({ query: SETTINGS_QUERY })
 
