@@ -23,9 +23,9 @@ const BlogCard = ({data,className}:{data:POSTS_QUERYResult[number],className?:st
         className={`w-full h-fit flex `+className}
     >
         <Link href={'/blog/'+data?.slug?.current}
-         className={'w-full flex items-center justify-center gap-4 bg-[white] min-h-[400px] rounded-xl overflow-hidden '}>
+         className={'max-[800px]:flex-col w-full flex items-center justify-center gap-4 bg-[white] min-h-[400px] rounded-xl overflow-hidden '}>
 
-            <div className='relative w-full h-full min-h-[400px] h-full grow max-w-[50%] w-[50%]'>
+            <div className='relative w-full h-full min-h-[400px] grow min-[800px]:h-[100px] min-[800px]:w-[50%]'>
                 {loader && <Image src={loader}  
                 fill
                 style={{objectFit:'cover'}} 
@@ -35,8 +35,7 @@ const BlogCard = ({data,className}:{data:POSTS_QUERYResult[number],className?:st
                 <p className='absolute bottom-0 bg-[--color3] opacity-[0.7] w-full p-2 text-white'>{imageDesc} </p>
             </div>
 
-
-            <div className='w-[50%] flex flex-col justify-center pt-4 p-2 gap-4'>
+            <div className='min-[800px]:w-[50%] flex flex-col justify-center pt-4 p-2 gap-4'>
 
                     <div className='flex justify-center flex-col gap-4'>
                         <p className='text-[--color3]'> Par <span className='text-black'>{data?.author?.name}</span></p>

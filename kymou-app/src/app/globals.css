@@ -510,6 +510,27 @@ font-size: clamp(30px,5vw,70px)
   font-size: clamp(40px,7vw,110px)
 }
 
+
+.imgElt_Gallery.focused {
+  position: fixed !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  z-index: 50;
+  max-width: 80vw;
+  max-height: 80vh;
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  scale: 2;
+}
+
+.gallery-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  z-index: 40;
+}
+
+
 @media (max-width : 800px){
   .projectCard,.projectCard2{
     width: 90vw;
