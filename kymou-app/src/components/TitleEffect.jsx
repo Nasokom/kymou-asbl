@@ -6,9 +6,7 @@ const TitleEffect = ({children,className='',big=false}) => {
 
   return (
 
-    <h3 className={`overflow-hidden text-center flex relative w-full font-rec1
- ${big ? 'text-8xl max-[800px]:text-5xl' : 'text-7xl max-[800px]:text-4xl'}    
-      ${className}` }>  
+    <h3 className={`overflow-hidden text-center sub flex relative w-full text-5xl font-rec1 ${big ? 'bigSub' : 'sub'} ${className}` }>  
         <div className='opacity-0'>{children}</div>
         <motion.div
             className={`absolute top-0 w-full`}

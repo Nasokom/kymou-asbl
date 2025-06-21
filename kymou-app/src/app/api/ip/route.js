@@ -1,12 +1,11 @@
 import { sanityFetch } from "@/sanity/lib/live"
 import { SETTINGS_QUERY } from "@/sanity/lib/queries"
-//import { ipAddress } from '@vercel/functions'
 
 export async function GET(request) {
   try {
     const forwarded = request.headers.get('x-forwarded-for')
-      const ip = ipAddress(req)
-    //const ip = forwarded?.split(',')[0].trim() || 'Unknown'
+    const ip = forwarded?.split(',')[0].trim() || 'Unknown'
+
     const { data: devices } = await sanityFetch({ query: SETTINGS_QUERY })
 
     let isStudioAllow = false
@@ -20,7 +19,7 @@ export async function GET(request) {
       }
     }
 
-    return new Response(JSON.stringify({ isAllow: isStudioAllow, ip ,geo}), {
+    return new Response(JSON.stringify({ isAllow: isStudioAllow, ip }), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     })
