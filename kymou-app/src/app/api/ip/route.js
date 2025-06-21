@@ -5,14 +5,9 @@ import { SETTINGS_QUERY } from "@/sanity/lib/queries"
 export async function GET(request) {
   try {
     const forwarded = request.headers.get('x-forwarded-for')
-<<<<<<< HEAD
     //const x = ipAddress(request)
     // const { geo, ip } = await request
     const ip = forwarded?.split(',')[0].trim() || 'Unknown'
-=======
-      const ip = ipAddress(req)
-    //const ip = forwarded?.split(',')[0].trim() || 'Unknown'
->>>>>>> parent of e67b3d7 (Revert "Update route.js")
     const { data: devices } = await sanityFetch({ query: SETTINGS_QUERY })
 
     let isStudioAllow = false
@@ -26,11 +21,7 @@ export async function GET(request) {
       }
     }
 
-<<<<<<< HEAD
     return new Response(JSON.stringify({ isAllow: isStudioAllow, ip}), {
-=======
-    return new Response(JSON.stringify({ isAllow: isStudioAllow, ip ,geo}), {
->>>>>>> parent of e67b3d7 (Revert "Update route.js")
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     })
