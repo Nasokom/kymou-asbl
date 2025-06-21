@@ -6,8 +6,8 @@ export async function GET(request) {
   try {
     const forwarded = request.headers.get('x-forwarded-for')
     //const x = ipAddress(request)
-     const { geo, ip } = await request
-    //const ip = forwarded?.split(',')[0].trim() || 'Unknown'
+    // const { geo, ip } = await request
+    const ip = forwarded?.split(',')[0].trim() || 'Unknown'
     const { data: devices } = await sanityFetch({ query: SETTINGS_QUERY })
 
     let isStudioAllow = false
@@ -21,7 +21,7 @@ export async function GET(request) {
       }
     }
 
-    return new Response(JSON.stringify({ isAllow: isStudioAllow, ip ,geo}), {
+    return new Response(JSON.stringify({ isAllow: isStudioAllow, ip}), {
       status: 200,
       headers: { 'Content-Type': 'application/json' },
     })
