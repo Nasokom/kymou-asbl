@@ -19,7 +19,8 @@ function a(e){
 
 function changeTheme(val){
   setTheme(val)
-   document.documentElement.setAttribute("data-theme", val) 
+  localStorage.setItem("theme",val)
+  document.documentElement.setAttribute("data-theme", val) 
 }
 
 
@@ -47,6 +48,11 @@ switch(key){
 
 useEffect(()=>{
 //Load the localstorage value
+
+//Theme
+const t = localStorage.getItem("theme")
+changeTheme(t)
+
 
 //set val to css variable
 const x = localStorage.getItem('--text');
@@ -119,7 +125,7 @@ function resetCssVar(){
               {/* max:22 = optimal */}
               <div className='flex gap-2 bg-[--bgColor1] rounded p-2'>
                 <button onClick={()=>changeTheme('light')} value={'light'} className={`p-1 ${theme == 'light' ? 'outline ':''}`}>light</button>
-                <button onClick={()=>changeTheme('system')} value={'system'} className={`p-1 ${theme == 'system' ? 'outline ':''}`}>system</button>
+                <button onClick={()=>changeTheme('system')} value={''} className={`p-1 ${theme == 'system' || theme == undefined ? 'outline ':''}`}>system</button>
                 <button  onClick={()=>changeTheme('dark')}value={'dark'} className={`p-1 ${theme == 'dark' ? 'outline' : ''}`}>dark</button>
               </div> 
             </div>
