@@ -84,7 +84,7 @@ const Navbar = ({blog}) => {
 
 {/* Mobile  */}
 
- <div className='min-[800px]:hidden w-[90vh] justify-between relative flex gap-2 bg-white items-center shadow-md p-2 max-w-full rounded-xl '>
+ <div className='min-[800px]:hidden w-[90vh] justify-between relative flex gap-2 bg-[--bgColor2] items-center shadow-md p-2 max-w-full rounded-xl '>
 
           <MobileMenu links={links} blog={blog} menu={menu} setMenu={setMenu} setShowSettings={setShowSettings}/>
          
@@ -117,7 +117,7 @@ const MobileMenu = ({links,blog,menu,setMenu,setShowSettings})=>{
 } 
 
     {menu &&  
-        <div className='absolute w-full top-[110%] bg-white max-h-[85vh] overflow-scroll left-0 rounded-xl shadow-md p-4 pl-1 pr-1' >
+        <div className='absolute w-full top-[110%] bg-[--bgColor2] max-h-[85vh] overflow-scroll left-0 rounded-xl shadow-md p-4 pl-1 pr-1' >
 
         <ul className='flex flex-col font-rec normal-case gap-8 w-full'>
           
