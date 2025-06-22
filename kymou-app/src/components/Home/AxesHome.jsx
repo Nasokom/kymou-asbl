@@ -85,10 +85,10 @@ const AxesHome = ({ datas }) => {
             >
               <p className="font-rec1 text-white text-4xl absolute ">{axe.title}</p>
 
-            <div className="circ lg:group-hover:scale-100 lg:duration-500 bg-[--color1] absolute w-[98%] h-[98%] rounded flex items-center justify-center scale-0" />
+            <div className="circ lg:group-hover:scale-100 lg:duration-500 bg-[--bgColor1] absolute w-[98%] h-[98%] rounded flex items-center justify-center scale-0" />
 
             <div className="absolute gText opacity-0 lg:group-hover:opacity-100 transition-opacity lg:duration-500">
-              <CustomPortableText className="p-12 max-[800px]:p-2 text-center font-rec text-xl text-black z-10 transition-opacity" value={axe.text} />
+              <CustomPortableText className="p-12 max-[800px]:p-2 text-center font-rec text-xl  z-10 transition-opacity" value={axe.text} />
             </div>
 
           <div className="opacity-0">

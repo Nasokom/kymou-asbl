@@ -23,7 +23,7 @@ const BlogCard = ({data,className}:{data:POSTS_QUERYResult[number],className?:st
         className={`w-full h-fit flex `+className}
     >
         <Link href={'/blog/'+data?.slug?.current}
-         className={'max-[800px]:flex-col w-full flex items-center justify-center gap-4 bg-[white] min-h-[400px] rounded-xl overflow-hidden '}>
+         className={'max-[800px]:flex-col w-full flex items-center justify-center gap-4 bg-[--bgColor2] min-h-[400px] rounded-xl overflow-hidden '}>
 
             <div className='relative w-full h-full min-h-[400px] grow min-[800px]:w-[50%]'>
                 {loader && <Image src={loader}  
@@ -38,17 +38,17 @@ const BlogCard = ({data,className}:{data:POSTS_QUERYResult[number],className?:st
             <div className='min-[800px]:w-[50%] flex flex-col justify-center pt-4 p-2 gap-4'>
 
                     <div className='flex justify-center flex-col gap-4'>
-                        <p className='text-[--color3]'> Par <span className='text-black'>{data?.author?.name}</span></p>
+                        <p className='text-[--txtColor3]'> Par <span className='text-[--txtColor1]'>{data?.author?.name}</span></p>
                         <p className='font-rec1 text-4xl'>{data?.title}</p>
                         <p className='font-rec'>{data?.description}</p>
-                        <div className='text-[--color3] flex gap-4'>
+                        <div className='text-[--txtColor3] flex gap-4'>
                             <PublishedAt className='flex gap-2' publishedAt={data?._createdAt}/>                          |
                             <p className='flex items-center justify-center gap-1'>{readingTime(data?.content)} min <FaClock/> </p>
                         </div>
                     </div>
 
                 <div className='w-full flex items-end justify-end h-full'>
-                    <button className='bg-[--color1] basis hover:bg-[--color3] hover:zigzagsm hover:text-white transition p-4 w-fit rounded-xl font-rec1'>Decouvrir</button>
+                    <button className='bg-[--bgColor1] basis hover:bg-[--color3] hover:zigzagsm transition p-4 w-fit rounded-xl font-rec1'>Decouvrir</button>
                 </div>
             </div>
         </Link>

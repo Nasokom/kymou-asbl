@@ -9,8 +9,6 @@ import Settings from '@/components/Settings'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 
-
-
 const Navbar = ({blog}) => {
 
   const [showNavbar, setShowNavbar] = useState(true);
@@ -57,12 +55,12 @@ const Navbar = ({blog}) => {
             alt="Logo kymou"
             src={'/kymouLogo.svg'} 
             height={50} width={50} 
-            className="bg-[--color1] p-1  border-2 border-[--color2] rounded-full"
+            className="bg-[--bgColor1] p-1  border-2 border-[--color2] rounded-full"
             />
             </Link>
       </div>
 
-        <div className='max-[800px]:hidden relative flex gap-4 bg-white font-rec1 items-center uppercase shadow-md p-2 max-w-full max-[600px]:w-full rounded-xl '>
+        <div className='max-[800px]:hidden relative flex gap-4 bg-[--bgColor2] font-rec1 items-center uppercase shadow-md p-2 max-w-full max-[600px]:w-full rounded-xl '>
 
         {links.map((link,i)=>{
           if(link.name == 'blog' && blog.length == 0 ){

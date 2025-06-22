@@ -29,7 +29,7 @@ return (
         
         <div className='zigzagsm p-4 rounded-xl relative'>
 
-          <div className='flex flex-col p-4 gap-2 bg-[#ffff] rounded-xl text-2xl'>
+          <div className='flex flex-col p-4 gap-2 bg-[--bgColor2] rounded-xl text-2xl'>
             <p>{data?.asbl?.name}</p>
 
             <p>{data?.asbl?.bic}</p>

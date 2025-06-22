@@ -159,7 +159,7 @@ const breadcrumbLd = {
     <div className='min-h-[100dvh] mt-[20vh] pt-4 max-[800px]:p-1 flex flex-col items-center justify-center max-w-[1000px]'>
       
       <div className='flex flex-col w-full gap-4 mb-8 '>
-                  <nav aria-label="Breadcrumb" className="text-sm text-gray-600">
+                  <nav aria-label="Breadcrumb" className="text-sm text-[--txtColor3]">
                       <ol className="list-none flex text-ellipsis">
                         <li><Link href="/">Home</Link> &gt;</li>
                         <li><Link href="/blog">Blog</Link> &gt;</li>
@@ -168,8 +168,8 @@ const breadcrumbLd = {
                     </nav>
               <h1 className='font-rec1 text-8xl max-[800px]:text-4xl'>{post.title}</h1>
               <p className='opacity-[0.7] text-2xl max-[800px]:text-xl'>{post.description}</p>
-          <div className='text-[--color3] flex flex-wrap gap-4 text-2xl mt-2'>
-              <p> Par <span className='text-black'>{post.author?.name} </span> |</p>
+          <div className='text-[--txtColor3] flex flex-wrap gap-4 text-2xl mt-2'>
+              <p> Par <span className='text-[--txtColor1]'>{post.author?.name} </span> |</p>
               <PublishedAt className='flex gap-2' publishedAt={post?._createdAt}/>   
               -
             <p className='flex items-center justify-center gap-1'>{readingTime(post?.content)}min <FaClock/> </p>

@@ -10,6 +10,7 @@ export default defineType({
     {name: 'axes', title: 'Objectifs'},
     {name: 'about', title: 'About'},
     {name: 'footer', title: 'Footer'},
+     {name: 'details', title: 'Details'},
   ],
 
     fields: [

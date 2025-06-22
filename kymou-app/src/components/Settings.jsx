@@ -11,10 +11,17 @@ const Settings = ({showSettings,setShowSettings,setMenu}) => {
   const [lineHeigth,setLineheigth ] = useState(1)
   const [wordSpacing,setWordSpacing ] = useState(0.1)
   const [letterSpacing,setLetterSpacing ] = useState(0.02)
+  const [theme,setTheme] = useState('system')
 
 function a(e){
   JSON.stringify(e)
 }
+
+function changeTheme(val){
+  setTheme(val)
+   document.documentElement.setAttribute("data-theme", val) 
+}
+
 
 //Function to change css variable
 function changeRootCss(key,value){
@@ -98,19 +105,35 @@ function resetCssVar(){
     }
 
 {showSettings && 
-    <div className='absolute w-full top-[110%] bg-white max-h-[85vh] overflow-scroll left-0 rounded-xl shadow-md p-4' >
+    <div className='absolute w-full top-[110%] bg-[--bgColor2] max-h-[85vh] overflow-scroll left-0 rounded-xl shadow-md p-4' >
     <div className='flex p-4 text-2xl justify-center items-center w-full '>
       <p className='text-2xl'>Preferences</p>
     
     </div>
 
     <ul className='flex flex-col font-rec normal-case gap-4 w-full '>
+
+      <li className='flex border-t p-4 justify-between items-center'>
+            <p>Theme du siteweb</p>
+            <div className='flex flex-col justify-center items-center gap-2'>
+              {/* max:22 = optimal */}
+              <div className='flex gap-2 bg-[--bgColor1] rounded p-2'>
+                <button onClick={()=>changeTheme('light')} value={'light'} className={`p-1 ${theme == 'light' ? 'outline ':''}`}>light</button>
+                <button onClick={()=>changeTheme('system')} value={'system'} className={`p-1 ${theme == 'system' ? 'outline ':''}`}>system</button>
+                <button  onClick={()=>changeTheme('dark')}value={'dark'} className={`p-1 ${theme == 'dark' ? 'outline' : ''}`}>dark</button>
+              </div> 
+            </div>
+        </li>
+
+
+
+
         <li className='flex border-t p-4 justify-between items-center'>
             <p>Taille de Lecture</p>
             <div className='flex flex-col justify-center items-center gap-2'>
               <span>{fontSize}px</span>
               {/* max:22 = optimal */}
-              <input type='range' min={12} max={25} step={1} value={fontSize} onChange={(e)=>changeValue('--text',e.target.value,'px')} className='bg-[--color1] h-2 rounded-full thumb'/>
+              <input type='range' min={12} max={25} step={1} value={fontSize} onChange={(e)=>changeValue('--text',e.target.value,'px')} className='bg-[--bgColor1] h-2 rounded-full thumb'/>
             </div>
         </li>
         
@@ -118,7 +141,7 @@ function resetCssVar(){
             <p>Hauteur de ligne</p>
            <div className='flex flex-col justify-center items-center gap-2'>
               <span>{lineHeigth}</span>
-              <input type='range' min={1} max={2} step={0.1} value={lineHeigth} className='bg-[--color1] h-2 rounded-full thumb'
+              <input type='range' min={1} max={2} step={0.1} value={lineHeigth} className='bg-[--bgColor1] h-2 rounded-full thumb'
                 onChange={(e)=>changeValue('--hauteur',e.target.value,'em')}  
                 />
             </div>
@@ -128,7 +151,7 @@ function resetCssVar(){
             <p>espacement des mots</p>
            <div className='flex flex-col justify-center items-center gap-2'>
               <span>{wordSpacing}</span>
-              <input type='range' min={0} max={1} step={0.1} value={wordSpacing} className='bg-[--color1] h-2 rounded-full thumb'
+              <input type='range' min={0} max={1} step={0.1} value={wordSpacing} className='bg-[--bgColor1] h-2 rounded-full thumb'
               onChange={(e)=>changeValue('--wordSpace',e.target.value,'em')}  
               />
             </div>
@@ -138,20 +161,12 @@ function resetCssVar(){
             <p>espacement des lettres</p>
            <div className='flex flex-col justify-center items-center gap-2'>
              <span>{letterSpacing}</span>
-              <input type='range' min={0} max={0.2} step={0.02} value={letterSpacing} className='bg-[--color1] h-2 rounded-full thumb'
+              <input type='range' min={0} max={0.2} step={0.02} value={letterSpacing} className='bg-[--bgColor1] h-2 rounded-full thumb'
               onChange={(e)=>changeValue('--letterSpace',e.target.value,'em')}  
               />
             </div>
         </li>
-
-        {/* <li className='flex border-t p-4 justify-between items-center'>
-            <p>Utiliser une font adapter </p>
-            <div className='flex flex-col justify-center items-center gap-2'>
-              <button className='border-2 h-8 w-20 rounded-full border-[--color3] relative flex items-center'> 
-                <div className='h-8 w-8 bg-[--color3] rounded-full'></div>
-              </button>
-            </div>
-        </li> */}
+  
 
          <li className='flex border-t p-4 justify-between items-center'>
             <p>Utiliser les parametre par defaults</p>

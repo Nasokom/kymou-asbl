@@ -27,11 +27,11 @@ const ProjectCard = ({project,index, isUnique=false, className=''}) => {
         <div className='relative w-full h-full imgWrapper overflow-hidden'>  
         <Image fill src={loader} style={{objectFit:'cover'}}
         alt={project.hero.asset.altText || project.hero.asset.description || project.hero.asset.originalFilename}
-        className='rounded border-2 border-[--color1] bg-current'
+        className='rounded border-2 border-[--bgColor1] bg-current'
         />
         </div>
 
-        <p className='text-xl font-rec1 bg-[--color1] rounded-lg p-2 text-center'>{project.title}</p>
+        <p className='text-xl font-rec1 bg-[--bgColor1] rounded-lg p-2 text-center'>{project.title}</p>
 
     </motion.div>
     </Link>

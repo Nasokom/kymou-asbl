@@ -7,8 +7,8 @@
 
 
 @theme inline {
-  --color-background: var(--color1);
-  --color-foreground: var(--foreground);
+  --color-background: var(--bgColor1);
+  --color-foreground: var(--txtColor1);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
@@ -16,42 +16,66 @@
 :root{
   --hauteur:normal;
   --letterSpace:0em;
-  --text:30px;
   --wordSpace:0em;
   --hauteur:1em;
   --text:22px;
-  --text:10px;
-  --color1:#F5E9D1;
+
+  --bgColor1:#F5E9D1;
+  --bgColor2:white;
+  --txtColor1:black;
+  --txtColor2:white;
+  --txtColor3:#3F784C;
   --color2:#c17817;
   --color3:#3F784C;
-  --color4:#000000;
-  --color5:#2F52E0;
-  --color6:#931621;
- 
-  --color11:#BE92A2;
-  --color12:#937666;
-  --color13:#6A8D73;
-  --color14:#3BB273;
-  --color14:#C17817;
+  --transparent : #f5e9d180;
 }
 
+
 /* Dark Mode  later */
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
 
   :root {
-    
-    --background: #0a0a0a;
-    --foreground: #ededed;
-    --color1:#1B3022;
-    --color1:#1c1a18;
-      --color2:#c17817;
-      --color3:#3F784C;
+
+  --bgColor1:#2C1F1A;
+  --bgColor2:black;
+  --txtColor1:#F5E9D1;
+  --txtColor2:black;
+  --txtColor3:#4F9E67;
+  --color2:#FF9E2C;
+  --color3:#4F9E67;
+  --transparent : #00000080;
+      
   }
-} */
+}
+
+
+[data-theme="dark"]{
+  
+
+  --bgColor1:#2C1F1A;
+  --bgColor2:black;
+  --txtColor1:#F5E9D1;
+  --txtColor2:black;
+  --txtColor3:#4F9E67;
+  --color2:#A95D00;
+  --color3:#1D3A2B;
+  --transparent : #00000080;
+}
+
+
+[data-theme="light"]{
+  --bgColor1:#F5E9D1;
+  --bgColor2:white;
+  --txtColor1:black;
+  --txtColor2:white;
+  --color2:#c17817;
+  --color3:#3F784C;
+  --transparent : #f5e9d180;
+}
 
 body {
-  background: var(--color1);
-  color: var(--foreground);
+  background: var(--bgColor1);
+  color: var(--txtColor1);
   font-family: Arial, Helvetica, sans-serif;
   /* font-family: ; */
 }
@@ -441,7 +465,6 @@ animation-delay: 5s;
 }
 
 article.project-section > section h3:nth-of-type(odd) {
-  /* background-color: var(--color11); */
   text-align: left;
 }
 
@@ -540,3 +563,8 @@ font-size: clamp(30px,5vw,70px)
 }
 
 
+
+
+h1{
+  -webkit-text-stroke: 2px black
+}

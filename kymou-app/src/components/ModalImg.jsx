@@ -63,7 +63,7 @@ const ModalImg = ({selectedImg,setSelectedImg, datas,setToggle}) => {
     },[selectedImg])
 
   return (
-    <div className='fixed w-[100vw] flex h-[100vh] left-0 flex items-center justify-center border-solid border-2 z-[1002] top-0 l-0 backdrop-blur-xl' style={{backdropFilter:'blur(15px)',background:'#f5e9d180'}} >
+    <div className='fixed w-[100vw] flex h-[100vh] left-0 flex items-center justify-center border-solid border-2 z-[1002] top-0 l-0 backdrop-blur-xl bg-[--transparent]' style={{backdropFilter:'blur(15px)'}} >
         <div className=' p-4 rounded-lg'>
 
             <div className='w-[90vw] z-1 h-[90vh] relative overflow-hidden flex justify-center items-center cursor-default'>
@@ -80,9 +80,9 @@ const ModalImg = ({selectedImg,setSelectedImg, datas,setToggle}) => {
 
         </div>
 
-        <div className='fixed z-[1000] cursor-pointer top-4 right-4 bg-black flex justify-center items-center h-[50px] w-[50px] rounded-lg' onClick={()=>{
+        <div className='fixed z-[1000] cursor-pointer top-4 right-4 bg-[--txtColor1] flex justify-center items-center h-[50px] w-[50px] rounded-lg' onClick={()=>{
           setToggle(false)}}>
-            <ImCross className='fill-[white]'/>
+            <ImCross className='fill-[--txtColor2]'/>
         </div>
 
         {/* 4 multiple img in gallery */}
@@ -97,12 +97,12 @@ const ModalImg = ({selectedImg,setSelectedImg, datas,setToggle}) => {
                 //.title
                 &&
                   <>
-                    <div   onClick={()=>setIsInfo(!isInfo)} className='fixed z-[1001] cursor-pointer top-20 rounded-full right-4 bg-black flex justify-center items-center h-[50px] w-[50px]'>
-                      <FaInfo className='fill-white '/>
+                    <div   onClick={()=>setIsInfo(!isInfo)} className='fixed z-[1001] cursor-pointer top-20 rounded-full right-4 bg-[--txtColor1] flex justify-center items-center h-[50px] w-[50px]'>
+                      <FaInfo className='fill-[--txtColor2]'/>
                     </div>
-                <div className='fixed z-[1000] bg-white cursor-pointer h-fit  top-20 right-4 flex justify-center items-center rounded-lg transition'>
+                <div className='fixed z-[1000] bg-[--bgColor2] cursor-pointer h-fit  top-20 right-4 flex justify-center items-center rounded-lg transition'>
                    { isInfo && 
-                      <div className='bg-white w-[450px]  pl-16 pr-16  pb-10 p-4 rounded-xl text flex flex-col gap-4 cursor-default'> 
+                      <div className='bg-[--bgColor2] w-[450px]  pl-16 pr-16  pb-10 p-4 rounded-xl text flex flex-col gap-4 cursor-default'> 
                       <h2 className='text-2xl underline font-rec1'>{datas[selectedImg].title || 'fake title'}</h2>
                       {datas[selectedImg].description && <p className='font-rec'>{datas[selectedImg].description}</p>}
                       {

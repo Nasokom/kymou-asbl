@@ -27,7 +27,7 @@ const TitleEffect = ({children,className='',big=false}) => {
         //animate={{ opacity: 1, scale: 1 ,y:"0%"}}
         viewport={{ once: true,amount:'some'}}
         transition={{ duration: 0.3,}}
-        className={`h-1 w-full bg-black absolute bottom-0 left-0`}/>
+        className={`h-1 w-full bg-[--txtColor1] absolute bottom-0 left-0`}/>
     </h3>
     
   )
