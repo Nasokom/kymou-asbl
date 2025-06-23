@@ -1,13 +1,12 @@
 import "@/app/globals.css";
-import StudioBtn from '@/components/StudioBtn'
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="bg-[--color1] dark">
+    <html lang="en" className="bg-[--bgColor1]">
       <body>{children}</body>
     </html>
   );
-}
+} 

@@ -5,46 +5,26 @@ export default defineType({
   title: 'Settings',
   type: 'document',
   fields: [
+
     defineField({
-      name: 'name',
-      title: 'Name',
-      type: 'string',
+      name:'name',
+      hidden:true,
+      type:'string',
+      initialValue:'Reglages kymou.lu'
     }),
-    defineField({
-      name: 'slug',
-      title: 'Slug',
-      type: 'slug',
-      options: {
-        source: 'name',
-        maxLength: 96,
-      },
+     defineField({
+      name:'title',
+      hidden:true,
+      type:'string',
+      initialValue:'Reglages kymou.lu'
     }),
+    
     defineField({
-      name: 'image',
-      title: 'Image',
-      type: 'image',
-      options: {
-        hotspot: true,
-      },
-    }),
-    defineField({
-      name: 'bio',
-      title: 'Bio',
+      name: 'allowStudio',
+      title: 'Machine Administrateur',
+      description:"Definis les machines qui auront access au studio ",
       type: 'array',
-      of: [
-        {
-          title: 'Block',
-          type: 'block',
-          styles: [{title: 'Normal', value: 'normal'}],
-          lists: [],
-        },
-      ],
+      of:[{type:'object',fields:[{name:'name',title:"Nom de l'appareil",type:"string"},{name:"ip",title:"Adresse IP",type:'string'},{name:"allow",title:"Autoriser",type:'boolean'}]}]
     }),
-  ],
-  preview: {
-    select: {
-      title: 'name',
-      media: 'image',
-    },
-  },
+  ]
 })

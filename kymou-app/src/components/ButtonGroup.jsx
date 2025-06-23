@@ -8,7 +8,7 @@ const ButtonGroup = ({links}) => {
     
   return (
 
-<div className="rounded-xl flex-shrink relative m-10 bg-white p-6 flex justify-center flex-wrap gap-8 font-rec1" >   
+<div className="rounded-xl flex-shrink relative m-10 bg-[--bgColor2] p-6 flex justify-center flex-wrap gap-8 font-rec1" >   
 
     {
         links.map((link,i)=>{
@@ -16,7 +16,7 @@ const ButtonGroup = ({links}) => {
             <Link 
                 key={i}
                 href={link.url} 
-                className='border-4 text-center border-black flex-auto p-4 transition rounded-lg uppercase hover:bg-white hover:scale-110 hover:border-[--color2] hover:text-[--color2]'
+                className='border-4 text-center border-[--txtColor1] flex-auto p-4 transition rounded-lg uppercase hover:bg-white hover:scale-110 hover:border-[--color2] hover:text-[--color2]'
                 >
                   {link.title}
                 </Link>

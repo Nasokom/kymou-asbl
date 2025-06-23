@@ -68,29 +68,35 @@ const AxesHome = ({ datas }) => {
   
 
   return (
-    <div className="flex justify-center flex-col items-center gap-4 w-full p-10">
+     <div className='flex justify-center flex-col items-center gap-8 w-full p-10 max-[800px]:p-2'>
       <TitleEffect>{datas.title}</TitleEffect>
       <CustomPortableText
         value={datas.text}
-        className={"pl-[2em] font-rec  md:text-4xl sm:text-4xl sm:leading-[1.5em] md:leading-[1.5em] "}
+         className={"font-rec min-[800px]:w-[90%] text-4xl max-[800px]:text-2xl max-[800px]:pl-1"}
       />
 
       <div className="flex lg:flex-wrap w-full lg:flex-row flex-col justify-center items-center">
+
          {datas.axes.map((axe, i) => (
           <div key={i} className="group lg:w-[50%] w-[100%] cursor-pointer mt-8 flex justify-center items-center">
           <div
             key={i}
-            className="item zigzag  h-[300px] w-[400px] relative rounded flex items-center justify-center"
+            className="item zigzag min-h-[350px] h-fit w-[500px] relative rounded flex items-center justify-center"
             >
-            <p className="font-rec1 text-white lg:text-4xl sm:text-4xl">{axe.title}</p>
+              <p className="font-rec1 text-white text-4xl absolute ">{axe.title}</p>
 
-            <div className="circ lg:group-hover:scale-100 lg:duration-500 bg-[--color1] absolute w-[98%] h-[98%] rounded flex items-center justify-center scale-0" />
+            <div className="circ lg:group-hover:scale-100 lg:duration-500 bg-[--bgColor1] absolute w-[98%] h-[98%] rounded flex items-center justify-center scale-0" />
 
             <div className="absolute gText opacity-0 lg:group-hover:opacity-100 transition-opacity lg:duration-500">
-              <CustomPortableText className="p-12 text-center font-rec text-xl text-black z-10 transition-opacity" value={axe.text} />
+              <CustomPortableText className="p-12 max-[800px]:p-2 text-center font-rec text-xl  z-10 transition-opacity" value={axe.text} />
+            </div>
+
+          <div className="opacity-0">
+              <CustomPortableText className="p-12 max-[800px]:p-2 text-center font-rec text-xl text-black z-10 transition-opacity" value={axe.text} />
             </div>
 
             
+
           </div>
           </div>
         ))}

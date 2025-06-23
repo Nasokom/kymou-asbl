@@ -1,18 +1,22 @@
 import {defineField,defineType} from 'sanity'
+import { PiArticleMediumLight } from "react-icons/pi";
+import { MdOutlineRocketLaunch } from "react-icons/md";
+import { MdOutlineSettings } from "react-icons/md";
 
 export default defineType({
     title:'Article',
     name:'blogPost',
     type:'document',
     groups: [
-    {name: 'editorial', title: 'Editorial'},
-    {name: 'details', title: 'Details'},
+    {name: 'editorial', title: 'Contenu Article', icon:PiArticleMediumLight, default: true},
+    {name: 'details', title: 'Details', icon:MdOutlineSettings},
+    {name: 'publish', title: 'Publication', icon:MdOutlineRocketLaunch},
 ],
     fields:[
    
         defineField({
             name:'title',
-            title:'title',
+            title:"Titre de l'article",
             type:'string',
             validation: rule => [
               rule.required().min(10).error('A title of min. 10 characters is required'),
@@ -20,6 +24,7 @@ export default defineType({
             ],
             group: ['details','editorial'],
         }),
+
         defineField({
             name:'slug',
             title:'Slug',
@@ -39,22 +44,25 @@ export default defineType({
         .required()
         .error(`Required to generate a page on the website`),
         }),
+        
         defineField({
             name:'description',
-            title:'Description',
-            type:'text'
+            title:"Pitch de l'article",
+            type:'text',
+            group: 'editorial',
         }),
 
         defineField({
             name:'date',
             type:'date',
-            group:'details',
-            description:'Date de publication'
+            description:'Date de publication',
+             group: ['publish','details'],
         }),
+       
         
         defineField({
             name: 'hero',
-            title:'Image header',
+            title:'Image principale',
             type: 'image',
             options: {
                 hotspot: true,
@@ -64,7 +72,7 @@ export default defineType({
 
         defineField({
             name:'content',
-            title:'Contenu Page',
+            title:'Article',
             type:'blogContent',
                group:'editorial',
             options:{
@@ -81,6 +89,20 @@ export default defineType({
                 {name:'image', type:'image',title:'photo'}
             ]
         }),
+
+          defineField({
+            name:'isPublished',
+            title:"Publier l'article",
+            type:'boolean',
+            initialValue:'false',
+            description:'Publier article ?',
+             group: ['publish','details'],
+        }),
+          defineField({
+        name:'seo',
+        type:'seo',
+        group:'details'
+      }),
 
     ],
     preview: {

@@ -18,8 +18,8 @@ export const metadata = {
   generator: 'Next.js',
   applicationName: 'Kymou asbl',
   referrer: 'origin-when-cross-origin',
-  keywords: ['Kymou', 'Kymou-asbl', ''],
-  authors: [ { name: 'Katherine Kombia', url: 'https://nextjs.org' }],
+  keywords: ['Kymou', 'Kymou-asbl', 'asbl',],
+  authors: [ { name: 'Katherine Kombia', url: 'https://kymou.lu' }],
   creator: 'Katherine Kombia',
   publisher: 'Katherine Kombia',
   formatDetection: {
@@ -35,7 +35,7 @@ const {data:datas}:{data:HOME_QUERYResult} = await sanityFetch({query:HOME_QUERY
   //const loader = urlFor(datas?.footer?.image).url() || ''
 
   return (
-    <div className='min-h-[100vh] w-[100vw] flex flex-col gap-4' >
+    <div className='min-h-[100vh] w-[100vw] flex flex-col gap-8' >
 
         <Hero {...datas?.header}/>
         <About data={datas?.about}/>
@@ -43,7 +43,7 @@ const {data:datas}:{data:HOME_QUERYResult} = await sanityFetch({query:HOME_QUERY
 
         <div className="p-2">
 
-          <TitleEffect big={true}>{datas?.footer?.title}</TitleEffect>
+          <TitleEffect className="mt-8" big={true}>{datas?.footer?.title}</TitleEffect>
           <div className="w-full h-[100vh] flex items-center justify-center relative">
             <Image
               alt=''

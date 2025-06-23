@@ -32,7 +32,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en" className="bg-[--color1] ">
       <Head>
-      <meta name="google-site-verification" content="4VHbOuvyxkMPrmqoVd5xPWHVRe_y6d0khtbrCcdiCTY" />
+      {/* <meta name="google-site-verification" content="4VHbOuvyxkMPrmqoVd5xPWHVRe_y6d0khtbrCcdiCTY" /> */}
       </Head>
       <body className={`${inter.className} w-[100dvw] min-h-[100vh] h-full flex flex-col relative items-center `}>
         <Navbar blog={blogPost}/>

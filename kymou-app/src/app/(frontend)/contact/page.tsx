@@ -14,7 +14,7 @@ const {data:data}  = await sanityFetch({ query: CONTACT_QUERY });
 
 return (
 
-    <div className='min-h-[100dvh] w-[100vw] max-w-[1200px] pt-24 pb-12 items-left justify-center flex flex-col gap-4 p-8'>
+    <div className='min-h-[100dvh] w-[100vw] max-w-[1200px] mt-[15vh] pb-12 items-left justify-center flex flex-col gap-4 p-8 max-[800px]:p-2'>
 
         {data?.text && <CustomPortableText  className={'text-2xl'} value={data?.text}/>}
 
@@ -29,7 +29,7 @@ return (
         
         <div className='zigzagsm p-4 rounded-xl relative'>
 
-          <div className='flex flex-col p-4 gap-2 bg-[#ffff] rounded-xl text-2xl'>
+          <div className='flex flex-col p-4 gap-2 bg-[--bgColor2] rounded-xl text-2xl'>
             <p>{data?.asbl?.name}</p>
 
             <p>{data?.asbl?.bic}</p>

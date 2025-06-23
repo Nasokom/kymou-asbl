@@ -138,6 +138,7 @@ export type Contact = {
   _rev: string;
   title?: string;
   text?: Content;
+  seo?: Seo;
   contact?: {
     title?: string;
     email?: string;
@@ -228,6 +229,7 @@ export type HomePage2 = {
       _type: "image";
     };
   };
+  seo?: Seo;
 };
 
 export type BlogContent = Array<{
@@ -338,6 +340,8 @@ export type BlogPost = {
       _type: "image";
     };
   };
+  isPublished?: boolean;
+  seo?: Seo;
 };
 
 export type Projectv2 = {
@@ -379,6 +383,7 @@ export type Projectv2 = {
     _type: "image";
     _key: string;
   }>;
+  seo?: Seo;
 };
 
 export type TextImg = {
@@ -398,10 +403,39 @@ export type TextImg = {
   };
 };
 
-export type Slug = {
-  _type: "slug";
-  current?: string;
-  source?: string;
+export type Settings = {
+  _id: string;
+  _type: "settings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  title?: string;
+  allowStudio?: Array<{
+    name?: string;
+    ip?: string;
+    allow?: boolean;
+    _key: string;
+  }>;
+};
+
+export type Seo = {
+  _type: "seo";
+  title?: string;
+  description?: string;
+  image?: {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
+  };
+  noIndex?: boolean;
 };
 
 export type SanityImageCrop = {
@@ -461,7 +495,22 @@ export type SanityImageMetadata = {
   isOpaque?: boolean;
 };
 
-export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | BlockContent | Content | Contact | CustomMedia | HomePage2 | BlogContent | BlogPost | Projectv2 | TextImg | Slug | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata;
+export type MediaTag = {
+  _id: string;
+  _type: "media.tag";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: Slug;
+};
+
+export type Slug = {
+  _type: "slug";
+  current?: string;
+  source?: string;
+};
+
+export type AllSanitySchemaTypes = SanityImagePaletteSwatch | SanityImagePalette | SanityImageDimensions | SanityFileAsset | Geopoint | BlockContent | Content | Contact | CustomMedia | HomePage2 | BlogContent | BlogPost | Projectv2 | TextImg | Settings | Seo | SanityImageCrop | SanityImageHotspot | SanityImageAsset | SanityAssetSourceData | SanityImageMetadata | MediaTag | Slug;
 export declare const internalGroqTypeReferenceTo: unique symbol;
 // Source: ./src/sanity/lib/queries.ts
 // Variable: HOME_QUERY
@@ -548,9 +597,10 @@ export type HOME_QUERYResult = {
       } | null;
     } | null;
   } | null;
+  seo?: Seo;
 } | null;
 // Variable: POSTS_QUERY
-// Query: *[_type == "blogPost" && defined(slug.current) && now() > date ][0...12]{  _id, title, author, slug,  content, _createdAt,publishedAt,description,  hero{    ...,    asset-> {      title,      url,      ...    }  },}
+// Query: *[_type == "blogPost" && defined(slug.current) && isPublished == true && now() > date ][0...12]{  _id, title, author, slug,  content, _createdAt,publishedAt,description,  hero{    ...,    asset-> {      title,      url,      credit,      ...    }  },}
 export type POSTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -578,6 +628,7 @@ export type POSTS_QUERYResult = Array<{
     asset: {
       title?: string;
       url?: string;
+      credit: null;
       _id: string;
       _type: "sanity.imageAsset";
       _createdAt: string;
@@ -604,7 +655,7 @@ export type POSTS_QUERYResult = Array<{
   } | null;
 }>;
 // Variable: BLOG_SITEMAP_QUERY
-// Query: *[_type == "blogPost" && now() > date ]{_id,slug,_createdAt,_updatedAt}
+// Query: *[_type == "blogPost" && now() > date && isPublished == true ]{_id,slug,_createdAt,_updatedAt}
 export type BLOG_SITEMAP_QUERYResult = Array<{
   _id: string;
   slug: Slug | null;
@@ -612,12 +663,13 @@ export type BLOG_SITEMAP_QUERYResult = Array<{
   _updatedAt: string;
 }>;
 // Variable: BLOG_LENGTH_QUERY
-// Query: *[_type == "blogPost" && now() > date ]{}
+// Query: *[_type == "blogPost" && now()  > date && isPublished == true ]{}
 export type BLOG_LENGTH_QUERYResult = Array<{}>;
 // Variable: POST_QUERY
-// Query: *[_type == "blogPost" && slug.current == $slug][0]{  _id,  title,  author,  content,   publishedAt,  _createdAt,  description,  hero{    ...,    asset->{      ...    }  },}
+// Query: *[_type == "blogPost" && slug.current == $slug][0]{  _id,  'slug':slug.current,  title,  author,  content,   publishedAt,  _createdAt,  _updatedAt,  description,  seo,  hero{    ...,    asset->{      ...    }  },}
 export type POST_QUERYResult = {
   _id: string;
+  slug: string | null;
   title: string | null;
   author: {
     name?: string;
@@ -637,7 +689,9 @@ export type POST_QUERYResult = {
   content: BlogContent | null;
   publishedAt: null;
   _createdAt: string;
+  _updatedAt: string;
   description: string | null;
+  seo: Seo | null;
   hero: {
     asset: {
       _id: string;
@@ -677,6 +731,7 @@ export type CONTACT_QUERYResult = {
   _rev: string;
   title?: string;
   text?: Content;
+  seo?: Seo;
   contact?: {
     title?: string;
     email?: string;
@@ -741,25 +796,143 @@ export type PROJECTS_SITEMAP_QUERYResult = Array<{
   _updatedAt: string;
 }>;
 // Variable: PROJECT_QUERY
-// Query: *[_type == "projectv2" && slug.current == $_id][0]                    {title,                    _id,                    'hero':hero.asset->{                            originalFilename,                            url,                            title,                            description,                                'lqip':metadata.lqip,                                'dimensions':metadata.dimensions,                            altText,                            _rev,                    },                    slug,                    pitch,                    problem,                    action,                    result,                  'gallery':gallery[].asset->{  originalFilename,  url,  title,  description,       'lqip':metadata.lqip,    'dimensions':metadata.dimensions,  altText,  _rev,}}
+// Query: *[_type == "projectv2" && slug.current == $slug][0]                    {title,                    _id,                    _createdAt,                    _updatedAt,                    seo,                     hero{    ...,    asset->{      ...    }  },                    'description':pt::text(pitch),                    slug,                    pitch{text,"image":image.asset->},                    problem{text,"image":image.asset->},                    action{text,"image":image.asset->},                    result{text,"image":image.asset->},                  'gallery':gallery[].asset->{  originalFilename,  url,  title,  description,       'lqip':metadata.lqip,    'dimensions':metadata.dimensions,  altText,  _rev,}}
 export type PROJECT_QUERYResult = {
   title: string | null;
   _id: string;
+  _createdAt: string;
+  _updatedAt: string;
+  seo: Seo | null;
   hero: {
-    originalFilename: string | null;
-    url: string | null;
-    title: string | null;
-    description: string | null;
-    lqip: string | null;
-    dimensions: SanityImageDimensions | null;
-    altText: string | null;
-    _rev: string;
+    asset: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata?: SanityImageMetadata;
+      source?: SanityAssetSourceData;
+    } | null;
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    _type: "image";
   } | null;
+  description: string;
   slug: Slug | null;
-  pitch: TextImg | null;
-  problem: TextImg | null;
-  action: TextImg | null;
-  result: TextImg | null;
+  pitch: {
+    text: Content | null;
+    image: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata?: SanityImageMetadata;
+      source?: SanityAssetSourceData;
+    } | null;
+  } | null;
+  problem: {
+    text: Content | null;
+    image: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata?: SanityImageMetadata;
+      source?: SanityAssetSourceData;
+    } | null;
+  } | null;
+  action: {
+    text: Content | null;
+    image: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata?: SanityImageMetadata;
+      source?: SanityAssetSourceData;
+    } | null;
+  } | null;
+  result: {
+    text: Content | null;
+    image: {
+      _id: string;
+      _type: "sanity.imageAsset";
+      _createdAt: string;
+      _updatedAt: string;
+      _rev: string;
+      originalFilename?: string;
+      label?: string;
+      title?: string;
+      description?: string;
+      altText?: string;
+      sha1hash?: string;
+      extension?: string;
+      mimeType?: string;
+      size?: number;
+      assetId?: string;
+      uploadId?: string;
+      path?: string;
+      url?: string;
+      metadata?: SanityImageMetadata;
+      source?: SanityAssetSourceData;
+    } | null;
+  } | null;
   gallery: Array<{
     originalFilename: string | null;
     url: string | null;
@@ -842,37 +1015,58 @@ export type OG_IMAGE_QUERYResult = {
   } | null;
 } | null;
 // Variable: SITEMAP_QUERY
-// Query: *[_type in ['homePage2','contact'] || _type == "projectv2" && defined(slug.current) && isPublished == true || _type =="blogPost" && defined(slug.current) && now() > date ] {    "href": select(      _type == 'homePage2' => "/",      _type == 'contact' => "/contact",      _type == "blogPost" => "/blog/" + slug.current,      _type == "projectv2" => "/project/" + slug.current,    ),    'priority':select(      _type == 'homePage2' => 1,      _type == 'contact' => 0.3,      _type == "blogPost" => 1,      _type == "projectv2" => 1,    ),    _updatedAt}
+// Query: *[_type in ['homePage2','contact'] || _type == "projectv2" && defined(slug.current) && isPublished == true || _type =="blogPost" && defined(slug.current) && now() > date ] {    "href": select(      _type == 'homePage2' => "/",      _type == 'contact' => "/contact",      _type == "blogPost" => "/blog/" + slug.current,      _type == "projectv2" => "/project/" + slug.current,    ),    'priority':select(      _type == 'homePage2' => 0.5,      _type == 'contact' => 0.3,      _type == "blogPost" => 1,      _type == "projectv2" => 1,    ),    'freq':select(      _type == 'homePage2' => 'monthly',      _type == 'contact' => 'yearly',      _type == "blogPost" => 'weekly',      _type == "projectv2" => 'weekly',    ),    _updatedAt}
 export type SITEMAP_QUERYResult = Array<{
   href: "/";
-  priority: 1;
-  _updatedAt: string;
-} | {
-  href: "/contact";
-  priority: 0.3;
+  priority: 0.5;
+  freq: "monthly";
   _updatedAt: string;
 } | {
   href: string | null;
   priority: 1;
+  freq: "weekly";
+  _updatedAt: string;
+} | {
+  href: "/contact";
+  priority: 0.3;
+  freq: "yearly";
   _updatedAt: string;
 }>;
+// Variable: SETTINGS_QUERY
+// Query: *[_type == "settings" ][0]
+export type SETTINGS_QUERYResult = {
+  _id: string;
+  _type: "settings";
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+  name?: string;
+  title?: string;
+  allowStudio?: Array<{
+    name?: string;
+    ip?: string;
+    allow?: boolean;
+    _key: string;
+  }>;
+} | null;
 
 // Query TypeMap
 import "@sanity/client";
 declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"homePage2\"][0]{\n  ...,\n  header{\n    ...,\n      image{...,asset->}\n\n  },\n  footer{\n    ...,\n    image{\n      asset->\n    }\n  }\n}": HOME_QUERYResult;
-    "*[_type == \"blogPost\" && defined(slug.current) && now() > date ][0...12]{\n  _id, title, author, slug,  content, _createdAt,publishedAt,description,\n  hero{\n    ...,\n    asset-> {\n      title,\n      url,\n      ...\n    }\n  },\n}": POSTS_QUERYResult;
-    "*[_type == \"blogPost\" && now() > date ]{_id,slug,_createdAt,_updatedAt}": BLOG_SITEMAP_QUERYResult;
-    "*[_type == \"blogPost\" && now() > date ]{}": BLOG_LENGTH_QUERYResult;
-    "*[_type == \"blogPost\" && slug.current == $slug][0]{\n  _id,\n  title,\n  author,\n  content, \n  publishedAt,\n  _createdAt,\n  description,\n  hero{\n    ...,\n    asset->{\n      ...\n    }\n  },\n}": POST_QUERYResult;
+    "*[_type == \"blogPost\" && defined(slug.current) && isPublished == true && now() > date ][0...12]{\n  _id, title, author, slug,  content, _createdAt,publishedAt,description,\n  hero{\n    ...,\n    asset-> {\n      title,\n      url,\n      credit,\n      ...\n    }\n  },\n}": POSTS_QUERYResult;
+    "*[_type == \"blogPost\" && now() > date && isPublished == true ]{_id,slug,_createdAt,_updatedAt}": BLOG_SITEMAP_QUERYResult;
+    "*[_type == \"blogPost\" && now()  > date && isPublished == true ]{}": BLOG_LENGTH_QUERYResult;
+    "*[_type == \"blogPost\" && slug.current == $slug][0]{\n  _id,\n  'slug':slug.current,\n  title,\n  author,\n  content, \n  publishedAt,\n  _createdAt,\n  _updatedAt,\n  description,\n  seo,\n  hero{\n    ...,\n    asset->{\n      ...\n    }\n  },\n}": POST_QUERYResult;
     "*[_type == \"contact\"][0]": CONTACT_QUERYResult;
     "*[_type == \"blogPost\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
     "*[ _type == 'sanity.imageAsset' && opt.media.tags != null]{\n  originalFilename,\n  url,\n  title,\n  description,\n       'lqip':metadata.lqip,\n    'dimensions':metadata.dimensions,\n  altText,\n  _rev,\n   \"reference\" : *[\n    references(^._id)\n    && \n    _type == 'projectv2'\n  ][0]{slug, title}   \n}": GALLERY_QUERYResult;
     "*[_type == \"projectv2\" && isPublished == true]|order(orderRank)\n        {\n        title,\n        _id,\n        slug,\n        hero{\n          ...,\n          asset->\n        }}\n        ": PROJECTS_QUERYResult;
     "*[_type == \"projectv2\" && isPublished == true]\n        {\n        title,\n        _id,\n        slug\n        ,_createdAt,_updatedAt\n         \n          }\n        ": PROJECTS_SITEMAP_QUERYResult;
-    "*[_type == \"projectv2\" && slug.current == $_id][0]\n                    {title,\n                    _id,\n                    'hero':hero.asset->{\n                            originalFilename,\n                            url,\n                            title,\n                            description,\n                                'lqip':metadata.lqip,\n                                'dimensions':metadata.dimensions,\n                            altText,\n                            _rev,\n                    },\n                    slug,\n                    pitch,\n                    problem,\n                    action,\n                    result,\n                  'gallery':gallery[].asset->{\n  originalFilename,\n  url,\n  title,\n  description,\n       'lqip':metadata.lqip,\n    'dimensions':metadata.dimensions,\n  altText,\n  _rev,\n}}": PROJECT_QUERYResult;
+    "*[_type == \"projectv2\" && slug.current == $slug][0]\n                    {title,\n                    _id,\n                    _createdAt,\n                    _updatedAt,\n                    seo,\n                     hero{\n    ...,\n    asset->{\n      ...\n    }\n  },\n                    'description':pt::text(pitch),\n                    slug,\n                    pitch{text,\"image\":image.asset->},\n                    problem{text,\"image\":image.asset->},\n                    action{text,\"image\":image.asset->},\n                    result{text,\"image\":image.asset->},\n                  'gallery':gallery[].asset->{\n  originalFilename,\n  url,\n  title,\n  description,\n       'lqip':metadata.lqip,\n    'dimensions':metadata.dimensions,\n  altText,\n  _rev,\n}}": PROJECT_QUERYResult;
     "\n  *[_id == $id][0]{\n    title,\n    description,\n    hero,\n    content,\n    _createdAt,\n    \"image\": hero.asset->{\n      url,\n      metadata {\n        palette\n      }\n    }\n  }    \n": OG_IMAGE_QUERYResult;
-    "\n*[_type in ['homePage2','contact'] || _type == \"projectv2\" && defined(slug.current) && isPublished == true || _type ==\"blogPost\" && defined(slug.current) && now() > date ] {\n    \"href\": select(\n      _type == 'homePage2' => \"/\",\n      _type == 'contact' => \"/contact\",\n      _type == \"blogPost\" => \"/blog/\" + slug.current,\n      _type == \"projectv2\" => \"/project/\" + slug.current,\n\n    ),\n    'priority':select(\n      _type == 'homePage2' => 1,\n      _type == 'contact' => 0.3,\n      _type == \"blogPost\" => 1,\n      _type == \"projectv2\" => 1,\n\n    ),\n    _updatedAt\n}\n": SITEMAP_QUERYResult;
+    "\n*[_type in ['homePage2','contact'] || _type == \"projectv2\" && defined(slug.current) && isPublished == true || _type ==\"blogPost\" && defined(slug.current) && now() > date ] {\n    \"href\": select(\n      _type == 'homePage2' => \"/\",\n      _type == 'contact' => \"/contact\",\n      _type == \"blogPost\" => \"/blog/\" + slug.current,\n      _type == \"projectv2\" => \"/project/\" + slug.current,\n\n    ),\n    'priority':select(\n      _type == 'homePage2' => 0.5,\n      _type == 'contact' => 0.3,\n      _type == \"blogPost\" => 1,\n      _type == \"projectv2\" => 1,\n    ),\n    'freq':select(\n      _type == 'homePage2' => 'monthly',\n      _type == 'contact' => 'yearly',\n      _type == \"blogPost\" => 'weekly',\n      _type == \"projectv2\" => 'weekly',\n    ),\n    _updatedAt\n}\n": SITEMAP_QUERYResult;
+    "*[_type == \"settings\" ][0]": SETTINGS_QUERYResult;
   }
 }

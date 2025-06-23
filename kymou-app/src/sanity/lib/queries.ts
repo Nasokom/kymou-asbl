@@ -15,29 +15,33 @@ export const HOME_QUERY = defineQuery(`*[_type == "homePage2"][0]{
     }
   }
 }`)
-export const POSTS_QUERY = defineQuery(`*[_type == "blogPost" && defined(slug.current) && now() > date ][0...12]{
+export const POSTS_QUERY = defineQuery(`*[_type == "blogPost" && defined(slug.current) && isPublished == true && now() > date ][0...12]{
   _id, title, author, slug,  content, _createdAt,publishedAt,description,
   hero{
     ...,
     asset-> {
       title,
       url,
+      credit,
       ...
     }
   },
 }`)
 
-export const BLOG_SITEMAP_QUERY = defineQuery(`*[_type == "blogPost" && now() > date ]{_id,slug,_createdAt,_updatedAt}`)
+export const BLOG_SITEMAP_QUERY = defineQuery(`*[_type == "blogPost" && now() > date && isPublished == true ]{_id,slug,_createdAt,_updatedAt}`)
 
-export const BLOG_LENGTH_QUERY= defineQuery(`*[_type == "blogPost" && now() > date ]{}`)
+export const BLOG_LENGTH_QUERY= defineQuery(`*[_type == "blogPost" && now()  > date && isPublished == true ]{}`)
 export const POST_QUERY = defineQuery(`*[_type == "blogPost" && slug.current == $slug][0]{
   _id,
+  'slug':slug.current,
   title,
   author,
   content, 
   publishedAt,
   _createdAt,
+  _updatedAt,
   description,
+  seo,
   hero{
     ...,
     asset->{
@@ -90,24 +94,24 @@ export const PROJECTS_SITEMAP_QUERY = defineQuery(`*[_type == "projectv2" && isP
          
           }
         `)
-export const PROJECT_QUERY = defineQuery(`*[_type == "projectv2" && slug.current == $_id][0]
+export const PROJECT_QUERY = defineQuery(`*[_type == "projectv2" && slug.current == $slug][0]
                     {title,
                     _id,
-                    'hero':hero.asset->{
-                            originalFilename,
-                            url,
-                            title,
-                            description,
-                                'lqip':metadata.lqip,
-                                'dimensions':metadata.dimensions,
-                            altText,
-                            _rev,
-                    },
+                    _createdAt,
+                    _updatedAt,
+                    seo,
+                     hero{
+    ...,
+    asset->{
+      ...
+    }
+  },
+                    'description':pt::text(pitch),
                     slug,
-                    pitch,
-                    problem,
-                    action,
-                    result,
+                    pitch{text,"image":image.asset->},
+                    problem{text,"image":image.asset->},
+                    action{text,"image":image.asset->},
+                    result{text,"image":image.asset->},
                   'gallery':gallery[].asset->{
   originalFilename,
   url,
@@ -146,10 +150,10 @@ export const SITEMAP_QUERY = defineQuery(`
 
     ),
     'priority':select(
-      _type == 'homePage2' => '0.5',
-      _type == 'contact' => '0.3',
-      _type == "blogPost" => '1',
-      _type == "projectv2" => '1',
+      _type == 'homePage2' => 0.5,
+      _type == 'contact' => 0.3,
+      _type == "blogPost" => 1,
+      _type == "projectv2" => 1,
     ),
     'freq':select(
       _type == 'homePage2' => 'monthly',
@@ -160,3 +164,5 @@ export const SITEMAP_QUERY = defineQuery(`
     _updatedAt
 }
 `)
+
+export const SETTINGS_QUERY = defineQuery(`*[_type == "settings" ][0]`)

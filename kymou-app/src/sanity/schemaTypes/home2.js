@@ -10,6 +10,7 @@ export default defineType({
     {name: 'axes', title: 'Objectifs'},
     {name: 'about', title: 'About'},
     {name: 'footer', title: 'Footer'},
+     {name: 'details', title: 'Details'},
   ],
 
     fields: [
@@ -135,7 +136,13 @@ export default defineType({
             title:'Image footer',
           }
         ]
-      }) 
+      }) ,
+       defineField({
+        name:'seo',
+        type:'seo',
+        group:'details'
+      }),
+      
     ],
   });
   

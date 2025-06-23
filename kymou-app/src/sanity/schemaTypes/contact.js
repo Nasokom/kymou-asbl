@@ -4,6 +4,7 @@ export default defineType({
   name: 'contact',
   title: 'Contact',
   type: 'document',
+  groups:[{name:'details',title:'Details'}],
   fields: [
     defineField({
         name: 'title',
@@ -16,6 +17,11 @@ export default defineType({
         name: 'text',
         title: 'Texte',
       type:'content'
+      }),
+       defineField({
+        name:'seo',
+        type:'seo',
+        group:'details'
       }),
 
     defineField({

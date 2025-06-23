@@ -5,13 +5,15 @@
 
 
 import {visionTool} from '@sanity/vision'
-import {defineConfig, Image,buildLegacyTheme} from 'sanity'
-import {structureTool} from 'sanity/structure'
+import {defineConfig, Image,buildLegacyTheme, isDev} from 'sanity'
+import {component, structureTool} from 'sanity/structure'
 import {media,mediaAssetSource} from 'sanity-plugin-media'
 import {defineDocuments, presentationTool} from 'sanity/presentation'
 import Logo from './logo'
+import {ImagesIcon} from '@sanity/icons'
 
 import {resolve} from '@/sanity/lib/presentation/resole'
+import { CustomPreviewHeader } from '@/sanity/customComponents/CustomPreviewHeader'
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import {apiVersion, dataset, projectId} from './src/sanity/env'
@@ -57,6 +59,42 @@ export const myTheme = buildLegacyTheme({
   '--focus-color': props['--my-blue'],
 })
 
+const defaultPLugin = [
+  structureTool({structure,defaultDocumentNode}),
+   media({
+    creditLine: {
+      enabled: true,
+      // boolean - enables an optional "Credit Line" field in the plugin.
+      // Used to store credits e.g. photographer, licence information
+      excludeSources: ['unsplash'],
+      // string | string[] - when used with 3rd party asset sources, you may
+      // wish to prevent users overwriting the creditLine based on the `source.name`
+    },
+
+    maximumUploadSize: 10000000
+    // number - maximum file size (in bytes) that can be uploaded through the plugin interface
+  }),
+    // Vision is for querying with GROQ from inside the Studio
+    // https://www.sanity.io/docs/the-vision-plugin
+
+    presentationTool({
+      icon:ImagesIcon,
+      title:"Visual Edit",
+     resolve,
+      previewUrl: {
+        previewMode: {
+          enable: '/api/draft-mode/enable',
+          disable: '/api/draft-mode/disable',
+        },
+      },
+       components: {
+        unstable_header: {
+          component: CustomPreviewHeader,
+        },
+      },
+    }),
+  ]
+
 
 
 
@@ -69,10 +107,10 @@ export default defineConfig({
     projectId,
     dataset
   },
-    mediaLibrary: {
-    enabled: true,
-    aspectsPath: 'aspects',
-  },
+  //   mediaLibrary: {
+  //   enabled: true,
+  //   aspectsPath: 'aspects',
+  // },
 autoUpdates: true,
   icon:Logo,
   // Add and edit the content schema in the './sanity/schemaTypes' folder
@@ -87,34 +125,9 @@ autoUpdates: true,
       assetSources: (sources) => sources.filter((source) => source.name !== 'sanity-default')
     }
   },
-  plugins: [
-  //   media({
-  //   creditLine: {
-  //     enabled: true,
-  //     // boolean - enables an optional "Credit Line" field in the plugin.
-  //     // Used to store credits e.g. photographer, licence information
-  //     excludeSources: ['unsplash'],
-  //     // string | string[] - when used with 3rd party asset sources, you may
-  //     // wish to prevent users overwriting the creditLine based on the `source.name`
-  //   },
-
-  //   maximumUploadSize: 10000000
-  //   // number - maximum file size (in bytes) that can be uploaded through the plugin interface
-  // }),
-    structureTool({structure,defaultDocumentNode}),
-    // Vision is for querying with GROQ from inside the Studio
-    // https://www.sanity.io/docs/the-vision-plugin
-    visionTool({defaultApiVersion: apiVersion}),
-
-    presentationTool({
-     resolve,
-      previewUrl: {
-        previewMode: {
-          enable: '/api/draft-mode/enable',
-          disable: '/api/draft-mode/disable',
-        },
-      },
-    }),
-  ],
-   theme: myTheme,
+  theme: myTheme,
+  plugins: isDev ? [
+    ...defaultPLugin,
+    visionTool({icon:ImagesIcon,defaultApiVersion: apiVersion}),
+  ] : defaultPLugin,
 })
