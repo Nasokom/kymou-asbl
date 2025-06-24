@@ -177,7 +177,7 @@ const breadcrumbLd = {
       </div>
 
    <div className="flex relative w-full rounded h-[100vh] overflow-hidden animate-[appearDown_1s_forwards]">
-          <Image priority fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded" 
+          <Image priority fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded bg-[--bgColor2]" 
          // alt={post?.hero?.altText || post?.hero?.description || post?.hero?.originalFilename}
          alt="fake altText"
          />

@@ -147,7 +147,7 @@ const breadcrumbLd = {
           </div>
 
       <div className="flex relative w-[70vw] max-[800px]:w-[93%] rounded h-[100vh] max-[800px]:h-[80vh] overflow-hidden animate-[appearDown_1s_forwards]">
-          <Image priority fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded" alt={project?.hero?.asset?.altText || project?.hero?.asset?.description || project.hero?.asset?.originalFilename || "Image de Projet"}/>
+          <Image priority fill src={loader} style={{objectFit:'cover'}} className="z-0 rounded bg-[--bgColor2]" alt={project?.hero?.asset?.altText || project?.hero?.asset?.description || project.hero?.asset?.originalFilename || "Image de Projet"}/>
       </div>
 
 
