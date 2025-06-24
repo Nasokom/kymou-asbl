@@ -1,5 +1,4 @@
-import home2 from '@/sanity/schemaTypes/home2'
-import { title } from 'process'
+
 import { defineLocations, PresentationPluginOptions } from 'sanity/presentation'
 
 export const resolve: PresentationPluginOptions['resolve'] = {

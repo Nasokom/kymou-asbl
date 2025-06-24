@@ -1,6 +1,6 @@
 import type {DefaultDocumentNodeResolver} from 'sanity/structure'
-import BlogCard from '@/components/BlogCard'
-import ProjectCard from '@/components/Project/ProjectCard'
+import BlogCard from '../components/BlogCard'
+import ProjectCard from '../components/Project/ProjectCard'
 
 
 const article = ({document}:{document:any}) => <BlogCard className={'p-4 pointer-events-none'} data={document.displayed}/>

@@ -1,10 +1,10 @@
  'use client'
-import { urlFor } from '@/sanity/lib/image'
+import { urlFor } from '../sanity/lib/image'
 import Link from 'next/link'
 import {motion} from 'framer-motion'
 import React from 'react'
 import Image from 'next/image'
-import {readingTime} from '@/utils/fonction'
+import {readingTime} from '../utils/fonction'
 import { FaClock } from 'react-icons/fa6'
 import { POSTS_QUERYResult} from "@/sanity/types";
 import { PublishedAt } from './PublishedAt'

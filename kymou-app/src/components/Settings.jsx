@@ -6,7 +6,6 @@ import { IoClose } from 'react-icons/io5';
 
 
 const Settings = ({showSettings,setShowSettings,setMenu}) => {
-  //const [showSettings, setShowSettings] = useState(false);
   const [fontSize,setFontSize ] = useState(16)
   const [lineHeigth,setLineheigth ] = useState(1)
   const [wordSpacing,setWordSpacing ] = useState(0.1)

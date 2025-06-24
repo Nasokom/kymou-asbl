@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Image from 'next/image'
-import { urlFor } from '@/sanity/lib/image'
+import { urlFor } from '../../sanity/lib/image'
 import {motion} from 'framer-motion'
 import Link from 'next/link'
 

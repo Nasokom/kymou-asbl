@@ -11,15 +11,16 @@ import {media,mediaAssetSource} from 'sanity-plugin-media'
 import {defineDocuments, presentationTool} from 'sanity/presentation'
 import Logo from './logo'
 import {ImagesIcon} from '@sanity/icons'
+import path from 'path'
 
-import {resolve} from '@/sanity/lib/presentation/resole'
-import { CustomPreviewHeader } from '@/sanity/customComponents/CustomPreviewHeader'
+import {resolve} from './src/sanity/lib/presentation/resolve'
+import { CustomPreviewHeader } from './src/sanity/customComponents/CustomPreviewHeader'
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import {apiVersion, dataset, projectId} from './src/sanity/env'
 import {schema} from './src/sanity/schemaTypes'
 import {structure} from './src/sanity/structure'
-import {defaultDocumentNode} from '@/sanity/defaultDocumentNode'
+import {defaultDocumentNode} from './src/sanity/defaultDocumentNode'
 
 
 // source theming https://www.sanity.io/docs/studio/theming
@@ -107,10 +108,7 @@ export default defineConfig({
     projectId,
     dataset
   },
-  //   mediaLibrary: {
-  //   enabled: true,
-  //   aspectsPath: 'aspects',
-  // },
+ 
 autoUpdates: true,
   icon:Logo,
   // Add and edit the content schema in the './sanity/schemaTypes' folder
