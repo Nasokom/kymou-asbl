@@ -98,7 +98,7 @@ export default async function Page({
   description: project.description,
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": `https://kymou.lu/project/${project.slug}`,
+    "@id": `https://kymou.lu/project/${project?.slug?.current}`,
   },
 };
     
@@ -122,7 +122,7 @@ const breadcrumbLd = {
       "@type": "ListItem",
       position: 3,
       name: project.title,
-      item: `https://kymou.lu/project/${project.slug}`,
+      item: `https://kymou.lu/project/${project?.slug?.current}`,
     },
   ],
 };
