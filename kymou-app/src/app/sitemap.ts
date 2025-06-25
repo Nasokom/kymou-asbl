@@ -10,7 +10,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     if (!paths) return [];
 
     const baseUrl = process.env.VERCEL
-      ? `https://${process.env.VERCEL_URL}`
+      ? `https://www.kymou.lu`
       : "http://localhost:3000";
 
     return  paths.map((path:SITEMAP_QUERYResult[0]) => ({
