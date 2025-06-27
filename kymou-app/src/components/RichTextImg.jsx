@@ -1,8 +1,8 @@
 'use client'
 import React, {useEffect, useState} from 'react'
-import { urlFor } from '../../old/utils/sanity/sanity'
+import { urlFor } from '../sanity/lib/image'
 import Image from 'next/image'
-import CustomPortableText from '../../old/components/CustomPortableText'
+import CustomPortableText from './CustomPortableText'
 import ModalImg from './ModalImg'
 
 const RichTextImg = ({data}) => {
