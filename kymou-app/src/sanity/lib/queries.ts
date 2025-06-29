@@ -15,6 +15,7 @@ export const HOME_QUERY = defineQuery(`*[_type == "homePage2"][0]{
     }
   }
 }`)
+
 export const BLOG_PAGE_QUERY = defineQuery('*[_type == "blogPage"][0]');
 export const POSTS_QUERY = defineQuery(`*[_type == "blogPost" && defined(slug.current) && isPublished == true && now() > date ][0...12]{
   _id, title, author, slug,  content, _createdAt,publishedAt,description,
@@ -42,6 +43,7 @@ export const POST_QUERY = defineQuery(`*[_type == "blogPost" && slug.current == 
   _createdAt,
   _updatedAt,
   description,
+  'rawContent':pt::text(content),
   seo,
   hero{
     ...,
@@ -100,16 +102,18 @@ export const PROJECTS_SITEMAP_QUERY = defineQuery(`*[_type == "projectv2" && isP
 export const PROJECT_QUERY = defineQuery(`*[_type == "projectv2" && slug.current == $slug][0]
                     {title,
                     _id,
+                    seo,
                     _createdAt,
                     _updatedAt,
                     seo,
                      hero{
-    ...,
-    asset->{
-      ...
-    }
-  },
-                    'description':pt::text(pitch),
+                      ...,
+                      asset->{
+                        ...
+                      }
+                    },
+                    'rawIntro':pt::text(pitch.text),
+                    'rawContent':pt::text(pitch.text+problem.text+action.text+result.text),
                     slug,
                     pitch{text,"image":image.asset->},
                     problem{text,"image":image.asset->},

@@ -10,6 +10,7 @@ import { readingTime } from "@/utils/fonction";
 import { PublishedAt } from "@/components/PublishedAt";
 import type { Metadata } from "next";
 import Link from "next/link";
+import JsonLdInjector from "@/components/JsonLdInjector";
 
 
 type RouteProps = {
@@ -87,75 +88,18 @@ export default async function Page({
   //const nextLoader  = urlFor(nextProject.hero).url()
 
   const loader = post.hero ? urlFor(post.hero).width(1000).height(1000).url() : ''
-
-
-  const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "Article",
-  headline: post.title,
-  image: [loader],
-  datePublished: post._createdAt,
-  dateModified: post._updatedAt || post._createdAt,
-  author: {
-    "@type": "Person",
-    name: post.author?.name || "unknow",
-  },
-  publisher: {
-    "@type": "Organization",
-    name: "Kymou asbl",
-    logo: {
-      "@type": "ImageObject",
-      url: "https://kymou.lu/kymouLogo.svg",
-    },
-  },
-  description: post.description,
-  mainEntityOfPage: {
-    "@type": "WebPage",
-    "@id": `https://kymou.lu/blog/${post.slug}`,
-  },
-};
-
-
-const breadcrumbLd = {
-  "@context": "https://schema.org",
-  "@type": "BreadcrumbList",
-  itemListElement: [
-    {
-      "@type": "ListItem",
-      position: 1,
-      name: "Home",
-      item: "https://kymou.lu.com",
-    },
-    {
-      "@type": "ListItem",
-      position: 2,
-      name: "Blog",
-      item: "https://kymou.lu/blog",
-    },
-    {
-      "@type": "ListItem",
-      position: 3,
-      name: post.title,
-      item: `https://kymou.lu/blog/${post.slug}`,
-    },
-  ],
-};
-
   return (
 <>
- <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(jsonLd).replace(/</g, '\\u003c'),
-        }}
-      />
-
-      <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify(breadcrumbLd).replace(/</g, '\\u003c'),
-  }}
-/>
+ <JsonLdInjector
+              title={post?.title || undefined} 
+              slug={"project/"+post.slug}
+              _createdAt={post?._createdAt}
+              _updatedAt={post?._updatedAt}
+              tags={post?.seo?.tags}
+              description={ post?.description|| post?.seo?.description || undefined}
+              content={post.rawContent}
+              image={loader}
+            />
     <div className='min-h-[100dvh] mt-[20vh] pt-4 max-[800px]:p-1 flex flex-col items-center justify-center max-w-[1000px]'>
       
       <div className='flex flex-col w-full gap-4 mb-8 '>

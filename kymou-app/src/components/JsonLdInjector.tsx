@@ -2,7 +2,7 @@ import React from 'react'
 
 const JsonLdInjector = (
     {tags,content,image,_createdAt,_updatedAt,description,slug,title,type} :
-    {tags?:string[],content?:string,image?:string, _createdAt?:string,_updatedAt?:string,description?:string,slug:string,title:string,type?:string}
+    {tags?:string[],content?:string,image?:string, _createdAt?:string,_updatedAt?:string,description?:string,slug:string,title?:string,type?:string}
 ) => {
 
     const genBr = slug.split('/').map((path:string,i:number)=>{
@@ -10,13 +10,13 @@ const JsonLdInjector = (
                 {
                     "@type": "ListItem",
                     position: i+2,
-                    name: path,
-                    item:`https://kymou.lu/${i == 0 ? path : slug }`,
+                    name: i > 0 ? title : path ,
+                    item:`https://www.kymou.lu/${i == 0 ? path : slug }`,
                 }
             )
     })
 console.log(genBr)
-  const jsonLd = {
+  const rawJsonLd = {
   "@context": "https://schema.org",
   "@type": type || "Article",
   headline: title,
@@ -32,17 +32,17 @@ console.log(genBr)
     name: "Kymou asbl",
     logo: {
       "@type": "ImageObject",
-      url: "https://kymou.lu/kymouLogo.svg",
+      url: "https://www.kymou.lu/kymouLogo.svg",
     },
   },
   description: description,
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": `https://kymou.lu/${slug}`,
+    "@id": `https://www.kymou.lu/${slug}`,
   },
 };
     
-const breadcrumbLd = {
+const rawBreadcrumbLd = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   itemListElement: [
@@ -50,7 +50,7 @@ const breadcrumbLd = {
       "@type": "ListItem",
       position: 1,
       name: "Home",
-      item: "https://kymou.lu",
+      item: "https://www.kymou.lu",
     },
     ...genBr
   ],
@@ -60,8 +60,17 @@ const breadcrumbLd = {
   inLanguage: "fr", // or "en", "de" depending on language
 }
 
+
+const breadcrumbLd = JSON.parse(JSON.stringify(rawBreadcrumbLd))
+const jsonLd = JSON.parse(JSON.stringify(rawJsonLd))
+console.log('####### RAW JSON LD #########')
+console.log(rawJsonLd)
+console.log('####### CLEAN JSON LD #########')
 console.log(jsonLd)
-console.log(JSON.parse(JSON.stringify(breadcrumbLd)))
+console.log('####### RAW BREADCRUMB LD #########')
+console.log(rawBreadcrumbLd)
+console.log('####### CLEAN BREADCRUMB LD #########')
+console.log(breadcrumbLd)
 
   return ( //Inject stringify data
     <>
