@@ -78,7 +78,7 @@ const Navbar = ({blog}) => {
             </Link>
         })}
           <Settings showSettings={showSettings} setShowSettings={setShowSettings} setMenu={setMenu}/>
-
+        
         </div>
 
 {/* Mobile  */}

@@ -104,12 +104,17 @@ function resetCssVar(){
         <IoClose  className={`cursor-pointer text-4xl m-2 hover:scale-125`}/>
       </button>
       :
+     <>
       <button onClick={()=>{setShowSettings(!showSettings),setMenu(false)}} >
         <TbSettings className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${showSettings ? 'stroke-[--color2] scale-115' :''}`}/>
       </button>
+     </>
     }
 
-{showSettings && 
+{showSettings && <>
+
+    <div className='fixed w-[100vw] h-[100vh] top-0 left-0' onClick={()=>setShowSettings(false)}></div>
+
     <div className='absolute w-full top-[110%] bg-[--bgColor2] max-h-[85vh] overflow-scroll left-0 rounded-xl shadow-md p-4' >
     <div className='flex p-4 text-2xl justify-center items-center w-full '>
       <p className='text-2xl'>Preferences</p>
@@ -184,6 +189,7 @@ function resetCssVar(){
         </li>
     </ul>
     </div>
+    </>
   }
 </>
   )
