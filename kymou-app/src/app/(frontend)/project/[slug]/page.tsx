@@ -100,6 +100,10 @@ export default async function Page({
     "@type": "WebPage",
     "@id": `https://kymou.lu/project/${project?.slug?.current}`,
   },
+  //   articleBody: content || undefined, // Full content text (if available)
+  // keywords: tags?.join(', ') || undefined, // Use relevant keywords or tags
+  // wordCount: content ? content.split(' ').length : undefined,
+  // inLanguage: "fr", // or "en", "de" depending on language
 };
     
 const breadcrumbLd = {

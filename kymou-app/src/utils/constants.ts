@@ -1,4 +1,4 @@
 export const BASE_URL = process.env.VERCEL
-      ? `https://${process.env.VERCEL_URL}`
+      ? `https://www.kymou.lu`
       : "http://localhost:3000";
 

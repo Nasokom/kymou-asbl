@@ -15,6 +15,7 @@ export const HOME_QUERY = defineQuery(`*[_type == "homePage2"][0]{
     }
   }
 }`)
+export const BLOG_PAGE_QUERY = defineQuery('*[_type == "blogPage"][0]');
 export const POSTS_QUERY = defineQuery(`*[_type == "blogPost" && defined(slug.current) && isPublished == true && now() > date ][0...12]{
   _id, title, author, slug,  content, _createdAt,publishedAt,description,
   hero{
@@ -74,6 +75,8 @@ export const GALLERY_QUERY = defineQuery(`*[ _type == 'sanity.imageAsset' && opt
   ][0]{slug, title}   
 }`)
 
+export const PROJECT_PAGE_QUERY = defineQuery('*[_type == "projectPage"][0]');
+  
 export const PROJECTS_QUERY = defineQuery(`*[_type == "projectv2" && isPublished == true]|order(orderRank)
         {
         title,

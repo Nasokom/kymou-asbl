@@ -21,6 +21,7 @@ export const structure: StructureResolver = (S,context) =>
 S.list()
           .title("Contenu de Kymou")
           .items([
+            singletonListItem(S, "blogPage", "Page de Blog").icon(RiArticleLine),
             S.listItem()
               .title('Articles non publies')
               .schemaType('blogPost')
@@ -37,9 +38,11 @@ S.list()
             ///* singletonListItem(S, "settings", "Settings"), */
             singletonListItem(S,'homePage2','Home Page ').icon(FaHome),
             singletonListItem(S, "contact", "Contact Page").icon(FaAddressBook),
+             
         
             
             S.divider(),
+            singletonListItem(S, "projectPage", "Page Projets").icon(FaHeart),
             orderableDocumentListDeskItem({type: 'projectv2', S,context,icon:FaHeart, title:'Projets en ligne',filter:'isPublished == true'}),
             S.listItem()
               .title('projet non publie')

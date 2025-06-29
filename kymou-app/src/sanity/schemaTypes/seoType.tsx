@@ -24,5 +24,12 @@ export const seoType = defineType({
       name: "noIndex",
       type: "boolean",
     }),
+    defineField({
+      name:'tags',
+      title:'Mots cles',
+      description:'Aide pour le referencement du contenu max 10',
+      type:'array',
+      of:[{type:'string'}]
+    })
   ],
 });
