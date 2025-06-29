@@ -1,8 +1,8 @@
 import React from 'react'
 
 const JsonLdInjector = (
-    {tags,content,image,_createdAt,_updatedAt,description,slug,title} :
-    {tags?:string[],content?:string,image?:string, _createdAt?:string,_updatedAt?:string,description?:string,slug:string,title:string}
+    {tags,content,image,_createdAt,_updatedAt,description,slug,title,type} :
+    {tags?:string[],content?:string,image?:string, _createdAt?:string,_updatedAt?:string,description?:string,slug:string,title:string,type?:string}
 ) => {
 
     const genBr = slug.split('/').map((path:string,i:number)=>{
@@ -18,7 +18,7 @@ const JsonLdInjector = (
 console.log(genBr)
   const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "Article",
+  "@type": type || "Article",
   headline: title,
   image: image ? image : undefined,
   datePublished: _createdAt,

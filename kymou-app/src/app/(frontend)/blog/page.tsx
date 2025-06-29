@@ -6,22 +6,11 @@ import type { Metadata } from "next";
 import JsonLdInjector from "@/components/JsonLdInjector";
 import { urlFor } from "@/sanity/lib/image";
 
+const getDatas = async () =>
+  sanityFetch({query: BLOG_PAGE_QUERY});
 
-type RouteProps = {
-  params: Promise<{ slug: string }>;
-};
-
-
-const getDatas = async (params: RouteProps["params"]) =>
-  sanityFetch({
-    query: BLOG_PAGE_QUERY,
-    params: await params,
-  });
-
-export async function generateMetadata({
-  params,
-}: RouteProps): Promise<Metadata> {
-  const { data: datas } = await getDatas(params);
+export async function generateMetadata(): Promise<Metadata> {
+  const { data: datas } = await getDatas();
   
   if (!datas){
     return {}
@@ -46,7 +35,7 @@ export async function generateMetadata({
 
 export default async function Page() {
   const { data: posts } = await sanityFetch({ query: POSTS_QUERY });
-  const {data:datas} = await sanityFetch({query:BLOG_PAGE_QUERY})
+  const {data:datas} = await getDatas()
 
 
   //console.log(datas)
@@ -75,7 +64,7 @@ export default async function Page() {
                 }
             )}
         </div>
-        
+
             <JsonLdInjector
             slug={'blog'}
             title={'Blog kymou'}
