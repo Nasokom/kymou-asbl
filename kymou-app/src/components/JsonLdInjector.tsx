@@ -40,6 +40,10 @@ console.log(genBr)
     "@type": "WebPage",
     "@id": `https://www.kymou.lu/${slug}`,
   },
+    articleBody: content || undefined, // Full content text (if available)
+  keywords: tags?.join(', ') || undefined, // Use relevant keywords or tags
+  wordCount: content ? content.split(' ').length : undefined,
+  inLanguage: "fr", // or "en", "de" depending on language
 };
     
 const rawBreadcrumbLd = {
@@ -54,21 +58,17 @@ const rawBreadcrumbLd = {
     },
     ...genBr
   ],
-    articleBody: content || undefined, // Full content text (if available)
-  keywords: tags?.join(', ') || undefined, // Use relevant keywords or tags
-  wordCount: content ? content.split(' ').length : undefined,
-  inLanguage: "fr", // or "en", "de" depending on language
 }
 
 
 const breadcrumbLd = JSON.parse(JSON.stringify(rawBreadcrumbLd))
 const jsonLd = JSON.parse(JSON.stringify(rawJsonLd))
-console.log('####### RAW JSON LD #########')
-console.log(rawJsonLd)
+// console.log('####### RAW JSON LD #########')
+// console.log(rawJsonLd)
 console.log('####### CLEAN JSON LD #########')
 console.log(jsonLd)
-console.log('####### RAW BREADCRUMB LD #########')
-console.log(rawBreadcrumbLd)
+// console.log('####### RAW BREADCRUMB LD #########')
+// console.log(rawBreadcrumbLd)
 console.log('####### CLEAN BREADCRUMB LD #########')
 console.log(breadcrumbLd)
 
