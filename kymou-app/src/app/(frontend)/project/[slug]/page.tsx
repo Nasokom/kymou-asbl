@@ -32,7 +32,7 @@ export async function generateMetadata({
   }
   const metadata: Metadata  ={
     title: project?.seo?.title || project.title,
-    description: project?.seo?.description||project.description,
+    description: project?.seo?.description||project.rawIntro,
   }
 
    metadata.openGraph = {
