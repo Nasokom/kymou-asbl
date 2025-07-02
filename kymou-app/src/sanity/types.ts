@@ -1068,9 +1068,19 @@ export type OG_IMAGE_QUERYResult = {
   } | null;
 } | null;
 // Variable: SITEMAP_QUERY
-// Query: *[_type in ['homePage2','contact'] || _type == "projectv2" && defined(slug.current) && isPublished == true || _type =="blogPost" && defined(slug.current) && now() > date ] {    "href": select(      _type == 'homePage2' => "/",      _type == 'contact' => "/contact",      _type == "blogPost" => "/blog/" + slug.current,      _type == "projectv2" => "/project/" + slug.current,    ),    'priority':select(      _type == 'homePage2' => 0.5,      _type == 'contact' => 0.3,      _type == "blogPost" => 1,      _type == "projectv2" => 1,    ),    'freq':select(      _type == 'homePage2' => 'monthly',      _type == 'contact' => 'yearly',      _type == "blogPost" => 'weekly',      _type == "projectv2" => 'weekly',    ),    _updatedAt}
+// Query: *[_type in ['homePage2','contact','projectPage','blogPage'] || _type == "projectv2" && defined(slug.current) && isPublished == true || _type =="blogPost" && defined(slug.current) && now() > date ] {    "href": select(      _type == 'homePage2' => "/",      _type == 'contact' => "/contact",      _type == 'projectPage' => "/project",      _type == 'blogPage' => "/blog",      _type == "blogPost" => "/blog/" + slug.current,      _type == "projectv2" => "/project/" + slug.current,    ),    'priority':select(      _type == 'homePage2' => 0.5,      _type == 'blogPage' => 0.5,      _type == 'projectPage' => 0.5,      _type == 'contact' => 0.3,      _type == "blogPost" => 1,      _type == "projectv2" => 1,    ),    'freq':select(      _type == 'homePage2' => 'monthly',      _type == 'projectPage' => 'monthly',      _type == 'blogPage' => 'monthly',      _type == 'contact' => 'yearly',      _type == "blogPost" => 'weekly',      _type == "projectv2" => 'weekly',    ),    _updatedAt}
 export type SITEMAP_QUERYResult = Array<{
   href: "/";
+  priority: 0.5;
+  freq: "monthly";
+  _updatedAt: string;
+} | {
+  href: "/blog";
+  priority: 0.5;
+  freq: "monthly";
+  _updatedAt: string;
+} | {
+  href: "/project";
   priority: 0.5;
   freq: "monthly";
   _updatedAt: string;
@@ -1121,7 +1131,7 @@ declare module "@sanity/client" {
     "*[_type == \"projectv2\" && isPublished == true]\n        {\n        title,\n        _id,\n        slug\n        ,_createdAt,_updatedAt\n         \n          }\n        ": PROJECTS_SITEMAP_QUERYResult;
     "*[_type == \"projectv2\" && slug.current == $slug][0]\n                    {title,\n                    _id,\n                    seo,\n                    _createdAt,\n                    _updatedAt,\n                    seo,\n                     hero{\n                      ...,\n                      asset->{\n                        ...\n                      }\n                    },\n                    'rawIntro':pt::text(pitch.text),\n                    'rawContent':pt::text(pitch.text+problem.text+action.text+result.text),\n                    slug,\n                    pitch{text,\"image\":image.asset->},\n                    problem{text,\"image\":image.asset->},\n                    action{text,\"image\":image.asset->},\n                    result{text,\"image\":image.asset->},\n                  'gallery':gallery[].asset->{\n  originalFilename,\n  url,\n  title,\n  description,\n       'lqip':metadata.lqip,\n    'dimensions':metadata.dimensions,\n  altText,\n  _rev,\n}}": PROJECT_QUERYResult;
     "\n  *[_id == $id][0]{\n    title,\n    description,\n    hero,\n    content,\n    _createdAt,\n    \"image\": hero.asset->{\n      url,\n      metadata {\n        palette\n      }\n    }\n  }    \n": OG_IMAGE_QUERYResult;
-    "\n*[_type in ['homePage2','contact'] || _type == \"projectv2\" && defined(slug.current) && isPublished == true || _type ==\"blogPost\" && defined(slug.current) && now() > date ] {\n    \"href\": select(\n      _type == 'homePage2' => \"/\",\n      _type == 'contact' => \"/contact\",\n      _type == \"blogPost\" => \"/blog/\" + slug.current,\n      _type == \"projectv2\" => \"/project/\" + slug.current,\n\n    ),\n    'priority':select(\n      _type == 'homePage2' => 0.5,\n      _type == 'contact' => 0.3,\n      _type == \"blogPost\" => 1,\n      _type == \"projectv2\" => 1,\n    ),\n    'freq':select(\n      _type == 'homePage2' => 'monthly',\n      _type == 'contact' => 'yearly',\n      _type == \"blogPost\" => 'weekly',\n      _type == \"projectv2\" => 'weekly',\n    ),\n    _updatedAt\n}\n": SITEMAP_QUERYResult;
+    "\n*[_type in ['homePage2','contact','projectPage','blogPage'] || _type == \"projectv2\" && defined(slug.current) && isPublished == true || _type ==\"blogPost\" && defined(slug.current) && now() > date ] {\n    \"href\": select(\n      _type == 'homePage2' => \"/\",\n      _type == 'contact' => \"/contact\",\n      _type == 'projectPage' => \"/project\",\n      _type == 'blogPage' => \"/blog\",\n      _type == \"blogPost\" => \"/blog/\" + slug.current,\n      _type == \"projectv2\" => \"/project/\" + slug.current,\n    ),\n\n    'priority':select(\n      _type == 'homePage2' => 0.5,\n      _type == 'blogPage' => 0.5,\n      _type == 'projectPage' => 0.5,\n      _type == 'contact' => 0.3,\n      _type == \"blogPost\" => 1,\n      _type == \"projectv2\" => 1,\n    ),\n\n    'freq':select(\n      _type == 'homePage2' => 'monthly',\n      _type == 'projectPage' => 'monthly',\n      _type == 'blogPage' => 'monthly',\n      _type == 'contact' => 'yearly',\n      _type == \"blogPost\" => 'weekly',\n      _type == \"projectv2\" => 'weekly',\n    ),\n    _updatedAt\n}\n": SITEMAP_QUERYResult;
     "*[_type == \"settings\" ][0]": SETTINGS_QUERYResult;
   }
 }

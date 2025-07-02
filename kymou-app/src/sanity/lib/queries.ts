@@ -148,22 +148,29 @@ export const OG_IMAGE_QUERY = defineQuery(`
 `);
 
 export const SITEMAP_QUERY = defineQuery(`
-*[_type in ['homePage2','contact'] || _type == "projectv2" && defined(slug.current) && isPublished == true || _type =="blogPost" && defined(slug.current) && now() > date ] {
+*[_type in ['homePage2','contact','projectPage','blogPage'] || _type == "projectv2" && defined(slug.current) && isPublished == true || _type =="blogPost" && defined(slug.current) && now() > date ] {
     "href": select(
       _type == 'homePage2' => "/",
       _type == 'contact' => "/contact",
+      _type == 'projectPage' => "/project",
+      _type == 'blogPage' => "/blog",
       _type == "blogPost" => "/blog/" + slug.current,
       _type == "projectv2" => "/project/" + slug.current,
-
     ),
+
     'priority':select(
       _type == 'homePage2' => 0.5,
+      _type == 'blogPage' => 0.5,
+      _type == 'projectPage' => 0.5,
       _type == 'contact' => 0.3,
       _type == "blogPost" => 1,
       _type == "projectv2" => 1,
     ),
+
     'freq':select(
       _type == 'homePage2' => 'monthly',
+      _type == 'projectPage' => 'monthly',
+      _type == 'blogPage' => 'monthly',
       _type == 'contact' => 'yearly',
       _type == "blogPost" => 'weekly',
       _type == "projectv2" => 'weekly',

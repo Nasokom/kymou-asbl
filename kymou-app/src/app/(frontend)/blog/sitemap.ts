@@ -1,19 +1,19 @@
 
 
-import { BLOG_SITEMAP_QUERY} from "@/sanity/lib/queries"
+import { SITEMAP_QUERY} from "@/sanity/lib/queries"
 import { sanityFetch } from "@/sanity/lib/live"
-import {BLOG_SITEMAP_QUERYResult} from "@/sanity/types"
+import {SITEMAP_QUERYResult} from "@/sanity/types"
 import { BASE_URL } from "@/utils/constants"
 
 
 export default async function sitemap(){
-const {data:projects} = await sanityFetch({query:BLOG_SITEMAP_QUERY})
+const {data:paths} = await sanityFetch({query:SITEMAP_QUERY})
 
-  return projects.map((project:BLOG_SITEMAP_QUERYResult[number]) => ({
-    url: `${BASE_URL}/blog/${project?.slug?.current}`,
-    lastModified: project?._updatedAt,
-    loc:`${BASE_URL}/blog/${project?.slug?.current}`,
-    changeFrequency: "weekly",
-    priority: 1,
-  }))
+   return  paths.filter((path:SITEMAP_QUERYResult[0])=>path?.href?.includes('blog')).map((path:SITEMAP_QUERYResult[0]) => ({
+      url:  new URL(path.href!, BASE_URL).toString(),
+      lastModified: new Date(path._updatedAt),
+      changeFrequency: path.freq,
+      priority: path.priority,
+    }))
+
 }
