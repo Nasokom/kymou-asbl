@@ -1,7 +1,7 @@
 import "@/app/globals.css";
 import { draftMode } from "next/headers";
 import { VisualEditing } from "next-sanity";
-import { DisableDraftMode } from "@/components/DisableDraftMode";
+import DisableDraftMode from "@/components/DisableDraftMode";
 import { SanityLive } from '@/sanity/lib/live'
 import Navbar from "@/components/Navbar"
 import Footer from "@/components/Footer"

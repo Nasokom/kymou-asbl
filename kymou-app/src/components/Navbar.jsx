@@ -8,6 +8,11 @@ import Settings from '@/components/Settings'
 import { GiHamburgerMenu } from "react-icons/gi";
 import { IoClose } from "react-icons/io5";
 
+
+
+
+
+
 const Navbar = ({blog}) => {
 
   const [showNavbar, setShowNavbar] = useState(true);
