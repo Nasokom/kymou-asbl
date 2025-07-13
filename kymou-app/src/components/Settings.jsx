@@ -100,12 +100,12 @@ function resetCssVar(){
 <>
     { 
       showSettings ? 
-      <button onClick={()=>setShowSettings(!showSettings)} >
+      <button aria-label="Fermer les reglages" onClick={()=>setShowSettings(!showSettings)} >
         <IoClose  className={`cursor-pointer text-4xl m-2 hover:scale-125`}/>
       </button>
       :
      <>
-      <button onClick={()=>{setShowSettings(!showSettings),setMenu(false)}} >
+      <button aria-label="Ouvrir les reglages" onClick={()=>{setShowSettings(!showSettings),setMenu(false)}} >
         <TbSettings className={`flex cursor-pointer flex-basis text-4xl m-2 hover:stroke-[--color2]  hover:scale-125 ${showSettings ? 'stroke-[--color2] scale-115' :''}`}/>
       </button>
      </>
@@ -128,9 +128,9 @@ function resetCssVar(){
             <div className='flex flex-col justify-center items-center gap-2'>
               {/* max:22 = optimal */}
               <div className='flex gap-2 bg-[--bgColor1] rounded p-2'>
-                <button onClick={()=>changeTheme('light')} value={'light'} className={`p-1 ${theme == 'light' ? 'outline ':''}`}>light</button>
-                <button onClick={()=>changeTheme('system')} value={''} className={`p-1 ${theme == 'system' || theme == undefined ? 'outline ':''}`}>system</button>
-                <button  onClick={()=>changeTheme('dark')}value={'dark'} className={`p-1 ${theme == 'dark' ? 'outline' : ''}`}>dark</button>
+                <button aria-label="Mettre mode nuit" onClick={()=>changeTheme('light')} value={'light'} className={`p-1 ${theme == 'light' ? 'outline ':''}`}>light</button>
+                <button aria-label="Mettre mode system" onClick={()=>changeTheme('system')} value={''} className={`p-1 ${theme == 'system' || theme == undefined ? 'outline ':''}`}>system</button>
+                <button aria-label="Mettre mode jour" onClick={()=>changeTheme('dark')}value={'dark'} className={`p-1 ${theme == 'dark' ? 'outline' : ''}`}>dark</button>
               </div> 
             </div>
         </li>
@@ -182,7 +182,7 @@ function resetCssVar(){
             <p>Utiliser les parametre par defaults</p>
 
             <div className='flex flex-col justify-center items-center gap-2'>
-              <button className='zigzagsm p-2 text-white font-rec1 rounded text-xl' onClick={()=>resetCssVar()}> 
+              <button aria-label="Reinitialiser reglages" className='zigzagsm p-2 text-white font-rec1 rounded text-xl' onClick={()=>resetCssVar()}> 
                 Reinitialiser
               </button>
             </div>
