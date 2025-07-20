@@ -638,7 +638,7 @@ export type BLOG_PAGE_QUERYResult = {
   seo?: Seo;
 } | null;
 // Variable: POSTS_QUERY
-// Query: *[_type == "blogPost" && defined(slug.current) && isPublished == true && now() > date ][0...12]{  _id, title, author, slug,  content, _createdAt,publishedAt,description,  hero{    ...,    asset-> {      title,      url,      credit,      ...    }  },}
+// Query: *[_type == "blogPost" && defined(slug.current) && isPublished == true && now() > date ][0...12]|order(date asc){  _id, title, author, slug,  content, _createdAt,publishedAt,description,  hero{    ...,    asset-> {      title,      url,      credit,      ...    }  },}
 export type POSTS_QUERYResult = Array<{
   _id: string;
   title: string | null;
@@ -704,7 +704,7 @@ export type BLOG_SITEMAP_QUERYResult = Array<{
 // Query: *[_type == "blogPost" && now()  > date && isPublished == true ]{}
 export type BLOG_LENGTH_QUERYResult = Array<{}>;
 // Variable: POST_QUERY
-// Query: *[_type == "blogPost" && slug.current == $slug][0]{  _id,  'slug':slug.current,  title,  author,  content,   publishedAt,  _createdAt,  _updatedAt,  description,  'rawContent':pt::text(content),  seo,  hero{    ...,    asset->{      ...    }  },}
+// Query: *[_type == "blogPost" && slug.current == $slug][0]{  _id,  'slug':slug.current,  title,  author,  publishedAt,  _createdAt,  _updatedAt,  description,  'rawContent':pt::text(content),  seo,  hero{    ...,    asset->{      ...    }  },  content[]{...,    markDefs[]{      ...,      _type == "projectLink" => {        href->{slug}      },    _type == "articleLink" => {        href->{slug}      }    }}}
 export type POST_QUERYResult = {
   _id: string;
   slug: string | null;
@@ -724,7 +724,6 @@ export type POST_QUERYResult = {
       _type: "image";
     };
   } | null;
-  content: BlogContent | null;
   publishedAt: null;
   _createdAt: string;
   _updatedAt: string;
@@ -759,6 +758,70 @@ export type POST_QUERYResult = {
     crop?: SanityImageCrop;
     _type: "image";
   } | null;
+  content: Array<{
+    children?: Array<{
+      marks?: Array<string>;
+      text?: string;
+      _type: "span";
+      _key: string;
+    }>;
+    style?: "h2" | "h3" | "normal";
+    listItem?: "bullet" | "number";
+    markDefs: Array<{
+      href: {
+        slug: Slug | null;
+      } | null;
+      _type: "articleLink";
+      _key: string;
+    } | {
+      href?: string;
+      _type: "externalLink";
+      _key: string;
+    } | {
+      float?: "left" | "right";
+      image?: {
+        asset?: {
+          _ref: string;
+          _type: "reference";
+          _weak?: boolean;
+          [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+        };
+        media?: unknown;
+        hotspot?: SanityImageHotspot;
+        crop?: SanityImageCrop;
+        _type: "image";
+      };
+      _type: "inlineicon";
+      _key: string;
+    } | {
+      href: {
+        slug: Slug | null;
+      } | null;
+      _type: "projectLink";
+      _key: string;
+    } | {
+      credit?: string;
+      _type: "quote";
+      _key: string;
+    }> | null;
+    level?: number;
+    _type: "block";
+    _key: string;
+  } | {
+    asset?: {
+      _ref: string;
+      _type: "reference";
+      _weak?: boolean;
+      [internalGroqTypeReferenceTo]?: "sanity.imageAsset";
+    };
+    media?: unknown;
+    hotspot?: SanityImageHotspot;
+    crop?: SanityImageCrop;
+    isFullScreen?: boolean;
+    _type: "image";
+    _key: string;
+    markDefs: null;
+  }> | null;
 } | null;
 // Variable: CONTACT_QUERY
 // Query: *[_type == "contact"][0]
@@ -1119,10 +1182,10 @@ declare module "@sanity/client" {
   interface SanityQueries {
     "*[_type == \"homePage2\"][0]{\n  ...,\n  header{\n    ...,\n      image{...,asset->}\n\n  },\n  footer{\n    ...,\n    image{\n      asset->\n    }\n  }\n}": HOME_QUERYResult;
     "*[_type == \"blogPage\"][0]": BLOG_PAGE_QUERYResult;
-    "*[_type == \"blogPost\" && defined(slug.current) && isPublished == true && now() > date ][0...12]{\n  _id, title, author, slug,  content, _createdAt,publishedAt,description,\n  hero{\n    ...,\n    asset-> {\n      title,\n      url,\n      credit,\n      ...\n    }\n  },\n}": POSTS_QUERYResult;
+    "*[_type == \"blogPost\" && defined(slug.current) && isPublished == true && now() > date ][0...12]|order(date asc){\n  _id, title, author, slug,  content, _createdAt,publishedAt,description,\n  hero{\n    ...,\n    asset-> {\n      title,\n      url,\n      credit,\n      ...\n    }\n  },\n}": POSTS_QUERYResult;
     "*[_type == \"blogPost\" && now() > date && isPublished == true ]{_id,slug,_createdAt,_updatedAt}": BLOG_SITEMAP_QUERYResult;
     "*[_type == \"blogPost\" && now()  > date && isPublished == true ]{}": BLOG_LENGTH_QUERYResult;
-    "*[_type == \"blogPost\" && slug.current == $slug][0]{\n  _id,\n  'slug':slug.current,\n  title,\n  author,\n  content, \n  publishedAt,\n  _createdAt,\n  _updatedAt,\n  description,\n  'rawContent':pt::text(content),\n  seo,\n  hero{\n    ...,\n    asset->{\n      ...\n    }\n  },\n}": POST_QUERYResult;
+    "*[_type == \"blogPost\" && slug.current == $slug][0]{\n  _id,\n  'slug':slug.current,\n  title,\n  author,\n  publishedAt,\n  _createdAt,\n  _updatedAt,\n  description,\n  'rawContent':pt::text(content),\n  seo,\n  hero{\n    ...,\n    asset->{\n      ...\n    }\n  },\n  content[]{...,\n    markDefs[]{\n      ...,\n      _type == \"projectLink\" => {\n        href->{slug}\n      },\n    _type == \"articleLink\" => {\n        href->{slug}\n      }\n    }}\n}": POST_QUERYResult;
     "*[_type == \"contact\"][0]": CONTACT_QUERYResult;
     "*[_type == \"blogPost\" && defined(slug.current)]{ \n  \"slug\": slug.current\n}": POSTS_SLUGS_QUERYResult;
     "*[ _type == 'sanity.imageAsset' && opt.media.tags != null]{\n  originalFilename,\n  url,\n  title,\n  description,\n       'lqip':metadata.lqip,\n    'dimensions':metadata.dimensions,\n  altText,\n  _rev,\n   \"reference\" : *[\n    references(^._id)\n    && \n    _type == 'projectv2'\n  ][0]{slug, title}   \n}": GALLERY_QUERYResult;
