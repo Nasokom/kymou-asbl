@@ -38,7 +38,6 @@ export const POST_QUERY = defineQuery(`*[_type == "blogPost" && slug.current == 
   'slug':slug.current,
   title,
   author,
-  content, 
   publishedAt,
   _createdAt,
   _updatedAt,
@@ -51,6 +50,16 @@ export const POST_QUERY = defineQuery(`*[_type == "blogPost" && slug.current == 
       ...
     }
   },
+  content[]{...,
+    markDefs[]{
+      ...,
+      _type == "projectLink" => {
+        href->{slug}
+      },
+    _type == "articleLink" => {
+        href->{slug}
+      }
+    }}
 }`)
 
 export const CONTACT_QUERY = defineQuery(`*[_type == "contact"][0]`)
