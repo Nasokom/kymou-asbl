@@ -22,7 +22,9 @@ const RichTextImg = ({data}) => {
 
   return (<>
      <div className={`${data.image ? 'alt gap-4':'alt'} rounded-xl p-2 max-[800px]:p-0 `} >
-        {data.image?(
+        { data.video ? 
+          <video src={data.video} controls></video>
+        :data.image?(
           <Image key={data.image._key} onClick={()=>callModal()} alt={data.image.altText  || data.image.originalFilename ||'image projet kymou' }className="textimg rounded p-4 max-[800px]:p-0 mb-2 max-[800px]:pb-2 pb-2 overflow-hidden cursor-pointer border-[transparent] transition hover:rounded-lg" style={{objectFit:"cover"}} src={loader} width={400} height={400} />
         ) :''}
         <CustomPortableText className='text-2xl pt-6  max-[800px]:pb-8' value={data.text} />

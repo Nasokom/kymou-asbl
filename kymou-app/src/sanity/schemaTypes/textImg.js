@@ -16,5 +16,14 @@ export default defineType({
       title:"photo liee au texte",
       type:"image",
     }),
+     {
+        name:'video',
+        title:'Video',
+        description:'100mb max !!',
+        type:'file',
+        options: {
+    accept: 'video/*', 
+  },
+      },
   ],
 })
